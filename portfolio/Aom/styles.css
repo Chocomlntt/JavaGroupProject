@@ -322,12 +322,12 @@ h4 {
    HERO SECTION & 3D CYBER ID CARD
    ========================================================================== */
 .hero-section {
-  padding: 5rem 0 4rem;
+  padding: 3.5rem 0 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 2fr;
   gap: 4rem;
   align-items: center;
-  min-height: calc(100vh - 72px);
+  min-height: auto;
 }
 
 .hero-content {
@@ -549,7 +549,7 @@ h4 {
 
 /* Section Common */
 .section {
-  padding: 6rem 0;
+  padding: 3.5rem 0;
   position: relative;
 }
 

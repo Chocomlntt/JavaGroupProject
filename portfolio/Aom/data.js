@@ -9,14 +9,14 @@ export const profileData = {
   status: "AVAILABLE FOR HIRE",
   bio: "Architecting high-performance web applications, distributed systems, and real-time interactive interfaces with cyber-linear precision.",
   location: "Uttaradit, Thailand / Remote",
-  coreStackText: "CORE: React, TypeScript, Next.js, Supabase, Tailwind",
+  coreStackText: "CORE: React, Next.js, Tailwind, HTML, CSS, JavaScript, Spring Boot, Docker",
   securityVerifiedText: "SECURITY VERIFIED",
-  
+
   // Hero Section Stats
   stats: {
-    experienceYears: { value: "1+", label: "Years Experience" },
-    projectsCompleted: { value: "10+", label: "Projects Shipped" },
-    codeCommits: { value: "100k", label: "Git Commits" }
+    experienceYears: { value: "None", label: "Years Experience" },
+    projectsCompleted: { value: "5", label: "Projects Shipped" },
+    codeCommits: { value: "500", label: "Git Commits" }
   },
 
   // Social Links & Contact Details
@@ -31,9 +31,9 @@ export const profileData = {
 // Section Headings & General Site Text
 export const siteTextData = {
   hero: {
-    subtitle: "// CYBERNETIC DEVELOPER PROFILE",
-    titleMain: "Engineering High-Performance",
-    titleGradient: "Web Systems",
+    subtitle: "// PHANUWAT AUDKANTHAR PROFILE",
+    titleMain: "Junior Developer Fullstack Developer",
+    titleGradient: "Frontend & Backend",
     ctaPrimary: "Start a Conversation",
     ctaSecondary: "Download Resume"
   },
@@ -53,7 +53,7 @@ export const siteTextData = {
     responseTime: "< 24 Hours Guaranteed"
   },
   footer: {
-    tagline: "CYBER-LINEAR DESIGN SYSTEM #131313 / #00FFC2",
+    tagline: "DESIGN SYSTEM #131313 / #00FFC2",
     copyright: "© 2026 Phanuwat Audkanthar. All rights reserved."
   }
 };
@@ -63,7 +63,7 @@ export const resumeData = {
   title: "Phanuwat Audkanthar Resume Spec",
   badge: "VERIFIED CERTIFIED DEVELOPER SPECIFICATION",
   summary: "Junior Full-Stack Developer passionate about engineering clean, responsive React/Next.js frontends, scalable Node.js/Python backends, and high-quality web applications.",
-  
+
   experience: [
     {
       role: "Junior Full-Stack Developer",
