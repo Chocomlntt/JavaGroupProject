@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Vance | Cyber-Linear Developer Portfolio</title>
+  <meta name="description"
+    content="High-fidelity Cyber-Linear developer portfolio featuring dark mode aesthetics, interactive 3D profile ID card, tech stack grid, and project showcase.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Cyber Background Grid & Cursor Spotlight Glow -->
+  <div class="cyber-bg-grid"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo">
+        <div class="brand-symbol">
+          <i data-lucide="terminal"></i>
+        </div>
+        <span>Alex<span class="cyan-text">.Dev</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#showcase" class="nav-link">Showcase</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>Available</span>
+        </div>
+        <a href="#contact" class="btn btn-primary btn-sm">
+          <i data-lucide="zap"></i> Hire Me
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section container" id="home">
+      <div class="hero-content">
+        <div class="hero-subtitle font-mono">
+          <i data-lucide="radio"></i> // CYBERNETIC DEVELOPER PROFILE
+        </div>
+        <h1 class="hero-title">
+          Engineering High-Performance <span class="gradient-text">Web Systems</span>
+        </h1>
+        <p class="hero-description">
+          Architecting high-fidelity web applications, cloud infrastructure, and real-time interactive interfaces with
+          cyber-linear precision.
+        </p>
+
+        <div class="hero-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#contact" class="btn btn-primary">
+            <i data-lucide="message-square"></i> Start a Conversation
+          </a>
+          <button class="btn btn-secondary" id="openResumeBtn">
+            <i data-lucide="file-text"></i> Download Resume
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">6+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">34+</span>
+            <span class="stat-label">Projects Shipped</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">12.4k</span>
+            <span class="stat-label">Git Commits</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D CYBER ID CARD GRAPHIC -->
+      <div class="hero-id-card-wrapper">
+        <div class="cyber-id-card" id="cyberIdCard">
+          <div class="id-card-header">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <div class="id-chip-graphic"></div>
+              <span class="id-card-code">SYS-8849-CYBER</span>
+            </div>
+            <div class="status-pill">
+              <span class="status-dot"></span> ACTIVE HIRE
+            </div>
+          </div>
+
+          <div class="id-card-body">
+            <div class="id-avatar-box">
+              <img src="./image.png" alt="Phanuwat Audkanthar Developer Avatar" class="id-avatar-img">
+            </div>
+            <div class="id-details">
+              <div class="id-name">Alex Vance</div>
+              <div class="id-handle font-mono">@alex.dev</div>
+              <div class="id-role">Senior Full-Stack Engineer</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">
+                <i data-lucide="map-pin" style="width: 12px; height: 12px; display: inline;"></i> San Francisco / Remote
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="margin-bottom: 1.2rem; background: rgba(0,255,194,0.04); border: 1px solid var(--border-cyan-subtle); padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary);">
+            <i data-lucide="cpu"
+              style="width: 14px; height: 14px; vertical-align: middle; color: var(--accent-cyan);"></i> CORE: React,
+            TypeScript, Next.js, Supabase, Tailwind
+          </div>
+
+          <div class="id-card-footer">
+            <div class="barcode-lines">
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 5px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 6px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 4px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 5px;"></div>
+            </div>
+            <span class="font-mono" style="font-size: 0.7rem; color: var(--text-muted);">SECURITY VERIFIED</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWCASE SECTION -->
+    <section class="section container" id="showcase">
+      <div class="section-header">
+        <span class="section-tag font-mono"><i data-lucide="grid"></i> PORTFOLIO SHOWCASE</span>
+        <h2 class="section-title">Architectural Engineering & <span class="gradient-text">Shipped Systems</span></h2>
+        <p class="section-desc">Explore full-stack platforms, high-performance vector search engines, and real-time
+          dashboard applications.</p>
+      </div>
+
+      <!-- Filter Navigation Tabs -->
+      <div class="tabs-container" id="showcaseTabs">
+        <button class="tab-btn active" data-tab="all">
+          <i data-lucide="layers"></i> All
+        </button>
+        <button class="tab-btn" data-tab="projects">
+          <i data-lucide="code"></i> Projects
+        </button>
+        <button class="tab-btn" data-tab="certificates">
+          <i data-lucide="award"></i> Certificates
+        </button>
+        <button class="tab-btn" data-tab="tech">
+          <i data-lucide="cpu"></i> Tech Stack
+        </button>
+      </div>
+
+      <!-- Dynamic Content Grid -->
+      <div class="projects-grid" id="showcaseGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- TECH STACK MATRIX SECTION -->
+    <!-- <section class="section container" id="tech">
+      <div class="section-header">
+        <span class="section-tag font-mono"><i data-lucide="cpu"></i> TECHNICAL PROFICIENCY</span>
+        <h2 class="section-title">Modern <span class="gradient-text">Tech Stack Grid</span></h2>
+        <p class="section-desc">Production-tested frameworks, state management tools, databases, and infrastructure technologies.</p>
+      </div>
+
+      <div class="tech-grid" id="techStackGrid"> -->
+    <!-- Injected via JavaScript -->
+    <!-- </div>
+    </section> -->
+
+    <!-- CERTIFICATES SECTION -->
+    <!-- <section class="section container" id="certificates">
+      <div class="section-header">
+        <span class="section-tag font-mono"><i data-lucide="award"></i> CREDENTIALS & BADGES</span>
+        <h2 class="section-title">Verified <span class="gradient-text">Certifications</span></h2>
+        <p class="section-desc">Industry certifications in cloud architecture, container orchestrations, and frontend deep dives.</p>
+      </div>
+
+      <div class="certs-grid" id="certificatesGrid"> -->
+    <!-- Injected via JavaScript -->
+    <!-- </div>
+    </section> -->
+
+    <!-- CONTACT SECTION ("Start a conversation") -->
+    <section class="section container" id="contact">
+      <div class="section-header">
+        <span class="section-tag font-mono"><i data-lucide="terminal"></i> START A CONVERSATION</span>
+        <h2 class="section-title">Let's Build Something <span class="gradient-text">Exceptional</span></h2>
+        <p class="section-desc">Have an upcoming project, engineering opportunity, or architectural inquiry? Drop a
+          message below.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3 style="font-size: 1.4rem;">Direct Signals</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Whether you need a full-stack engineer for a production launch or architectural guidance on cloud
+            scalability, my inbox is open.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div class="brand-symbol"><i data-lucide="mail"></i></div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">EMAIL</div>
+                <div style="font-weight: 600;" class="font-mono">alex.vance.dev@example.com</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div class="brand-symbol"><i data-lucide="map-pin"></i></div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">LOCATION</div>
+                <div style="font-weight: 600;">San Francisco, CA / Remote Worldwide</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <div class="brand-symbol"><i data-lucide="clock"></i></div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">RESPONSE TIME</div>
+                <div style="font-weight: 600;" class="cyan-text">&lt; 24 Hours Guaranteed</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; gap: 0.8rem;">
+            <a href="https://github.com" target="_blank" class="social-icon-btn"><i data-lucide="github"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon-btn"><i data-lucide="linkedin"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-icon-btn"><i data-lucide="twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <form id="contactForm" style="display: flex; flex-direction: column; gap: 1.2rem;">
+            <div class="form-group">
+              <label class="form-label font-mono" for="senderName">// YOUR NAME</label>
+              <input type="text" id="senderName" class="form-input" placeholder="e.g. Sarah Connor" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label font-mono" for="senderEmail">// YOUR EMAIL</label>
+              <input type="email" id="senderEmail" class="form-input" placeholder="e.g. sarah@cyberdyne.io" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label font-mono" for="messageContent">// TRANSMISSION MESSAGE</label>
+              <textarea id="messageContent" class="form-textarea" rows="4"
+                placeholder="Tell me about your project or opportunity..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;">
+              <i data-lucide="send"></i> Transmit Message
+            </button>
+          </form>
+
+          <!-- Interactive Cyber Terminal Log Output -->
+          <div class="cyber-terminal-log" id="terminalLog">
+            <div class="log-line">
+              <span class="log-prompt">&gt;</span>
+              <span>SYSTEM READY. AWAITING USER TRANSMISSION...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- RESUME PREVIEW MODAL -->
+  <div class="modal-backdrop" id="resumeModal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="closeResumeBtn"><i data-lucide="x"></i></button>
+
+      <div
+        style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+        <div>
+          <h2 style="font-size: 1.5rem;">Alex Vance Resume Spec</h2>
+          <div class="font-mono" style="font-size: 0.8rem; color: var(--accent-cyan);">VERIFIED CERTIFIED DEVELOPER
+            SPECIFICATION</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="alert('Downloading Alex_Vance_Resume.pdf...')">
+          <i data-lucide="download"></i> Download PDF
+        </button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <h3 style="font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 0.5rem;" class="font-mono">//
+            EXECUTIVE SUMMARY</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Senior Full-Stack & Cyber-Systems Engineer with 6+ years of experience engineering high-throughput
+            React/Next.js frontends, scalable Node.js/Python microservices, and automated cloud pipelines. Specialized
+            in glassmorphism UI design systems, real-time WebSocket telemetry, and vector databases.
+          </p>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 0.5rem;" class="font-mono">// WORK
+            EXPERIENCE</h3>
+
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-weight: 700;">
+              <span>Lead Frontend Architect @ CyberPulse Inc.</span>
+              <span class="font-mono" style="font-size: 0.85rem; color: var(--text-muted);">2023 - Present</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              Led a team of 6 engineers rebuilding cloud telemetry dashboards, reducing render latency by 45% and
+              scaling to 150k monthly active users.
+            </p>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-weight: 700;">
+              <span>Senior Full-Stack Engineer @ Synthetix Systems</span>
+              <span class="font-mono" style="font-size: 0.85rem; color: var(--text-muted);">2020 - 2023</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              Engineered high-frequency asset trading interfaces with WebGL graph visualizers and microservice APIs
+              processing 50k requests/sec.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 0.5rem;" class="font-mono">//
+            EDUCATION</h3>
+          <div style="font-weight: 700;">B.S. in Computer Science & Cybernetics</div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary);">University of California, Berkeley</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DYNAMIC PROJECT DETAIL MODAL -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal-container" id="projectModalContent">
+      <!-- Injected via JavaScript -->
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div style="display: flex; align-items: center; gap: 0.8rem;">
+        <div class="brand-symbol"><i data-lucide="terminal"></i></div>
+        <div>
+          <div style="font-weight: 700;">Alex Vance Portfolio</div>
+          <div class="font-mono" style="font-size: 0.75rem; color: var(--text-muted);">CYBER-LINEAR DESIGN SYSTEM
+            #131313 / #00FFC2</div>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" class="social-icon-btn"><i data-lucide="github"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon-btn"><i data-lucide="linkedin"></i></a>
+        <a href="https://twitter.com" target="_blank" class="social-icon-btn"><i data-lucide="twitter"></i></a>
+      </div>
+
+      <div class="font-mono" style="font-size: 0.8rem; color: var(--text-muted);">
+        &copy; 2026 Alex.Dev. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Module -->
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>
