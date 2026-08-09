@@ -8,11 +8,12 @@
   <meta name="description"
     content="PixelCraft Studio is a three-person web design and UI/UX studio in Bangkok. We design the interface and build it ourselves.">
 
-  <!-- ฟอนต์: Archivo (หัวข้อ) / Schibsted Grotesk (เนื้อหา) / Space Mono (ป้ายกำกับ) -->
+  <!-- ฟอนต์: Archivo (หัวข้อ) / Schibsted Grotesk (เนื้อหา) / Space Mono (ป้ายกำกับ)
+       IBM Plex Sans Thai = ตัวสำรองสำหรับภาษาไทย เพราะสามตัวบนไม่มีสระไทย -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Schibsted+Grotesk:wght@400..900&family=Space+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400..900&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
 
   <!-- base.css ต้องมาก่อน home.css เสมอ -->
@@ -192,47 +193,332 @@
 
 
     <!-- ============================================================
-         WORK — ผลงานที่เคยทำ
-         สีประจำแถวตั้งที่ <a> เอง: --c = สีพื้นตอนชี้เมาส์
-                                    --on = สีตัวหนังสือบนพื้นนั้น
+         WORK — ผลงานบริษัท (accordion คลิกเพื่อกางรายละเอียด)
+         ------------------------------------------------------------
+         โครงหนึ่งการ์ด:
+           <article class="row" style="--c ; --on ; --cd">
+             --c  = สีประจำการ์ด ใช้กับแถบซ้ายและพื้นตอนกางออก
+             --on = สีตัวหนังสือบนพื้น --c
+             --cd = สีเดียวกันแต่เวอร์ชันที่อ่านออกบนพื้นดำในแผงรายละเอียด
+             <h3 class="row__h"><button class="row__btn"> ... หัวการ์ด
+             <div class="row__panel">    ... รายละเอียดที่กางออกมา
+
+         id ของ button กับ panel ต้องจับคู่กัน (aria-controls / aria-labelledby)
+         ตอนยังไม่มี JS ทุกแผงจะกางอยู่ site.js จะหุบให้เองตอนโหลดเสร็จ
          ============================================================ -->
     <section class="band band--work" id="work">
       <div class="wrap">
         <div class="head">
-          <h2 class="h2">Four files<br>we shipped</h2>
-          <p class="head__note">The client, what was broken, and what changed after launch.</p>
+          <h2 class="h2">Five files<br>we shipped</h2>
+          <p class="head__note">Click a project to open the file — client, the problem, what we built, and the
+            numbers after launch.</p>
         </div>
 
-        <div class="rows">
-          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--plasma); --on:#fff">
-            <span class="row__name">TechMart <span class="row__yr">E-commerce</span></span>
-            <span class="row__what">A dated storefront people left before they reached the cart.</span>
-            <span class="row__out"><span>+45% conversion</span><span>−60% load time</span><span>+35%
-                session</span></span>
-            <span class="row__go" aria-hidden="true">↗</span>
-          </a>
+        <div class="rows" id="work-rows">
+          <article class="row" style="--c:var(--plasma); --on:#fff; --cd:#7C7CFF">
+            <h3 class="row__h">
+              <button class="row__btn" type="button" id="wb-quantum-mall" aria-expanded="true" aria-controls="wp-quantum-mall">
+                <span class="row__idx" aria-hidden="true">01</span>
+                <span class="row__name">Galactic Quantum Mall
+                  <span class="row__th">ระบบอีคอมเมิร์ซข้ามดาวเคราะห์</span>
+                </span>
+                <span class="row__cat">E-commerce</span>
+                <span class="row__sign" aria-hidden="true"></span>
+              </button>
+            </h3>
 
-          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--hyper); --on:#fff">
-            <span class="row__name">GlobalTech <span class="row__yr">B2B services</span></span>
-            <span class="row__what">A B2B firm with no site to send a prospect to.</span>
-            <span class="row__out"><span>Shipped in 3 months</span><span>150+ leads / month</span></span>
-            <span class="row__go" aria-hidden="true">↗</span>
-          </a>
+            <div class="row__panel" id="wp-quantum-mall" role="region" aria-labelledby="wb-quantum-mall">
+              <div class="row__panelin">
+                <div class="pan">
 
-          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--lime); --on:#0C0D14">
-            <span class="row__name">FitFlow <span class="row__yr">Mobile app</span></span>
-            <span class="row__what">A fitness app with nowhere to send the people who heard about it.</span>
-            <span class="row__out"><span>8,000+ downloads, month one</span><span>25% store
-                conversion</span><span>App of the week</span></span>
-            <span class="row__go" aria-hidden="true">↗</span>
-          </a>
+                  <div class="fact">
+                    <p class="fact__k">Client</p>
+                    <p class="fact__v">Interstellar Commerce Alliance — สมาพันธ์การค้าแห่งกาแลกซี</p>
+                  </div>
 
-          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--ink); --on:#E9EDF5">
-            <span class="row__name">LocalEats <span class="row__yr">Food delivery</span></span>
-            <span class="row__what">A delivery startup that looked smaller than it actually was.</span>
-            <span class="row__out"><span>3× traffic</span><span>+50% enquiries</span></span>
-            <span class="row__go" aria-hidden="true">↗</span>
-          </a>
+                  <div class="pan__two">
+                    <div class="fact">
+                      <p class="fact__k">The problem</p>
+                      <p class="fact__v">ระบบซื้อขายเดิมเจอความหน่วงจากระยะทางแสงระหว่างดาวเคราะห์ ตะกร้าสินค้าหมดอายุก่อนผู้ใช้จะกดเช็คเอาต์ทัน แถมดีไซน์เดิมก็ไม่ได้เผื่อผู้ใช้งานสายพันธุ์ต่างดาวไว้เลย</p>
+                    </div>
+                    <div class="fact">
+                      <p class="fact__k">What we built</p>
+                      <ul class="solu">
+                    <li><b>Predictive Quantum Checkout</b> คาดการณ์การกดซื้อล่วงหน้าด้วย AI ควอนตัม ตัดจบรายการก่อนผู้ใช้จะเปลี่ยนใจ</li>
+                    <li><b>Holographic 3D UI</b> ปรับการแสดงผลตามแรงโน้มถ่วงและระบบสายตาของสิ่งมีชีวิตในแต่ละระบบดาว</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="fact">
+                    <p class="fact__k">Results</p>
+                    <div class="mets">
+                  <div class="met">
+                    <p class="met__v">100,000,000,000</p>
+                    <p class="met__u">ธุรกรรมต่อวินาที</p>
+                    <p class="met__d">จากผู้ใช้กว่า 1,000 ระบบดาวพร้อมกัน</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">0.000001 ms</p>
+                    <p class="met__u">ความหน่วงที่เหลืออยู่</p>
+                    <p class="met__d">ลดจาก 4 ปีแสง กดปุ๊บสินค้าวาร์ปถึงหน้าบ้าน</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">900 ล้านล้าน</p>
+                    <p class="met__u">เครดิตอวกาศ</p>
+                    <p class="met__d">ยอดขายรวมภายใน 3 วินาทีแรกหลังเปิดตัว</p>
+                  </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="row" style="--c:var(--hyper); --on:#fff; --cd:#FF63B0">
+            <h3 class="row__h">
+              <button class="row__btn" type="button" id="wb-neurallink" aria-expanded="true" aria-controls="wp-neurallink">
+                <span class="row__idx" aria-hidden="true">02</span>
+                <span class="row__name">NeuralLink Mind-Interface OS
+                  <span class="row__th">ระบบปฏิบัติการสั่งงานด้วยความคิด</span>
+                </span>
+                <span class="row__cat">Interface OS</span>
+                <span class="row__sign" aria-hidden="true"></span>
+              </button>
+            </h3>
+
+            <div class="row__panel" id="wp-neurallink" role="region" aria-labelledby="wb-neurallink">
+              <div class="row__panelin">
+                <div class="pan">
+
+                  <div class="fact">
+                    <p class="fact__k">Client</p>
+                    <p class="fact__v">NeuralTech Global &amp; Ministry of Future Affairs</p>
+                  </div>
+
+                  <div class="pan__two">
+                    <div class="fact">
+                      <p class="fact__k">The problem</p>
+                      <p class="fact__v">ผู้ใช้ยุคใหม่อยากสั่งงานเว็บผ่านคลื่นสมองโดยตรง แต่ UI แบบเดิมยัดข้อมูลเข้าหัวทีเดียวทั้งหน้า จนเกิดภาวะสมองโหลดเกินขนาดและเวียนหัว</p>
+                    </div>
+                    <div class="fact">
+                      <p class="fact__k">What we built</p>
+                      <ul class="solu">
+                    <li><b>Cyber-Cognitive UI/UX System</b> ปรับสี เลย์เอาต์ และขนาดฟอนต์ตามคลื่นสมองและอารมณ์ของผู้ใช้แบบเรียลไทม์ที่ 600 FPS</li>
+                    <li><b>Thought-Auth Encryption</b> สแกนลายนิ้วมือทางความคิดก่อนยืนยันทุกรายการ</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="fact">
+                    <p class="fact__k">Results</p>
+                    <div class="mets">
+                  <div class="met">
+                    <p class="met__v">5,000 ล้าน</p>
+                    <p class="met__u">สมองที่เชื่อมต่อพร้อมกัน</p>
+                    <p class="met__d">มนุษย์กับ AI คุยกันโดยไม่แล็กแม้แต่มิลลิวินาทีเดียว</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">99.99%</p>
+                    <p class="met__u">ความพึงพอใจ</p>
+                    <p class="met__d">วัดจากระดับโดพามีนที่สมองหลั่งออกมาจริง</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">#1</p>
+                    <p class="met__u">Best Interdimensional Design System</p>
+                    <p class="met__d">รางวัลแห่งศตวรรษ จากสถาบันดีไซน์จักรวาล</p>
+                  </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="row" style="--c:var(--lime); --on:#0C0D14; --cd:var(--lime)">
+            <h3 class="row__h">
+              <button class="row__btn" type="button" id="wb-chrono-verse" aria-expanded="true" aria-controls="wp-chrono-verse">
+                <span class="row__idx" aria-hidden="true">03</span>
+                <span class="row__name">Chrono-Verse City OS
+                  <span class="row__th">แดชบอร์ดโฮโลแกรมควบคุมมหานคร</span>
+                </span>
+                <span class="row__cat">Dashboard</span>
+                <span class="row__sign" aria-hidden="true"></span>
+              </button>
+            </h3>
+
+            <div class="row__panel" id="wp-chrono-verse" role="region" aria-labelledby="wb-chrono-verse">
+              <div class="row__panelin">
+                <div class="pan">
+
+                  <div class="fact">
+                    <p class="fact__k">Client</p>
+                    <p class="fact__v">Neo-Tokyo &amp; Hyper-Bangkok Smart Megacity</p>
+                  </div>
+
+                  <div class="pan__two">
+                    <div class="fact">
+                      <p class="fact__k">The problem</p>
+                      <p class="fact__v">แดชบอร์ดบริหารเมืองอัจฉริยะเดิมแยกกันคนละระบบ ทำให้การจราจรโดรนบินกับระบบพลังงานฟิวชันสั่งงานไม่ตรงกันและขัดข้องบ่อยครั้ง</p>
+                    </div>
+                    <div class="fact">
+                      <p class="fact__k">What we built</p>
+                      <ul class="solu">
+                    <li><b>3D Real-time Hologram City Command Center</b> จำลองเมืองทั้งเมืองแบบ Atom-Level Twin อัตราส่วน 1:1 แสดงผลบนเว็บ</li>
+                    <li><b>AI Predictive Simulation</b> มองเห็นเหตุวิกฤตล่วงหน้า 24 ชั่วโมง แจ้งเตือนก่อนเรื่องจะเกิดจริง</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="fact">
+                    <p class="fact__k">Results</p>
+                    <div class="mets">
+                  <div class="met">
+                    <p class="met__v">20,000,000</p>
+                    <p class="met__u">ยานพาหนะบินที่คุมพร้อมกัน</p>
+                    <p class="met__d">อัตราอุบัติเหตุ 0.00% นับตั้งแต่วันเปิดใช้</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">85%</p>
+                    <p class="met__u">พลังงานฟิวชันที่ประหยัดได้ต่อปี</p>
+                    <p class="met__d">คิดรวมทั้งมหานคร</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">#1</p>
+                    <p class="met__u">ระบบปฏิบัติการเมืองอัจฉริยะ</p>
+                    <p class="met__d">อันดับหนึ่งของกาแลกซีทางช้างเผือก</p>
+                  </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="row" style="--c:var(--steel); --on:#0C0D14; --cd:#BAC4D6">
+            <h3 class="row__h">
+              <button class="row__btn" type="button" id="wb-chronox" aria-expanded="true" aria-controls="wp-chronox">
+                <span class="row__idx" aria-hidden="true">04</span>
+                <span class="row__name">Multiverse Booking Engine
+                  <span class="row__th">ระบบจองตั๋วท่องเวลาข้ามพหุภพ</span>
+                </span>
+                <span class="row__cat">Booking engine</span>
+                <span class="row__sign" aria-hidden="true"></span>
+              </button>
+            </h3>
+
+            <div class="row__panel" id="wp-chronox" role="region" aria-labelledby="wb-chronox">
+              <div class="row__panelin">
+                <div class="pan">
+
+                  <div class="fact">
+                    <p class="fact__k">Client</p>
+                    <p class="fact__v">ChronoX Temporal Services &amp; Time Travel Agency</p>
+                  </div>
+
+                  <div class="pan__two">
+                    <div class="fact">
+                      <p class="fact__k">The problem</p>
+                      <p class="fact__v">การจองทริปย้อนเวลาไปยุคไดโนเสาร์หรือยุคอนาคตเจอปัญหา Time Paradox ทำให้ประวัติศาสตร์เปลี่ยนและตั๋วซ้ำซ้อนกันในแต่ละไทม์ไลน์</p>
+                    </div>
+                    <div class="fact">
+                      <p class="fact__k">What we built</p>
+                      <ul class="solu">
+                    <li><b>Temporal Fluid UI/UX</b> ผังเวลาแบบ 4D Spacetime Graph ปรับตามมิติเวลาของผู้ใช้อัตโนมัติ</li>
+                    <li><b>Anti-Paradox Safety Lock</b> ล็อกไม่ให้จองข้ามไทม์ไลน์ที่จะส่งผลให้จักรวาลล่มสลาย</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="fact">
+                    <p class="fact__k">Results</p>
+                    <div class="mets">
+                  <div class="met">
+                    <p class="met__v">100.00%</p>
+                    <p class="met__u">กัน Time Paradox ได้หมด</p>
+                    <p class="met__d">ยังไม่มีจักรวาลไหนแยกตัวสักครั้งเดียว</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">800,000,000</p>
+                    <p class="met__u">นักท่องเที่ยวข้ามเวลาต่อวัน</p>
+                    <p class="met__d">ไปดูไดโนเสาร์กันทั้งวัน ยังไม่มีใครโดน T-Rex กินสักคน</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">#1</p>
+                    <p class="met__u">Zero-Paradox Web Architecture Award</p>
+                    <p class="met__d">จากสภาเวลามิติที่ 5</p>
+                  </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="row" style="--c:var(--lime); --on:#0C0D14; --cd:var(--lime)">
+            <h3 class="row__h">
+              <button class="row__btn" type="button" id="wb-aegis" aria-expanded="true" aria-controls="wp-aegis">
+                <span class="row__idx" aria-hidden="true">05</span>
+                <span class="row__name">Aegis Shield Command
+                  <span class="row__th">แดชบอร์ดเกราะโล่สสารมืดปกป้องโลก</span>
+                </span>
+                <span class="row__cat">Dashboard</span>
+                <span class="row__sign" aria-hidden="true"></span>
+              </button>
+            </h3>
+
+            <div class="row__panel" id="wp-aegis" role="region" aria-labelledby="wb-aegis">
+              <div class="row__panelin">
+                <div class="pan">
+
+                  <div class="fact">
+                    <p class="fact__k">Client</p>
+                    <p class="fact__v">Planetary Defense Command &amp; United Earth Orbit Federation</p>
+                  </div>
+
+                  <div class="pan__two">
+                    <div class="fact">
+                      <p class="fact__k">The problem</p>
+                      <p class="fact__v">ระบบป้องกันดาวเคราะห์เดิมใช้ UI ล่าสมัย ตัวหนังสือเล็กจนมองไม่ทัน เจ้าหน้าที่กดเปิดเกราะป้องกันไม่ทันตอนอุกกาบาตพุ่งเข้ามา</p>
+                    </div>
+                    <div class="fact">
+                      <p class="fact__k">What we built</p>
+                      <ul class="solu">
+                    <li><b>Ultra-High-Contrast Command Dashboard</b> นีออนมินิมอลคอนทราสต์จัด อ่านออกในครึ่งวินาที ทำงานแบบ Zero-Click Action</li>
+                    <li><b>Eye-Tracking Trigger System</b> ยิงเลเซอร์สสารมืดเบี่ยงทิศอุกกาบาตด้วยการขยิบตาครั้งเดียว</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="fact">
+                    <p class="fact__k">Results</p>
+                    <div class="mets">
+                  <div class="met">
+                    <p class="met__v">1,200,000</p>
+                    <p class="met__u">อุกกาบาตที่สกัดไว้ได้</p>
+                    <p class="met__d">รวมอุกกาบาตเพชร โลกไม่มีรอยขีดข่วนแม้แต่เซนติเมตรเดียว</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">0.0001 ms</p>
+                    <p class="met__u">เวลาตอบสนองเปิดเกราะ</p>
+                    <p class="met__d">ลดจาก 10 นาที มองปุ๊บโล่กางปั๊บ</p>
+                  </div>
+                  <div class="met">
+                    <p class="met__v">8,000,000,000</p>
+                    <p class="met__u">ประชากรโลกที่ปลอดภัย</p>
+                    <p class="met__d">รอดพ้นวันสิ้นโลกครบ 100%</p>
+                  </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>

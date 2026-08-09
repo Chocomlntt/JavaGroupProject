@@ -36,11 +36,14 @@
   --brushed-text: linear-gradient(178deg, #FFFFFF 0%, #EDF1F9 12%, #97A4BC 30%, #59657E 45%, #FFFFFF 51%, #F6F8FD 57%, #AAB6CB 73%, #6E7B94 87%, #F2F5FB 100%);
 
   /* --- ฟอนต์ ---------------------------------------------- */
-  --f-disp: "Archivo", "Arial Black", Impact, sans-serif;
+  /* ตัวที่สองในทุกกองคือ IBM Plex Sans Thai — เบราว์เซอร์เลือกฟอนต์
+     ทีละตัวอักษร ตัวอังกฤษเลยได้ฟอนต์แรก ส่วนตัวไทยตกมาใช้ตัวไทย
+     ถ้าไม่ใส่ ตัวไทยจะไปใช้ฟอนต์ระบบ หน้าตาคนละเรื่องกันทั้งเว็บ */
+  --f-disp: "Archivo", "IBM Plex Sans Thai", "Arial Black", Impact, sans-serif;
   /* หัวข้อใหญ่ */
-  --f-body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Schibsted Grotesk", "IBM Plex Sans Thai", "Helvetica Neue", Arial, sans-serif;
   /* เนื้อหา */
-  --f-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-mono: "Space Mono", "IBM Plex Sans Thai", ui-monospace, "SFMono-Regular", Menlo, monospace;
   /* ป้ายกำกับ */
 
   /* --- ระยะ ----------------------------------------------- */

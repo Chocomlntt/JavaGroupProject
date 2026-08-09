@@ -7,7 +7,7 @@
      1. HERO       — พื้นที่ canvas + ตัวหนังสือโครมเมียม + เคอร์เซอร์
      2. TICKER     — แถบไลม์วิ่ง
      3. SERVICES   — คลาสการ์ดบริการ (เตรียมไว้ให้ ยังไม่มีใครใช้)
-     4. WORK       — ตารางผลงาน
+     4. WORK       — ผลงานบริษัท แบบ accordion คลิกเพื่อกางรายละเอียด
    ============================================================ */
 
 /* ============================================================
@@ -441,9 +441,19 @@
 }
 
 /* ============================================================
-   4. WORK — ตารางผลงาน
-   สีประจำแถวตั้งที่ตัว <a> ด้วย style="--c:...; --on:..."
-   --c คือสีพื้นตอนเอาเมาส์ชี้ / --on คือสีตัวหนังสือบนพื้นนั้น
+   4. WORK — ผลงานบริษัท แบบ accordion
+   ------------------------------------------------------------
+   หนึ่งการ์ด = หัวการ์ดที่กดได้ (.row__btn) + แผงรายละเอียด
+   ที่กางออกมา (.row__panel)
+
+   ตัวแปรสีที่ตั้งไว้ที่ <article class="row" style="...">
+     --c   สีประจำการ์ด  ใช้กับแถบซ้าย และพื้นหัวการ์ดตอนกางออก
+     --on  สีตัวหนังสือที่วางบนพื้น --c แล้วยังอ่านออก
+     --cd  สีเดียวกันเวอร์ชันสว่างขึ้น สำหรับใช้บนพื้นดำในแผงรายละเอียด
+           (สีน้ำเงิน --plasma มืดเกินกว่าจะอ่านออกบนพื้นดำ เลยต้องมีตัวนี้)
+
+   การกางใช้ grid-template-rows 0fr → 1fr ไม่ใช่ max-height
+   เพราะแบบนี้ความสูงจะพอดีเนื้อหาจริงเสมอ ไม่ต้องเดาตัวเลข
    ============================================================ */
 .band--work {
   background-image:
@@ -459,16 +469,11 @@
 
 .row {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.05fr) minmax(0, 1fr) 34px;
-  gap: 8px 28px;
-  align-items: center;
-  padding: 26px 20px 26px 34px;
   border-bottom: 2px solid var(--ink);
-  transition: background .18s ease, color .18s ease, padding-left .18s ease;
 }
 
-/* แถบสีด้านซ้ายของแต่ละแถว */
+/* แถบสีด้านซ้าย — กินความสูงทั้งการ์ด พอกางออกมันเลยกลายเป็น
+   สันสีที่ลากยาวจากหัวการ์ดลงไปถึงก้นแผงรายละเอียด ผูกสองส่วนเข้าด้วยกัน */
 .row::before {
   content: "";
   position: absolute;
@@ -478,86 +483,293 @@
   width: 12px;
   background: var(--c);
   border-right: 2px solid var(--ink);
+  z-index: 1;
 }
 
-.row:hover,
-.row:focus-visible {
+/* --- หัวการ์ดที่กดได้ --------------------------------------- */
+.row__h {
+  margin: 0;
+  font: inherit;
+}
+
+.row__btn {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px 24px;
+  width: 100%;
+  padding: 24px 20px 24px 34px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, padding-left .18s ease;
+}
+
+.row__btn:hover {
+  background: rgba(255, 255, 255, .92);
+  padding-left: 44px;
+}
+
+.row.is-open .row__btn {
   background: var(--c);
   color: var(--on);
-  padding-left: 46px;
+  padding-left: 44px;
+}
+
+/* กรอบ focus ต้องอยู่ข้างในการ์ด ไม่งั้นไปทับการ์ดข้างบน */
+.row__btn:focus-visible {
+  outline-offset: -5px;
+}
+
+.row__idx {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--f-mono);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  opacity: .45;
+}
+
+.row.is-open .row__idx {
+  opacity: .8;
 }
 
 .row__name {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 12px;
+  grid-column: 2;
+  grid-row: 1;
   font-family: var(--f-disp);
-  font-stretch: 118%;
+  font-stretch: 116%;
   font-weight: 900;
-  font-size: clamp(1.45rem, 3.1vw, 2.45rem);
-  line-height: .98;
-  text-transform: uppercase;
+  font-size: clamp(1.3rem, 2.9vw, 2.2rem);
+  line-height: 1;
   letter-spacing: -.025em;
+  text-transform: uppercase;
 }
 
-.row__yr {
+/* ชื่อไทยใต้ชื่ออังกฤษ ต้องรีเซ็ตทุกอย่างที่ .row__name ตั้งไว้ */
+.row__th {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--f-body);
+  font-stretch: normal;
+  font-weight: 500;
+  font-size: .95rem;
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: .72;
+}
+
+.row__cat {
+  grid-column: 3;
+  grid-row: 1;
   font-family: var(--f-mono);
   font-size: .64rem;
-  font-weight: 400;
-  letter-spacing: .12em;
-  opacity: .55;
-}
-
-.row__what {
-  font-size: .98rem;
-  opacity: .82;
-}
-
-.row__out {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  justify-content: flex-end;
-  font-family: var(--f-mono);
-  font-size: .68rem;
-  letter-spacing: .07em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-}
-
-.row__out span {
   border: 1.5px solid currentColor;
   border-radius: 100px;
-  padding: 3px 11px;
+  padding: 4px 12px;
   white-space: nowrap;
+  opacity: .7;
 }
 
-.row__go {
-  font-family: var(--f-disp);
-  font-weight: 800;
-  font-size: 1.5rem;
-  line-height: 1;
-  text-align: right;
-  opacity: .3;
-  transition: opacity .18s ease, transform .18s ease;
+/* เครื่องหมาย + ที่กลายเป็น − ตอนกางออก
+   ขีดตั้งหมุน 90 องศาไปทับขีดนอน เลยเหลือขีดเดียว */
+.row__sign {
+  grid-column: 4;
+  grid-row: 1;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+  opacity: .8;
 }
 
-.row:hover .row__go {
+.row__sign::before,
+.row__sign::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: currentColor;
+}
+
+.row__sign::before {
+  width: 14px;
+  height: 2.5px;
+  transform: translate(-50%, -50%);
+}
+
+.row__sign::after {
+  width: 2.5px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  transition: transform .32s cubic-bezier(.4, 0, .2, 1);
+}
+
+.row.is-open .row__sign {
   opacity: 1;
-  transform: translate(4px, -4px);
+}
+
+.row.is-open .row__sign::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* --- แผงรายละเอียดที่กางออกมา -------------------------------
+   ค่าเริ่มต้นคือกางอยู่ เพื่อให้คนที่ปิด JS ยังอ่านเนื้อหาได้ครบ
+   site.js จะเติมคลาส .rows--js แล้วหุบทั้งหมดให้เองตอนโหลดเสร็จ */
+.row__panel {
+  display: grid;
+  grid-template-rows: 1fr;
+  background: var(--ink);
+  color: var(--foil);
+}
+
+.rows--js .row__panel {
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .42s cubic-bezier(.4, 0, .2, 1);
+}
+
+.rows--js .row.is-open .row__panel {
+  grid-template-rows: 1fr;
+}
+
+.row__panelin {
+  overflow: hidden;
+}
+
+/* ซ่อนจาก screen reader ตอนหุบด้วย ไม่ใช่แค่ซ่อนสายตา */
+.rows--js .row__panelin {
+  visibility: hidden;
+  transition: visibility 0s .42s;
+}
+
+.rows--js .row.is-open .row__panelin {
+  visibility: visible;
+  transition: visibility 0s 0s;
+}
+
+.pan {
+  display: grid;
+  gap: clamp(24px, 3vw, 34px);
+  padding: clamp(26px, 3.4vw, 38px) clamp(22px, 3vw, 38px);
+  /* เผื่อที่ให้สันสีด้านซ้ายที่ลากลงมา ไม่ให้ตัวหนังสือไปติดมัน */
+  padding-left: clamp(34px, 3.4vw, 52px);
+  border-top: 2px solid var(--ink);
+  background-image:
+    linear-gradient(rgba(233, 237, 245, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 237, 245, .05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.pan__two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(24px, 3vw, 44px);
+}
+
+.fact__k {
+  font-family: var(--f-mono);
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--cd);
+  margin-bottom: 12px;
+}
+
+/* ภาษาไทยต้องการระยะบรรทัดมากกว่าอังกฤษ ไม่งั้นสระบนกับสระล่าง
+   ของสองบรรทัดจะชนกัน */
+.fact__v {
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 62ch;
+}
+
+.solu {
+  display: grid;
+  gap: 14px;
+}
+
+.solu li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--steel);
+}
+
+.solu li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .72em;
+  width: 9px;
+  height: 9px;
+  background: var(--cd);
+  transform: rotate(45deg);
+}
+
+.solu b {
+  display: block;
+  font-weight: 700;
+  color: var(--foil);
+  font-family: var(--f-body);
+}
+
+/* --- ตัวเลขผลลัพธ์ ------------------------------------------ */
+.mets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  border: 1px solid rgba(233, 237, 245, .22);
+}
+
+.met {
+  min-width: 0;
+  padding: 20px 20px 22px;
+  border-right: 1px solid rgba(233, 237, 245, .22);
+}
+
+.met:last-child {
+  border-right: 0;
+}
+
+.met__v {
+  font-family: var(--f-disp);
+  font-stretch: 110%;
+  font-weight: 900;
+  font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+  line-height: 1.05;
+  letter-spacing: -.025em;
+  color: var(--cd);
+  font-variant-numeric: tabular-nums;
+}
+
+.met__u {
+  margin-top: 10px;
+  font-size: .93rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.met__d {
+  margin-top: 7px;
+  font-size: .85rem;
+  line-height: 1.75;
+  color: var(--steel);
 }
 
 /* ============================================================
    5. จอเล็กลง
    ============================================================ */
-@media (max-width: 1000px) {
-  .row {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 34px;
-  }
-
-  .row__out {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
+@media (max-width: 940px) {
+  .pan__two {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -567,21 +779,36 @@
   }
 }
 
-@media (max-width: 760px) {
-  .row {
-    grid-template-columns: minmax(0, 1fr) 34px;
-    gap: 12px;
+@media (max-width: 880px) {
+
+  /* ป้ายหมวดหมู่ตกลงมาอยู่ใต้ชื่อ เพราะแนวนอนเริ่มไม่พอ */
+  .row__btn {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px 16px;
+    padding: 20px 16px 22px 30px;
   }
 
-  .row__what,
-  .row__out {
-    grid-column: 1 / -1;
-  }
-
-  .row__go {
+  .row__cat {
     grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .row__sign {
+    grid-column: 3;
     grid-row: 1;
     align-self: start;
+  }
+}
+
+@media (max-width: 620px) {
+  .met {
+    border-right: 0;
+    border-bottom: 1px solid rgba(233, 237, 245, .22);
+  }
+
+  .met:last-child {
+    border-bottom: 0;
   }
 }
 
@@ -593,5 +820,14 @@
   .hero__cta .btn {
     flex: 1 1 100%;
     justify-content: center;
+  }
+
+  .row__btn {
+    padding-left: 26px;
+  }
+
+  .row__btn:hover,
+  .row.is-open .row__btn {
+    padding-left: 32px;
   }
 }
