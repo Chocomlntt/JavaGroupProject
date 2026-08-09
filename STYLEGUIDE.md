@@ -135,30 +135,37 @@ responsive, brand identity, e-commerce เลือกมา 4 อย่าง�
 
 ---
 
-## 5. งานของเพื่อนคนที่ 2 — Team members
+## 5. Team members (ทำเสร็จแล้ว)
 
-**ไฟล์:** `profile-v2.html` · หา `<section class="band" id="team">`
-**ทำอะไร:** ลบ `<div class="blank">` ทิ้ง แล้วใส่โครง `.team` แทน
+**ไฟล์:** `profile-v2.html` · `<section class="band" id="team">`
 
-### คลาสที่มีให้แล้วใน `assets/css/profile.css`
+การ์ดหนึ่งใบมีสองชั้น — ชั้นบนเห็นตลอด ชั้นล่างกางลงมาตอน hover
+
+### คลาสใน `assets/css/profile.css`
 
 | คลาส | คืออะไร |
 |---|---|
 | `.team` | กริด 2 คอลัมน์: แผงรายชื่อซ้าย + การ์ดขวา |
 | `.layers` | แผงรายชื่อ ติดหนึบตามตอนเลื่อนหน้า |
-| `.mates` | กองการ์ดสมาชิก |
-| `.mate` | การ์ด 1 คน ตั้งสีประจำตัวที่นี่ |
-| `.mate__sel` | กรอบ selection รอบการ์ด (ต้องมี `<i>` 4 อันข้างใน) |
-| `.mate__tag` | ป้ายชื่อมุมบนซ้าย |
-| `.mate__in` | กล่องเนื้อหา รูปซ้าย ข้อความขวา |
+| `.pcards` | กองการ์ด 3 ใบเรียงลงมา |
+| `.pcard` | การ์ด 1 คน ตั้งสีประจำตัวที่นี่ |
+| `.pcard__tag` | ป้ายชื่อมุมบนซ้าย ยื่นออกนอกการ์ด |
+| `.pcard__top` | **ชั้นบน** รูปซ้าย ข้อความขวา |
 | `.portrait` | แผ่นโครมเมียมแทนรูปถ่าย |
-| `.mate__name` `.mate__role` `.mate__d` | ชื่อ / ตำแหน่ง / คำอธิบาย |
+| `.pcard__row` | ชื่อซ้าย · ตำแหน่งขวา บรรทัดเดียวกัน |
+| `.pcard__name` `.pcard__pos` `.pcard__id` `.pcard__d` | ชื่อ / ตำแหน่ง / รหัส นศ. / คำอธิบาย |
 | `.kit` | แถวป้ายทักษะ ใช้ `<ul>` กับ `<li>` |
-| `.stat` | บรรทัดสถานะเล็กๆ ข้างปุ่ม |
+| `.pcard__hint` | บรรทัดบอกว่า hover แล้วมีของ · จางหายตอนกาง |
+| `.pcard__drawer` | **ชั้นล่าง** ตัวที่กางลงมา |
+| `.urlbar` | แถบลิงก์ไป portfolio |
+| `.shot` | ตัวอย่างหน้าเว็บ (หน้าต่างเบราว์เซอร์ปลอม) |
+
+หน้าตาการ์ดยืมภาษาเดียวกับ `.svc` ในหน้าแรก — พื้นโครมเมียม ขอบดำ 2px
+เงาแข็ง แถบสีด้านบน hover แล้วยกตัวขึ้น เงากลายเป็นสีประจำตัว
 
 ### สีประจำตัว — ต้องตรงกับเคอร์เซอร์ในหน้าแรก
 
-| คน | ใส่ที่ `.mate` และ `.layers a` |
+| คน | ใส่ที่ `.pcard` และ `.layers a` |
 |---|---|
 | Aom | `style="--c:var(--lime); --on:#0C0D14"` |
 | Jeff | `style="--c:var(--plasma); --on:#fff"` |
@@ -166,65 +173,44 @@ responsive, brand identity, e-commerce เลือกมา 4 อย่าง�
 
 `--c` คือสีประจำตัว · `--on` คือสีตัวหนังสือที่วางบนสีนั้นแล้วยังอ่านออก
 
-### โค้ดตั้งต้น
+### สี่อย่างที่ต้องระวังถ้าจะแก้
 
-```html
-<div class="team">
-
-  <nav class="layers" aria-label="Team members">
-    <p class="layers__t">Layers <span>3</span></p>
-    <a href="#aom" data-layer="aom" style="--c:var(--lime); --on:#0C0D14">Aom<em>ตำแหน่งย่อ</em></a>
-    <!-- เพิ่ม Jeff กับ Mon ต่อ -->
-    <p class="layers__foot">All visible · locked 0</p>
-  </nav>
-
-  <div class="mates">
-
-    <article class="mate" id="aom" style="--c:var(--lime); --on:#0C0D14">
-      <span class="mate__sel" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="mate__tag" aria-hidden="true">Aom · editing</span>
-
-      <div class="mate__in">
-        <div class="portrait">
-          <span class="portrait__ltr" aria-hidden="true">A</span>
-          <span class="portrait__meta"><span>Layer 01</span><b>ตำแหน่งย่อ</b></span>
-        </div>
-
-        <div>
-          <h3 class="mate__name">Aom</h3>
-          <p class="mate__role">ตำแหน่ง · ประสบการณ์กี่ปี</p>
-          <p class="mate__d">คนนี้ทำอะไรในทีม 2–3 บรรทัด</p>
-          <ul class="kit">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li>
-          </ul>
-          <div class="mate__go">
-            <a class="btn btn--c" href="portfolio/Aom/index.html">Open portfolio
-              <span class="btn__x" aria-hidden="true">→</span></a>
-            <span class="stat"><span class="pip pip--lime" aria-hidden="true"></span> Portfolio live</span>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- ก๊อป <article> ข้างบนไปทำของ Jeff (id="jeff") กับ Mon (id="mon") -->
-
-  </div>
-</div>
-```
-
-### สองอย่างที่พลาดบ่อย
-
-1. **`id` ของ `.mate` ต้องตรงกับ `data-layer` ใน `.layers`** (`aom` / `jeff` / `mon`)
+1. **`id` ของ `.pcard` ต้องตรงกับ `data-layer` ใน `.layers`** (`aom` / `jeff` / `mon`)
    ไม่งั้นแผงรายชื่อจะไม่ไฮไลต์ตามตอนเลื่อนหน้า — `site.js` จับคู่จากตรงนี้
-2. **ถ้ามีรูปถ่ายจริง** เอา `<img>` ใส่ใน `.portrait` แทน `.portrait__ltr` ได้เลย
-   กรอบกับแถบล่างยังใช้ได้เหมือนเดิม
+2. **การกางใช้ `grid-template-rows: 0fr → 1fr`** ไม่ใช่ `max-height` เหตุผลเดียวกับ
+   accordion ในข้อ 6 — ความสูงพอดีเนื้อหาจริงเสมอ ไม่ต้องเดาตัวเลข
+   `.pcard__drawerin` ต้องมี `min-height: 0` ไม่งั้นหุบไม่สุด
+3. **อย่าใส่ `visibility: hidden` ตอนหุบ** ถ้าใส่ ลิงก์ข้างในจะโฟกัสด้วย `Tab` ไม่ได้
+   แล้ว `:focus-within` ที่ทำให้คนใช้คีย์บอร์ดกางการ์ดได้ก็จะไม่มีวันทำงาน
+4. **`@media (hover: none)` กางค้างไว้** มือถือไม่มี hover ถ้าลบบล็อกนี้
+   คนใช้มือถือจะไม่เห็นลิงก์ portfolio เลยสักอัน
+5. **การเลื่อนการ์ดมากลางจออยู่ใน `site.js`** ทั้ง hover (ข้อ 3b) และกดชื่อ
+   ในแผงรายชื่อ (ข้อ 3) เรียก `centerCard` ตัวเดียวกัน — อย่าแยกเป็นคนละตัว
+   - **อย่าตัดตัวกันของ hover ออก** มีไว้กันหน้าเลื่อนวนไม่จบ: หน้าเลื่อน →
+     การ์ดใบอื่นมาอยู่ใต้เคอร์เซอร์ → `mouseenter` ใบใหม่ → เลื่อนอีก
+     4 ชั้น: หน่วง 260ms / ล็อก 900ms หลังสั่งเลื่อน / ใกล้ที่แล้วไม่เลื่อน /
+     เครื่องไม่มีเมาส์ไม่ทำงาน
+   - **"กลางจอ" ต้องหักความสูงแถบเมนูออกก่อน** (`--bar-h` + 46 เผื่อป้าย
+     `.pcard__tag` ที่ยื่นขึ้นไป 34px) ไม่งั้นหัวการ์ดกับป้ายมุดใต้แถบ
+   - **กฎเลือกว่าใคร active ต้องเป็นกฎเดียวกับที่พาการ์ดไปหยุด**
+     ตอนนี้ใช้ "การ์ดที่กลางใบใกล้กลางจอที่สุด" ทั้งคู่ ถ้าแก้อันหนึ่ง
+     ต้องแก้อีกอันด้วย ไม่งั้นกดชื่อแล้วไฮไลต์จะไปโผล่ผิดใบทันที
+
+### เปลี่ยนอะไรได้บ้าง
+
+- **มีภาพหน้าเว็บจริงแล้ว** เอา `<img>` ใส่ใน `.shot__box` แทน `.shot__ph`
+  กรอบกับแถบหัวหน้าต่างยังใช้ได้เหมือนเดิม
+- **มีรูปถ่ายจริง** เอา `<img>` ใส่ใน `.portrait` แทน `.portrait__ltr`
+- **รหัสนักศึกษา** ตอนนี้เป็น `65xxxxxxxx` ทุกคน ใส่ของจริงแทนได้เลย
 
 ### วัตถุดิบ
 
 ข้อมูลสมาชิกอยู่ใน `Readme.MD` — ตำแหน่ง ประสบการณ์ ทักษะ ครบแล้ว
-`portfolio/Jeff/` กับ `portfolio/Mon/` ยังว่าง ลิงก์เตรียมไว้แล้วในโค้ด
-พอมี `index.html` ลงไปลิงก์จะใช้ได้ทันที ระหว่างนี้ใส่ `.stat` ว่า
-"Portfolio in progress" ไปก่อน
+portfolio ทั้งสามคนมี `index.html` แล้ว ลิงก์ใช้ได้จริงทุกอัน
+
+⚠️ โฟลเดอร์ของ Jeff ชื่อ `portfolio/๋Jeff/` — มีสระไทย `๋` ติดหน้าตัว `J`
+ลิงก์ในโค้ดเลยต้องเขียนตามชื่อจริงไปก่อน พอ rename เป็น `Jeff` แล้ว
+แก้กลับได้ 2 จุดใน `profile-v2.html` (การ์ด Jeff กับ footer)
 
 ---
 

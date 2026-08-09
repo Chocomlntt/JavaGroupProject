@@ -68,27 +68,219 @@
 
   /* ==========================================================
      3. แผงรายชื่อไฮไลต์ตามคนที่กำลังอ่าน (หน้า profile)
-     ทำงานเมื่อมีทั้ง .layers a และ .mate เท่านั้น
+     ----------------------------------------------------------
+     ทำงานเมื่อมีทั้ง .layers a และ .pcard เท่านั้น
+
+     ในบล็อกนี้มี 2 อย่าง:
+       - ไฮไลต์ตามการ์ดที่อยู่กลางจอ
+       - กดชื่อแล้วเลื่อนการ์ดคนนั้นมากลางจอ
+
+     บทเรียนจากของเดิม: กฎที่ใช้เลือกว่าใคร active ต้องเป็นกฎ
+     เดียวกับที่ใช้พาการ์ดไปหยุด ถ้าสองอันคิดคนละแบบ กดชื่อแล้ว
+     ไฮไลต์จะไปโผล่ผิดใบทันที ตอนนี้ใช้ "ใกล้กลางจอที่สุด" ทั้งคู่
      ========================================================== */
   var layerLinks = document.querySelectorAll('.layers a[data-layer]');
-  var mates = document.querySelectorAll('.mate[id]');
+  var cards = document.querySelectorAll('.pcard[id]');
 
-  if (layerLinks.length && mates.length && 'IntersectionObserver' in window) {
-    var byId = {};
+  /* --- ตัวเลื่อนการ์ดมากลางจอ ใช้ร่วมกันทั้งคลิกและ hover ------ */
+  var slow = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var barH2 = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bar-h'), 10) || 62;
+  var lockUntil = 0;
+
+  /* การ์ดที่ถูกสั่งให้มากลางจอ — ไฮไลต์จะปักที่ใบนี้จนกว่าคนใช้
+     จะเลื่อนหน้าเอง
+
+     ทำไมต้องปัก: การ์ดใบแรกกับใบสุดท้ายไปกลางจอไม่ได้จริง เพราะ
+     หน้าเลื่อนไปสุดทางแล้ว การ์ดเลยค้างอยู่ค่อนบน/ค่อนล่าง พอวัด
+     ด้วยกฎ "ใกล้กลางจอที่สุด" ใบข้างเคียงดันใกล้กว่า ไฮไลต์เลย
+     ไปโผล่ผิดใบ — ทั้งที่คนใช้เพิ่งกดใบนี้ไปหมาดๆ */
+  var pinned = null;
+  var applyActive = null;
+
+  var centerCard = function (card) {
+    var r = card.getBoundingClientRect();
+    var top;
+
+    /* "กลางจอ" ต้องคิดจากพื้นที่ที่มองเห็นจริง ไม่ใช่ทั้ง viewport
+       เพราะแถบเมนูติดหนึบทับข้างบนอยู่ ถ้าคิดจากทั้งจอ หัวการ์ด
+       จะไปมุดใต้แถบเมนูทุกครั้ง
+
+       46 = ที่ให้ป้าย .pcard__tag ที่ยื่นขึ้นไปเหนือการ์ด 34px */
+    var visTop = barH2 + 46;
+    var visH = window.innerHeight - visTop;
+
+    if (r.height > visH) {
+      /* การ์ดสูงเกินจะจัดกลาง (ตอนกาง drawer แล้วมักเป็นแบบนี้)
+         จับหัวการ์ดไว้ใต้แถบเมนูแทน ไม่งั้นหัวการ์ดหลุดออกนอกจอ */
+      top = window.scrollY + r.top - visTop;
+    } else {
+      top = window.scrollY + r.top - visTop - (visH - r.height) / 2;
+    }
+
+    top = Math.max(0, Math.min(top, document.documentElement.scrollHeight - window.innerHeight));
+
+    /* ปักไฮไลต์ก่อน ต่อให้ไม่ต้องเลื่อน (ใกล้ที่อยู่แล้ว) หรือเลื่อน
+       ไปได้ไม่สุดเพราะติดขอบหน้า ไฮไลต์ก็ต้องอยู่ที่ใบนี้ */
+    pinned = card;
+    if (applyActive) applyActive(card);
+
+    if (Math.abs(top - window.scrollY) < 24) return;
+
+    lockUntil = Date.now() + 900;
+    window.scrollTo({ top: top, behavior: slow ? 'auto' : 'smooth' });
+  };
+
+  if (layerLinks.length && cards.length) {
+    var syncing = false;
+
+    applyActive = function (card) {
+      layerLinks.forEach(function (a) {
+        a.classList.toggle('is-active', a.getAttribute('data-layer') === card.id);
+      });
+    };
+
+    var syncLayers = function () {
+      syncing = false;
+
+      /* มีใบที่ปักไว้ อย่าไปคำนวณใหม่ ไม่งั้นระหว่าง smooth scroll
+         ไฮไลต์จะกระพริบไล่ไปทีละใบ แล้วไปจบผิดใบตอนติดขอบหน้า */
+      if (pinned) return applyActive(pinned);
+
+      /* เอาการ์ดที่กลางใบใกล้กลางจอที่สุด
+
+         ต้องใช้กฎ "กลางจอ" ให้ตรงกับที่ centerCard พาการ์ดไปหยุด
+         ถ้าใช้เส้นแบบเดิม (การ์ดใบล่างสุดที่หัวยังอยู่เหนือเส้นใต้
+         แถบเมนู) พอกดชื่อแล้วการ์ดไปหยุดกลางจอ หัวการ์ดจะอยู่ต่ำ
+         กว่าเส้น กฎเลยไปเลือกใบก่อนหน้า ไฮไลต์เด้งกลับทันที */
+      var visTop = barH2 + 46;
+      var mid = visTop + (window.innerHeight - visTop) / 2;
+
+      var hit = cards[0];
+      var best = Infinity;
+
+      cards.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        var gap = Math.abs(r.top + r.height / 2 - mid);
+        if (gap < best) {
+          best = gap;
+          hit = c;
+        }
+      });
+
+      applyActive(hit);
+    };
+
+    /* กัน scroll ยิงถี่เกิน คำนวณแค่เฟรมละครั้ง */
+    var queueSync = function () {
+      if (syncing) return;
+      syncing = true;
+      window.requestAnimationFrame(syncLayers);
+    };
+
+    /* กดชื่อในแผงรายชื่อ → เลื่อนการ์ดคนนั้นมากลางจอ
+       ไม่ปล่อยให้เบราว์เซอร์กระโดดตาม #hash เอง เพราะแบบนั้นการ์ด
+       จะไปหยุดชิดบนจอตาม scroll-margin-top ไม่ใช่กลางจอ
+
+       ยังเขียน #hash ลง URL อยู่ ก๊อปลิงก์ไปส่งต่อได้เหมือนเดิม */
     layerLinks.forEach(function (a) {
-      byId[a.getAttribute('data-layer')] = a;
+      a.addEventListener('click', function (e) {
+        var card = document.getElementById(a.getAttribute('data-layer'));
+        if (!card) return;
+
+        e.preventDefault();
+
+        /* centerCard ปักไฮไลต์ให้เองแล้ว ไม่ต้องรอ smooth scroll วิ่งถึง */
+        centerCard(card);
+
+        if (history.replaceState) history.replaceState(null, '', '#' + card.id);
+        else window.location.hash = card.id;
+      });
     });
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        layerLinks.forEach(function (a) { a.classList.remove('is-active'); });
-        var hit = byId[en.target.id];
-        if (hit) hit.classList.add('is-active');
-      });
-    }, { rootMargin: '-45% 0px -45% 0px' });
+    /* คนใช้ลงมือเลื่อนเอง = เลิกปัก กลับไปคิดจากตำแหน่งจริง
+       ดูจากอินพุตที่คนทำเอง (ล้อ นิ้ว คีย์บอร์ด) ไม่ใช่ event scroll
+       เพราะ scroll ยิงตอนหน้าเลื่อนเองด้วย ถ้าใช้ตัวนั้นจะปลดล็อก
+       ทันทีที่เพิ่งปักไป */
+    var unpin = function () {
+      if (!pinned) return;
+      pinned = null;
+      queueSync();
+    };
 
-    mates.forEach(function (m) { io.observe(m); });
+    window.addEventListener('wheel', unpin, { passive: true });
+    window.addEventListener('touchmove', unpin, { passive: true });
+    window.addEventListener('keydown', function (e) {
+      if (!e.key) return;
+      if (e.key.indexOf('Arrow') === 0 || e.key === 'PageUp' || e.key === 'PageDown' ||
+        e.key === 'Home' || e.key === 'End' || e.key === ' ') unpin();
+    });
+
+    window.addEventListener('scroll', queueSync, { passive: true });
+    window.addEventListener('resize', queueSync);
+    window.addEventListener('hashchange', queueSync);
+    window.addEventListener('load', queueSync);
+    syncLayers();
+  }
+
+  /* ==========================================================
+     3b. เอาเมาส์ชี้การ์ดแล้วเลื่อนการ์ดนั้นมากลางจอ (หน้า profile)
+     ----------------------------------------------------------
+     อันตรายกว่าที่คิด ถ้าเขียนตรงๆ จะวนไม่จบ: หน้าเลื่อน →
+     การ์ดใบอื่นวิ่งมาอยู่ใต้เคอร์เซอร์ → mouseenter ใบใหม่ →
+     เลื่อนอีก วนแบบนี้ไปเรื่อยๆ จนคุมหน้าไม่ได้
+
+     กันไว้ 4 ชั้น:
+       1. รอ 260ms ก่อน ผ่านเฉยๆ ไม่นับ ต้องตั้งใจชี้ค้างจริง
+       2. ล็อกหลังสั่งเลื่อน 900ms — mouseenter ที่เกิดจากหน้า
+          เลื่อนเองในช่วงนี้ ไม่นับทั้งหมด
+       3. ใกล้ที่อยู่แล้ว (ต่าง < 24px) ไม่ต้องเลื่อน — อยู่ใน centerCard
+       4. เครื่องที่ไม่มีเมาส์ไม่ทำงานเลย
+
+     จังหวะเลื่อน: รอ drawer กางเสร็จก่อน เพราะความสูงการ์ด
+     เปลี่ยนระหว่างกาง ถ้าเลื่อนก่อนจะไปหยุดผิดที่
+
+     ตัว centerCard กับ lockUntil ย้ายไปไว้ข้างบนแล้ว เพราะการกด
+     ชื่อในแผงรายชื่อก็ใช้ตัวเดียวกัน — ล็อกจึงกันข้ามกันได้ด้วย
+     กดชื่อแล้วหน้าเลื่อน การ์ดที่วิ่งผ่านเคอร์เซอร์จะไม่แย่งเลื่อน
+     ========================================================== */
+  if (cards.length && window.matchMedia('(hover: hover)').matches) {
+    var wait = null;
+
+    cards.forEach(function (card) {
+      var drawer = card.querySelector('.pcard__drawer');
+
+      card.addEventListener('mouseenter', function () {
+        if (Date.now() < lockUntil) return;
+
+        clearTimeout(wait);
+        wait = setTimeout(function () {
+          /* ยังชี้อยู่ไหม เผลอเลื่อนผ่านไม่นับ */
+          if (!card.matches(':hover')) return;
+
+          /* drawer กางเสร็จแล้วค่อยเลื่อน ความสูงจะได้นิ่ง */
+          if (!drawer || slow) return centerCard(card);
+
+          /* fired กันเลื่อนซ้อนสองรอบ — transitionend กับตัวกันเหนียว
+             ข้างล่างอาจยิงทั้งคู่ ให้ใครถึงก่อนได้ไปคนเดียว */
+          var fired = false;
+          var done = function () {
+            if (fired) return;
+            fired = true;
+            drawer.removeEventListener('transitionend', done);
+            if (card.matches(':hover')) centerCard(card);
+          };
+
+          drawer.addEventListener('transitionend', done);
+
+          /* กันเหนียว เผื่อ transitionend ไม่ยิง (drawer กางอยู่แล้ว) */
+          setTimeout(done, 480);
+        }, 260);
+      });
+
+      card.addEventListener('mouseleave', function () {
+        clearTimeout(wait);
+      });
+    });
   }
 
   /* ==========================================================

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Preview | Apple Inspired UI</title>
+  <meta name="description" content="Apple-inspired portfolio prototype with scroll-driven Home to Projects transition." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=project-detail-layout-1" />
+</head>
+<body class="desktop-body">
+  <main class="portfolio-story" id="portfolio-story">
+    <div class="desktop-stage">
+      <div class="ambient-light ambient-one" aria-hidden="true"></div>
+      <div class="ambient-light ambient-two" aria-hidden="true"></div>
+
+      <section class="mac-window projects-window" aria-label="Projects window">
+        <div class="window-bar">
+          <p class="window-brand">Portfolio</p>
+          <p class="window-title" id="workspace-title">Projects</p>
+          <div class="window-actions">
+            <div class="dynamic-island project-island" id="project-dynamic-island" data-state="paused" aria-label="Now playing Self Control by Frank Ocean">
+              <span class="island-art" aria-hidden="true"><img src="assets/blond.jpeg" alt="" /></span>
+              <div class="island-copy">
+                <small>Paused</small>
+                <strong>Self Control</strong>
+                <span>Frank Ocean</span>
+              </div>
+              <button class="island-control project-island-control" type="button" aria-label="Play Self Control" disabled>
+                <span class="material-symbols-outlined">play_arrow</span>
+              </button>
+            </div>
+            <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode" aria-pressed="false">
+              <span class="theme-icon theme-icon-moon material-symbols-outlined">dark_mode</span>
+              <span class="theme-icon theme-icon-sun material-symbols-outlined">light_mode</span>
+            </button>
+            <button class="icon-button" type="button" aria-label="Search projects"><span class="material-symbols-outlined">search</span></button>
+            <button class="icon-button" type="button" aria-label="Share"><span class="material-symbols-outlined">ios_share</span></button>
+          </div>
+        </div>
+
+        <div class="projects-surface">
+          <aside class="project-sidebar">
+            <p class="sidebar-label">Navigate</p>
+            <nav class="sidebar-nav" id="sidebar-nav" data-active="projects" aria-label="Project navigation">
+              <span class="nav-selection" aria-hidden="true"></span>
+              <button class="sidebar-item nav-home" data-scroll-view="home" type="button"><span class="material-symbols-outlined">home</span>Home</button>
+              <button class="sidebar-item nav-projects" data-workspace-view="projects" type="button"><span class="material-symbols-outlined">folder_open</span>Projects</button>
+              <button class="sidebar-item nav-about" data-workspace-view="about" type="button"><span class="material-symbols-outlined">person</span>About Me</button>
+              <button class="sidebar-item nav-contact" data-workspace-view="contact" type="button"><span class="material-symbols-outlined">mail</span>Contact</button>
+            </nav>
+          </aside>
+          <section class="project-main">
+            <section class="workspace-view active" data-view="projects">
+              <div class="project-header">
+                <div>
+                  <p class="section-kicker">Selected work</p>
+                  <h2>Projects</h2>
+                </div>
+                <span class="project-count">05 Projects</span>
+              </div>
+              <div class="projects-grid">
+                <article class="project-card featured">
+                  <div class="project-media split-media">
+                    <img src="assets/projects/smart-assignment-1.png" alt="Smart Assignment subject menu mockup" />
+                    <img src="assets/projects/smart-assignment-2.png" alt="Smart Assignment dashboard mockup with chatbot" />
+                  </div>
+                  <div class="project-meta">
+                    <span class="project-status">Prototype</span>
+                    <span class="project-year">2025</span>
+                  </div>
+                  <p class="project-category">Education Platform</p>
+                  <h3>Smart Assignment</h3>
+                  <p>An AI-assisted assignment system for Mae Hoi Ngoen School. I gathered requirements, connected the chatbot API, and built PDF generation for worksheets and exams by converting generated HTML into PDF documents.</p>
+                  <div class="project-role">Role: UX/UI, AI</div>
+                  <div class="project-tags"><span>Figma</span><span>OpenAI</span><span>Next.js</span><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </article>
+
+                <article class="project-card">
+                  <div class="project-media split-media">
+                    <img src="assets/projects/chai-cheeva-1.png" alt="Chai Cheeva herbal compress packaging dieline" />
+                    <img src="assets/projects/chai-cheeva-2.png" alt="Chai Cheeva herbal inhaler packaging dieline" />
+                  </div>
+                  <div class="project-meta">
+                    <span class="project-status competition">Competition</span>
+                    <span class="project-year">2026</span>
+                  </div>
+                  <p class="project-category">Packaging Design</p>
+                  <h3>Chai - Cheeva</h3>
+                  <p>A traditional Thai medicine product design project. I collected requirements and shaped the visual identity to make herbal products feel approachable, trustworthy, and easier to understand for new and familiar users.</p>
+                  <div class="project-role">Role: UX</div>
+                  <div class="project-tags"><span>Canva</span><span>Visual Identity</span><span>Packaging</span></div>
+                </article>
+
+                <article class="project-card">
+                  <div class="project-media">
+                    <img src="assets/projects/mongmai-1.png" alt="Mongmai team receiving second place award at Hylife Hackathon" />
+                  </div>
+                  <div class="project-meta">
+                    <span class="project-status achievement">2nd Place</span>
+                    <span class="project-year">2025</span>
+                  </div>
+                  <p class="project-category">Accessibility AI</p>
+                  <h3>Mongmai</h3>
+                  <p>A Hylife Hackathon project focused on visually impaired users. I researched daily risks, compared competitors, trained AI to detect nearby objects that could become dangerous, and helped define B2B and B2G market strategy.</p>
+                  <div class="project-role">Role: UX/UI, AI, Marketing</div>
+                  <div class="project-tags"><span>YOLOv8</span><span>Python</span><span>AI Training</span></div>
+                </article>
+
+                <article class="project-card featured">
+                  <div class="project-media split-media">
+                    <img src="assets/projects/plutaluang-1.png" alt="Plutaluang Data Center map dashboard" />
+                    <img src="assets/projects/plutaluang-2.png" alt="Plutaluang Data Center device management screen" />
+                  </div>
+                  <div class="project-meta">
+                    <span class="project-status">Prototype</span>
+                    <span class="project-year">2025-2026</span>
+                  </div>
+                  <p class="project-category">Smart City Dashboard</p>
+                  <h3>Plutaluang Data Center</h3>
+                  <p>A location-based data dashboard for Plutaluang Subdistrict Administrative Organization, built as an early foundation for smart city operations. I led planning, assigned team work, gathered on-site requirements, structured the frontend, and developed the backend database.</p>
+                  <div class="project-role">Role: Project Manager, Backend Dev, UX/UI</div>
+                  <div class="project-tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Vite</span><span>Leaflet</span></div>
+                </article>
+
+                <article class="project-card">
+                  <div class="project-media split-media">
+                    <img src="assets/projects/tetragon-1.png.png" alt="Tetragon Human Dashboard showing entry/exit counts and occupancy charts" />
+                    <img src="assets/projects/tetragon-2.png.png" alt="Tetragon AI chat assistant panel over the dashboard" />
+                  </div>
+                  <div class="project-meta">
+                    <span class="project-status">Prototype</span>
+                    <span class="project-year">2026</span>
+                  </div>
+                  <p class="project-category">AI Security Dashboard</p>
+                  <h3>Tetragon</h3>
+                  <p>A centralized CCTV dashboard for real-time security monitoring, ANPR license plate recognition, vehicle counting, event logs, vehicle classification, and facial-recognition alerts. I gathered requirements and redesigned the UI for clearer operations.</p>
+                  <div class="project-role">Role: UX/UI</div>
+                  <div class="project-tags"><span>React 19</span><span>FastAPI</span><span>OpenCV</span><span>YOLOv8</span><span>EasyOCR</span></div>
+                </article>
+              </div>
+            </section>
+
+            <section class="workspace-view" data-view="about">
+              <div class="inner-page-heading">
+                <p class="section-kicker">Profile</p>
+                <h2>About Me</h2>
+                <p>ผมชื่อม่อน นักศึกษา Digital Industry Integration ที่ CAMT มหาวิทยาลัยเชียงใหม่ เริ่มต้นจาก backend แล้วค่อยๆ ขยายมาทำ frontend, design และรับบทบาท PM ทำให้จัดการงานและทำงานร่วมกับทีมได้ดีขึ้น</p>
+              </div>
+              <div class="about-layout">
+                <div class="photo-cluster" aria-hidden="true">
+                  <div class="photo-bubble orbit-a">
+                    <img src="assets/profile/profile-formal.png" alt="" />
+                  </div>
+                  <div class="photo-bubble orbit-b">
+                    <img src="assets/profile/profile-night.jpg" alt="" />
+                  </div>
+                  <div class="photo-bubble orbit-c">
+                    <img src="assets/profile/profile-child.jpg" alt="" />
+                  </div>
+                  <div class="photo-bubble orbit-d">
+                    <img src="assets/profile/profile-camt.jpg" alt="" />
+                  </div>
+                </div>
+                <article class="about-feature">
+                  <p class="feature-label">Approach</p>
+                  <h3>Design the flow.<br />Build the system.</h3>
+                  <p>ชอบเริ่มจากการเข้าใจผู้ใช้และ requirement ก่อน แล้วต่อยอดเป็น interface, frontend และ backend ที่ใช้งานได้จริง ประสบการณ์ทั้ง developer และ PM ทำให้มองภาพรวมได้กว้างขึ้นและเข้าใจว่าทีมต้องการอะไร</p>
+                </article>
+                <div class="profile-facts">
+                  <article><strong>Mon</strong><span>Jirawat Kuankaew</span></article>
+                  <article><strong>DII / CAMT</strong><span>Chiang Mai University</span></article>
+                  <article><strong>UX/UI + Full-stack</strong><span>Main interests</span></article>
+                </div>
+              </div>
+            </section>
+
+            <section class="workspace-view" data-view="contact">
+              <div class="inner-page-heading contact-heading">
+                <p class="section-kicker">Contact</p>
+                <h2>Let's work together.</h2>
+                <p>ติดต่อได้สำหรับโปรเจกต์ UX/UI, full-stack product หรือระบบที่ต้องการดูแลทั้ง design และ backend</p>
+              </div>
+              <div class="contact-grid">
+                <a class="contact-method" href="mailto:jirawamon@gmail.com"><span class="material-symbols-outlined">mail</span><strong>jirawamon@gmail.com</strong><small>Email</small></a>
+                <a class="contact-method" href="https://github.com/jirawamon" target="_blank" rel="noreferrer"><span class="material-symbols-outlined">code</span><strong>github.com/jirawamon</strong><small>GitHub</small></a>
+                <a class="contact-method" href="https://www.instagram.com/jirxw_mon/" target="_blank" rel="noreferrer"><span class="material-symbols-outlined">alternate_email</span><strong>@jirxw_mon</strong><small>Instagram</small></a>
+              </div>
+            </section>
+          </section>
+        </div>
+      </section>
+
+      <section class="mac-window home-window" aria-label="Home window">
+        <div class="window-bar">
+          <p class="window-brand">Portfolio</p>
+          <nav class="pill-nav" aria-label="Portfolio navigation">
+            <button class="active" data-scroll-view="home" type="button">Home</button>
+            <button data-scroll-view="projects" type="button">Projects</button>
+            <button data-open-workspace="about" type="button">About</button>
+            <button data-open-workspace="contact" type="button">Contact</button>
+          </nav>
+          <div class="home-actions">
+            <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode" aria-pressed="false">
+              <span class="theme-icon theme-icon-moon material-symbols-outlined">dark_mode</span>
+              <span class="theme-icon theme-icon-sun material-symbols-outlined">light_mode</span>
+            </button>
+            <button class="contact-pill" data-open-workspace="contact" type="button">Get in touch</button>
+          </div>
+        </div>
+
+        <div class="home-surface">
+          <div class="dynamic-island" id="dynamic-island" data-state="paused" aria-label="Now playing Self Control by Frank Ocean">
+            <span class="island-art" aria-hidden="true"><img src="assets/blond.jpeg" alt="" /></span>
+            <div class="island-copy">
+              <small id="island-status">Paused</small>
+              <strong>Self Control</strong>
+              <span>Frank Ocean</span>
+            </div>
+            <button class="island-control" id="island-control" type="button" aria-label="Play Self Control" disabled>
+              <span class="material-symbols-outlined">play_arrow</span>
+            </button>
+          </div>
+          <div class="hero-content">
+            <p class="section-kicker">Full stack dev & UX/UI designer</p>
+            <h1>Jirawat Kuankaew<br /><span>mon</span></h1>
+            <p class="intro">เริ่มจาก backend แล้วค่อยๆ ขยายมาทำ frontend, design และ PM <br> ชอบที่จะเข้าใจและดูแลระบบได้ตั้งแต่ต้นจนจบ</p>
+            <div class="hero-actions">
+              <button class="primary-button" data-scroll-view="projects" type="button">View Projects</button>
+              <button class="secondary-button" data-open-workspace="about" type="button">About Me</button>
+            </div>
+          </div>
+          <div class="identity-stage" aria-label="Portfolio focus">
+            <div class="glass-orbit orbit-one"></div>
+            <div class="glass-orbit orbit-two"></div>
+            <div class="profile-lens">
+              <span>JK</span>
+              <small>Full stack dev & UX/UI designer</small>
+            </div>
+            <div class="floating-note note-design">
+              <span class="material-symbols-outlined">draw</span>
+              <strong>Product UI</strong>
+            </div>
+            <div class="floating-note note-ai">
+              <span class="material-symbols-outlined">memory</span>
+              <strong>AI Systems</strong>
+            </div>
+            <div class="floating-note note-map">
+              <span class="material-symbols-outlined">map</span>
+              <strong>Smart City</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="minimized-panel" id="mini-spotify-panel" aria-label="Minimized Home and music panel">
+        <div class="mini-header">
+          <div>
+            <p class="mini-label">Home</p>
+            <p class="mini-title">Jirawat Kuankaew</p>
+          </div>
+          <button class="spotify-fold-button" data-fold-spotify type="button" aria-label="Collapse Spotify glass to Dynamic Island">
+            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          </button>
+          <button class="restore-button" data-scroll-view="home" type="button" aria-label="Expand Home window">
+            <span class="material-symbols-outlined">open_in_full</span>
+          </button>
+        </div>
+        <div class="spotify-slot" id="spotify-slot">
+          <div id="spotify-embed" aria-label="Self Control by Frank Ocean on Spotify"></div>
+        </div>
+      </aside>
+
+      <div class="spotify-morph" id="spotify-morph" aria-hidden="true"></div>
+
+
+      <div class="project-overlay" id="project-overlay" aria-hidden="true">
+        <div class="project-overlay-backdrop" data-close-project></div>
+        <article class="project-detail-card" role="dialog" aria-modal="true" aria-labelledby="project-detail-title" tabindex="-1">
+          <button class="project-detail-close" type="button" aria-label="Close project detail" data-close-project>
+            <span class="material-symbols-outlined">close</span>
+          </button>
+          <div class="project-detail-scroll">
+            <section class="project-detail-section project-detail-headline">
+              <div class="project-detail-meta" id="project-detail-meta"></div>
+              <p class="project-detail-kicker" id="project-detail-kicker">Project Detail</p>
+              <h2 id="project-detail-title">Project Card</h2>
+              <p class="project-detail-summary" id="project-detail-summary"></p>
+              <div class="project-detail-tags" id="project-detail-tags"></div>
+            </section>
+
+            <section class="project-detail-section project-preview-section">
+              <div class="project-section-label">
+                <span class="material-symbols-outlined">photo_library</span>
+                Preview
+              </div>
+              <div class="project-detail-hero" id="project-detail-hero"></div>
+            </section>
+
+            <section class="project-detail-section project-overview-section">
+              <div class="project-section-label">
+                <span class="material-symbols-outlined">info</span>
+                Overview
+              </div>
+              <p class="project-detail-text" id="project-detail-overview"></p>
+            </section>
+
+            <section class="project-detail-section project-role-section">
+              <div class="project-section-label">
+                <span class="material-symbols-outlined">featured_play_list</span>
+                Role & Highlights
+              </div>
+              <p class="project-detail-text" id="project-detail-role"></p>
+              <div class="project-feature-grid" id="project-detail-features"></div>
+            </section>
+
+            <section class="project-detail-section project-tech-section">
+              <div class="project-section-label">
+                <span class="material-symbols-outlined">code</span>
+                Tech Stack
+              </div>
+              <div class="project-tech-groups" id="project-detail-tech-tags"></div>
+            </section>
+          </div>
+        </article>
+      </div>
+      <div class="scroll-guide" aria-hidden="true">
+        <span class="material-symbols-outlined">mouse</span>
+        <p>Scroll to Projects</p>
+      </div>
+    </div>
+  </main>
+  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="image-lightbox-close" type="button" aria-label="Close image" data-close-lightbox>
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <img id="image-lightbox-img" src="" alt="" />
+  </div>
+  <script src="script.js?v=project-detail-layout-2"></script>
+</body>
+</html>

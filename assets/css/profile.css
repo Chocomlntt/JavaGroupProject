@@ -5,7 +5,7 @@
 
    ในไฟล์นี้มี:
      1. TOP     — หัวหน้าเพจ ตัวหนังสือโครมเมียม "THE TEAM"
-     2. TEAM    — คลาสการ์ดสมาชิก (เตรียมไว้ให้ ยังไม่มีใครใช้)
+     2. TEAM    — แผงรายชื่อ + การ์ดสมาชิกที่ hover แล้วกางลง
      3. PROCESS — ขั้นตอนการทำงาน 4 สเต็ป
    ============================================================ */
 
@@ -56,22 +56,24 @@
 }
 
 /* ============================================================
-   2. TEAM  ← ส่วนของเพื่อนคนที่ 2
+   2. TEAM
    ------------------------------------------------------------
-   CSS พร้อมใช้แล้ว ยังไม่มี HTML ใช้มัน
-   ดูวิธีใช้และตัวอย่างโค้ดได้ที่ STYLEGUIDE.md
-
    .team          กริดสองคอลัมน์: แผงรายชื่อซ้าย + การ์ดสมาชิกขวา
    .layers        แผงรายชื่อ ติดหนึบตามตอนเลื่อนหน้า
-   .mates         กองการ์ดสมาชิก
-   .mate          การ์ด 1 คน ตั้งสีประจำตัวที่นี่
+   .pcards        กองการ์ดสมาชิก 3 ใบเรียงลงมา
+   .pcard         การ์ด 1 คน ตั้งสีประจำตัวที่นี่
                   style="--c:var(--lime); --on:#0C0D14"
-   .mate__sel     กรอบ selection รอบการ์ด (ต้องมี <i> 4 อันข้างใน)
-   .mate__tag     ป้ายชื่อมุมบนซ้าย
-   .mate__in      กล่องเนื้อหา: รูปซ้าย ข้อความขวา
+   .pcard__tag    ป้ายชื่อมุมบนซ้าย ยื่นออกนอกการ์ด
+   .pcard__top    ส่วนที่เห็นตลอด: รูปซ้าย ข้อความขวา
+   .pcard__hint   บรรทัดบอกว่า hover แล้วมีของ
+   .pcard__drawer ส่วนที่กางลงมาตอน hover
+   .urlbar        แถบลิงก์ไป portfolio
+   .shot          ตัวอย่างหน้าเว็บ portfolio
    .portrait      แผ่นโครมเมียมแทนรูปถ่าย
    .kit           แถวป้ายทักษะ
-   .stat          บรรทัดสถานะเล็กๆ ข้างปุ่ม
+
+   หน้าตาการ์ดยืมภาษาเดียวกับ .svc ในหน้าแรก: พื้นโครมเมียม
+   ขอบดำ 2px เงาแข็ง แถบสีด้านบน hover แล้วยกตัว
    ============================================================ */
 .team {
   display: grid;
@@ -171,57 +173,51 @@
   color: #4A5468;
 }
 
-/* --- การ์ดสมาชิก ------------------------------------------- */
-.mates {
+/* --- การ์ดสมาชิก -------------------------------------------
+   เว้นห่างเยอะเพราะป้ายชื่อของการ์ดถัดไปยื่นขึ้นมา 34px
+   และตอน hover การ์ดยกตัวขึ้น ต้องมีที่ให้เงาไม่ไปทับใบล่าง */
+.pcards {
   display: grid;
-  gap: clamp(72px, 7vw, 88px);
-  /* ห่างขนาดนี้เพราะป้ายชื่อของการ์ดถัดไปยื่นขึ้นมา 36px */
+  gap: clamp(58px, 6vw, 76px);
 }
 
-.mate {
+.pcard {
   position: relative;
+  background: var(--brushed);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, .55);
+  transition: transform .2s ease, box-shadow .2s ease;
   scroll-margin-top: calc(var(--bar-h) + 24px);
 }
 
-.mate__sel {
+/* แถบสีด้านบนการ์ด — สูตรเดียวกับ .svc::before ในหน้าแรก */
+.pcard::before {
+  content: "";
   position: absolute;
-  inset: -14px;
-  border: 2px solid var(--c);
-  pointer-events: none;
-}
-
-.mate__sel i {
-  position: absolute;
-  width: 9px;
+  left: -2px;
+  right: -2px;
+  top: -2px;
   height: 9px;
-  background: #fff;
-  border: 2px solid var(--c);
+  background: var(--c, var(--steel));
+  border: 2px solid var(--ink);
+  border-radius: 4px 4px 0 0;
+  z-index: 2;
 }
 
-.mate__sel i:nth-child(1) {
-  top: -5px;
-  left: -5px;
+/* :focus-within = คนที่ใช้คีย์บอร์ด Tab เข้ามาก็กางเหมือนกัน
+   ไม่ใช่เปิดได้เฉพาะคนที่มีเมาส์ */
+.pcard:hover,
+.pcard:focus-within {
+  transform: translate(-3px, -5px);
+  box-shadow: 10px 12px 0 var(--c, var(--steel));
 }
 
-.mate__sel i:nth-child(2) {
-  top: -5px;
-  right: -5px;
-}
-
-.mate__sel i:nth-child(3) {
-  bottom: -5px;
-  right: -5px;
-}
-
-.mate__sel i:nth-child(4) {
-  bottom: -5px;
-  left: -5px;
-}
-
-.mate__tag {
+.pcard__tag {
   position: absolute;
-  top: -36px;
-  left: -14px;
+  top: -34px;
+  left: -2px;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -232,22 +228,19 @@
   text-transform: uppercase;
   background: var(--c);
   color: var(--on);
-  padding: 3px 9px;
-  border-radius: 2px 8px 0 0;
+  padding: 3px 10px;
+  border: 2px solid var(--ink);
+  border-bottom: 0;
+  border-radius: 4px 10px 0 0;
 }
 
-.mate__in {
+/* --- ส่วนที่เห็นตลอด: รูป + รายละเอียดส่วนตัว ---------------- */
+.pcard__top {
   display: grid;
-  grid-template-columns: 216px minmax(0, 1fr);
-  gap: 34px;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: 26px;
   align-items: start;
-  padding: 28px;
-  border: 1px solid var(--edge);
-  background-image:
-    linear-gradient(rgba(12, 13, 20, .04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(12, 13, 20, .04) 1px, transparent 1px),
-    linear-gradient(178deg, #FFFFFF 0%, #F4F7FC 58%, #DFE5F0 100%);
-  background-size: 20px 20px, 20px 20px, 100% 100%;
+  padding: 28px 24px 22px;
 }
 
 /* --- แผ่นโครมเมียมแทนรูปถ่าย -------------------------------
@@ -311,31 +304,57 @@
 }
 
 /* --- ข้อความในการ์ด ---------------------------------------- */
-.mate__name {
+
+/* ชื่อซ้าย · ตำแหน่งขวา อยู่บรรทัดเดียวกัน */
+.pcard__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 18px;
+}
+
+.pcard__name {
   font-family: var(--f-disp);
-  font-stretch: 122%;
+  font-stretch: 118%;
   font-weight: 900;
-  font-size: clamp(2.1rem, 5.6vw, 3.5rem);
-  line-height: .9;
-  letter-spacing: -.03em;
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: -.025em;
   text-transform: uppercase;
 }
 
-.mate__role {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 2px solid var(--ink);
+.pcard__pos {
   font-family: var(--f-mono);
-  font-size: .74rem;
-  letter-spacing: .13em;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: #3B4457;
+  background: var(--ink);
+  color: var(--foil);
+  padding: 4px 11px;
+  border-radius: 2px;
+  white-space: nowrap;
 }
 
-.mate__d {
-  margin-top: 16px;
-  font-size: 1.02rem;
-  max-width: 48ch;
+.pcard__id {
+  margin-top: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #4A5468;
+}
+
+/* ภาษาไทยต้องการระยะบรรทัดมากกว่าอังกฤษ ไม่งั้นสระชนกัน */
+.pcard__d {
+  margin-top: 14px;
+  font-size: .97rem;
+  line-height: 1.8;
+  max-width: 60ch;
+  color: #333B4E;
 }
 
 .kit {
@@ -356,23 +375,198 @@
   background: rgba(255, 255, 255, .8);
 }
 
-.mate__go {
+/* --- บรรทัดบอกว่ากางได้ --------------------------------------
+   ไม่มีบรรทัดนี้คนจะไม่รู้ว่าการ์ดมีของซ่อนอยู่ */
+.pcard__hint {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
-  margin-top: 26px;
+  gap: 9px;
+  margin: 0 24px;
+  padding: 12px 0 14px;
+  border-top: 1px dashed rgba(12, 13, 20, .3);
+  font-family: var(--f-mono);
+  font-size: .64rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #4A5468;
+  transition: opacity .2s ease;
 }
 
-.stat {
-  display: inline-flex;
+/* ลูกศรกระดิกลงเบาๆ ให้รู้ว่ามีของอยู่ข้างล่าง */
+.pcard__hint i {
+  font-style: normal;
+  animation: nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes nudge {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* กางแล้วก็ไม่ต้องบอกอีก */
+.pcard:hover .pcard__hint,
+.pcard:focus-within .pcard__hint {
+  opacity: 0;
+}
+
+/* --- ส่วนที่กางลงมาตอน hover --------------------------------
+   ใช้ grid-template-rows 0fr → 1fr เหมือน accordion หน้าแรก
+   ไม่ใช่ max-height เพราะแบบนี้ความสูงพอดีเนื้อหาจริงเสมอ
+   ไม่ต้องเดาตัวเลข และไม่กระตุกตอนจบ
+
+   ตั้งใจไม่ใส่ visibility:hidden ตอนหุบ เพราะถ้าใส่ ลิงก์ข้างใน
+   จะโฟกัสด้วย Tab ไม่ได้ แล้ว :focus-within ก็จะไม่มีวันทำงาน */
+.pcard__drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .42s cubic-bezier(.4, 0, .2, 1);
+}
+
+.pcard:hover .pcard__drawer,
+.pcard:focus-within .pcard__drawer {
+  grid-template-rows: 1fr;
+}
+
+.pcard__drawerin {
+  overflow: hidden;
+  min-height: 0;
+  /* ขาดบรรทัดนี้ 0fr จะหุบไม่สุด */
+}
+
+.pcard__reveal {
+  padding: 18px 20px 20px;
+  background: var(--ink);
+  color: var(--foil);
+  background-image:
+    linear-gradient(rgba(233, 237, 245, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 237, 245, .05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* --- แถบ URL ------------------------------------------------ */
+.urlbar {
+  display: flex;
   align-items: center;
-  gap: 7px;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 8px 8px 18px;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 100px;
+  box-shadow: 4px 4px 0 var(--c);
   font-family: var(--f-mono);
-  font-size: .66rem;
+  font-size: .72rem;
+  letter-spacing: .05em;
+  transition: background .18s ease, color .18s ease, transform .13s ease, box-shadow .13s ease;
+}
+
+.urlbar__u {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.urlbar__go {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: .9rem;
+  line-height: 1;
+  transition: transform .18s ease;
+}
+
+.urlbar:hover {
+  background: var(--c);
+  color: var(--on);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--c);
+}
+
+.urlbar:hover .urlbar__go {
+  transform: translateX(3px);
+}
+
+.urlbar:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--c);
+}
+
+/* --- ตัวอย่างหน้าเว็บ portfolio ------------------------------ */
+.shot {
+  position: relative;
+  margin-top: 16px;
+  overflow: hidden;
+  background: var(--brushed);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+}
+
+/* แถบหัวหน้าต่างปลอม ให้ดูรู้ว่านี่คือหน้าเว็บ */
+.shot__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  background: var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+.shot__bar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--steel);
+}
+
+.shot__bar i:first-child {
+  background: var(--c);
+}
+
+.shot__bar span {
+  margin-left: 6px;
+  font-family: var(--f-mono);
+  font-size: .58rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: #3B4457;
+  color: var(--steel);
+}
+
+/* กล่องรูป — มีภาพจริงแล้วใส่ <img> แทน .shot__ph ได้เลย */
+.shot__box {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 6.2;
+  background-image:
+    linear-gradient(rgba(12, 13, 20, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 13, 20, .07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.shot__box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.shot__ph {
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #4A5468;
 }
 
 /* ============================================================
@@ -475,24 +669,49 @@
   }
 }
 
+/* มือถือกับแท็บเล็ตไม่มี hover — กางค้างไว้เลย ไม่งั้นคนกลุ่มนี้
+   จะไม่มีวันเห็นลิงก์ portfolio */
+@media (hover: none) {
+  .pcard__drawer {
+    grid-template-rows: 1fr;
+  }
+
+  .pcard__hint {
+    display: none;
+  }
+}
+
 @media (max-width: 760px) {
-  .mate__in {
+  .pcard__top {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   .portrait {
-    max-width: 210px;
+    max-width: 190px;
   }
 }
 
 @media (max-width: 520px) {
-  .mate__in {
-    padding: 18px;
+
+  .pcard__top,
+  .pcard__reveal {
+    padding-inline: 16px;
   }
 
-  .mate__go .btn {
-    flex: 1 1 100%;
-    justify-content: center;
+  .pcard__hint {
+    margin-inline: 16px;
+  }
+
+  /* แนวนอนไม่พอแล้ว ตำแหน่งขึ้นไปอยู่เหนือชื่อ ชิดซ้ายทั้งคู่
+     (ถ้าปล่อยเป็น space-between เหมือนจอใหญ่ ชื่อจะไปชิดขวา) */
+  .pcard__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .pcard__pos {
+    order: -1;
   }
 }
