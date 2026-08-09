@@ -286,6 +286,283 @@
     }
 
 
+    /* ===== Team stack (cards run top-to-bottom, full width) ===== */
+    .team-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+
+    /* ===== Member card (resting state = top block only) ===== */
+    .member-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid rgba(44, 62, 80, .09);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      outline: none;
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1),
+        box-shadow .35s cubic-bezier(.4, 0, .2, 1),
+        border-color .35s ease;
+    }
+
+    .member-card:hover,
+    .member-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(52, 152, 219, .45);
+    }
+
+    /* ----- Top block: photo + text ----- */
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      padding: 28px;
+    }
+
+    .photo {
+      flex: 0 0 auto;
+      width: 168px;
+      height: 168px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, .92);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(44, 62, 80, .18);
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .member-card:hover .photo {
+      transform: scale(1.03);
+    }
+
+    /* placeholder fills — swap for <img> when real photos exist */
+    .photo-1 {
+      background: linear-gradient(140deg, #c98a8a, #d8a0a0);
+    }
+
+    .photo-2 {
+      background: linear-gradient(140deg, #8aa8c9, #a0bcd8);
+    }
+
+    .photo-3 {
+      background: linear-gradient(140deg, #8ac9a8, #a0d8bc);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-info {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    /* name left, position right, same baseline */
+    .name-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .member-name {
+      color: var(--primary);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .member-position {
+      flex: 0 0 auto;
+      color: var(--secondary);
+      font-size: 1.15rem;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .student-id {
+      display: block;
+      margin-top: 2px;
+      font-size: .86rem;
+      color: #95A5A6;
+      letter-spacing: .4px;
+    }
+
+    .member-desc {
+      margin-top: 14px;
+      font-size: .95rem;
+      color: #7F8C8D;
+    }
+
+    /* ===== Slide-down reveal ===== */
+    .card-reveal {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .45s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .reveal-inner {
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: opacity .3s ease, transform .45s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .member-card:hover .card-reveal,
+    .member-card:focus-within .card-reveal {
+      grid-template-rows: 1fr;
+    }
+
+    .member-card:hover .reveal-inner,
+    .member-card:focus-within .reveal-inner {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: .08s;
+    }
+
+    /* ----- URL band (dark strip spanning the full card width) ----- */
+    .url-bar {
+      background: #7f8c8d;
+      background: linear-gradient(180deg, #8a9698, #7b8789);
+      padding: 14px 28px;
+    }
+
+    /* the iOS-style glass pill */
+    .url-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 6px 6px 20px;
+      border-radius: 50px;
+
+      background: rgba(255, 255, 255, .58);
+      border: 1px solid rgba(255, 255, 255, .75);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      backdrop-filter: blur(18px) saturate(180%);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .14),
+        inset 0 1px 0 rgba(255, 255, 255, .9);
+      transition: background-color .25s ease, box-shadow .25s ease;
+    }
+
+    .member-card:hover .url-pill {
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .18),
+        inset 0 1px 0 rgba(255, 255, 255, .95);
+    }
+
+    .url-text {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: .92rem;
+      color: #4a5a66;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .url-text b {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* button collapsed to a circle; expands its width on hover */
+    .url-btn {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 38px;
+      padding: 0;
+      min-width: 38px;
+      justify-content: center;
+      border-radius: 50px;
+      background: var(--white);
+      color: var(--primary);
+      font-size: .9rem;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, .2);
+      transition: gap .35s cubic-bezier(.4, 0, .2, 1),
+        padding .35s cubic-bezier(.4, 0, .2, 1),
+        background-color .25s ease,
+        color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .url-btn-icon {
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .url-btn-label {
+      display: block;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-width .38s cubic-bezier(.4, 0, .2, 1),
+        opacity .25s ease .08s;
+    }
+
+    .url-btn:hover,
+    .url-btn:focus-visible {
+      background: var(--secondary);
+      color: var(--white);
+      gap: 9px;
+      padding: 0 16px;
+      box-shadow: 0 6px 18px rgba(52, 152, 219, .45);
+    }
+
+    .url-btn:hover .url-btn-label,
+    .url-btn:focus-visible .url-btn-label {
+      max-width: 110px;
+      opacity: 1;
+    }
+
+    /* ----- Portfolio preview ----- */
+    .preview {
+      position: relative;
+      display: block;
+      background: #d9dcdd;
+      aspect-ratio: 16 / 8;
+      overflow: hidden;
+    }
+
+    .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform .6s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .member-card:hover .preview img {
+      transform: scale(1.03);
+    }
+
+    .preview-badge {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: .76rem;
+      font-weight: 600;
+      letter-spacing: .4px;
+      color: var(--white);
+      background: rgba(44, 62, 80, .55);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
 
     /* ===== Footer ===== */
     .footer {
@@ -347,6 +624,64 @@
       .footer-top {
         grid-template-columns: 1fr 1fr;
       }
+
+      .photo {
+        width: 132px;
+        height: 132px;
+      }
+
+      .member-name {
+        font-size: 1.4rem;
+      }
+
+      .member-position {
+        font-size: 1rem;
+      }
+    }
+
+    /* Touch devices: no hover, so keep the card open */
+    @media (hover: none) {
+      .url-btn {
+        gap: 9px;
+        padding: 0 16px;
+      }
+
+      .url-btn-label {
+        max-width: 110px;
+        opacity: 1;
+      }
+
+      .card-reveal {
+        grid-template-rows: 1fr;
+      }
+
+      .reveal-inner {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .member-card,
+      .photo,
+      .url-pill,
+      .url-btn,
+      .url-btn-label,
+      .card-reveal,
+      .reveal-inner,
+      .preview img {
+        transition-duration: .01ms;
+      }
+
+      .member-card:hover {
+        transform: none;
+      }
+
+      .member-card:hover .photo,
+      .member-card:hover .preview img {
+        transform: none;
+      }
     }
 
     @media (max-width: 768px) {
@@ -403,6 +738,36 @@
 
       .footer p {
         max-width: none;
+      }
+
+      /* photo stacks above the text on narrow screens */
+      .card-top {
+        flex-direction: column;
+        gap: 18px;
+        padding: 22px;
+      }
+
+      .photo {
+        width: 100%;
+        height: 180px;
+      }
+
+      .name-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+
+      .member-position {
+        text-align: left;
+      }
+
+      .url-bar {
+        padding: 12px 16px;
+      }
+
+      .preview {
+        aspect-ratio: 4 / 3;
       }
     }
 

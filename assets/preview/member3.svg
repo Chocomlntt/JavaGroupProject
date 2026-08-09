@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="Portfolio preview mockup">
+  <rect width="640" height="400" fill="#0f172a"/>
+  <rect x="0" y="0" width="640" height="46" fill="#0b1220"/>
+  <circle cx="26" cy="23" r="5" fill="#ff5f57"/><circle cx="46" cy="23" r="5" fill="#febc2e"/><circle cx="66" cy="23" r="5" fill="#28c840"/>
+  <rect x="92" y="14" width="180" height="18" rx="9" fill="#1b2740"/>
+  <rect x="540" y="12" width="76" height="22" rx="11" fill="#8b5cf6"/>
+  <rect x="44" y="88" width="552" height="150" rx="16" fill="#111c33"/>
+  <rect x="70" y="112" width="200" height="24" rx="6" fill="#e6ecf7"/>
+  <rect x="70" y="148" width="270" height="24" rx="6" fill="#8b5cf6"/>
+  <rect x="70" y="188" width="180" height="9" rx="4" fill="#33415c"/>
+  <rect x="70" y="206" width="140" height="9" rx="4" fill="#2a3854"/>
+  <g fill="#8b5cf6" opacity=".28">
+    <circle cx="470" cy="163" r="58"/>
+  </g>
+  <g fill="#38bdf8" opacity=".5">
+    <circle cx="510" cy="132" r="30"/>
+  </g>
+  <g fill="#111c33" stroke="#1e2b47">
+    <rect x="44" y="262" width="264" height="110" rx="14"/><rect x="332" y="262" width="264" height="110" rx="14"/>
+  </g>
+  <g fill="#38bdf8" opacity=".85">
+    <rect x="66" y="284" width="72" height="9" rx="4"/><rect x="354" y="284" width="72" height="9" rx="4"/>
+  </g>
+  <g fill="#2a3854">
+    <rect x="66" y="306" width="180" height="8" rx="4"/><rect x="66" y="324" width="150" height="8" rx="4"/>
+    <rect x="354" y="306" width="180" height="8" rx="4"/><rect x="354" y="324" width="150" height="8" rx="4"/>
+  </g>
+  <g fill="#1b2740">
+    <rect x="66" y="344" width="48" height="16" rx="8"/><rect x="122" y="344" width="48" height="16" rx="8"/>
+    <rect x="354" y="344" width="48" height="16" rx="8"/><rect x="410" y="344" width="48" height="16" rx="8"/>
+  </g>
+</svg>
