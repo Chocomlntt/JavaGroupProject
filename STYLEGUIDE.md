@@ -33,7 +33,7 @@ JavaGroupProject/
 │       └── site.js       ใช้ร่วมกันทั้งสองหน้า
 └── portfolio/
     ├── Aom/              เสร็จแล้ว
-    ├── Jeff/             ยังว่าง
+    ├── Jeff/             เสร็จแล้ว
     └── Mon/              ยังว่าง
 ```
 
