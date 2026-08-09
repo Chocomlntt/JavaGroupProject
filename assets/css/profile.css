@@ -5,11 +5,7 @@
 
    ในไฟล์นี้มี:
      1. TOP     — หัวหน้าเพจ ตัวหนังสือโครมเมียม "THE TEAM"
-<<<<<<< Updated upstream
-     2. TEAM    — คลาสการ์ดสมาชิก (เตรียมไว้ให้ ยังไม่มีใครใช้)
-=======
      2. TEAM    — แผงรายชื่อ + การ์ดสมาชิกที่ hover แล้วกางลง
->>>>>>> Stashed changes
      3. PROCESS — ขั้นตอนการทำงาน 4 สเต็ป
    ============================================================ */
 
@@ -60,24 +56,6 @@
 }
 
 /* ============================================================
-<<<<<<< Updated upstream
-   2. TEAM  ← ส่วนของเพื่อนคนที่ 2
-   ------------------------------------------------------------
-   CSS พร้อมใช้แล้ว ยังไม่มี HTML ใช้มัน
-   ดูวิธีใช้และตัวอย่างโค้ดได้ที่ STYLEGUIDE.md
-
-   .team          กริดสองคอลัมน์: แผงรายชื่อซ้าย + การ์ดสมาชิกขวา
-   .layers        แผงรายชื่อ ติดหนึบตามตอนเลื่อนหน้า
-   .mates         กองการ์ดสมาชิก
-   .mate          การ์ด 1 คน ตั้งสีประจำตัวที่นี่
-                  style="--c:var(--lime); --on:#0C0D14"
-   .mate__sel     กรอบ selection รอบการ์ด (ต้องมี <i> 4 อันข้างใน)
-   .mate__tag     ป้ายชื่อมุมบนซ้าย
-   .mate__in      กล่องเนื้อหา: รูปซ้าย ข้อความขวา
-   .portrait      แผ่นโครมเมียมแทนรูปถ่าย
-   .kit           แถวป้ายทักษะ
-   .stat          บรรทัดสถานะเล็กๆ ข้างปุ่ม
-=======
    2. TEAM
    ------------------------------------------------------------
    .team          กริดสองคอลัมน์: แผงรายชื่อซ้าย + การ์ดสมาชิกขวา
@@ -96,7 +74,6 @@
 
    หน้าตาการ์ดยืมภาษาเดียวกับ .svc ในหน้าแรก: พื้นโครมเมียม
    ขอบดำ 2px เงาแข็ง แถบสีด้านบน hover แล้วยกตัว
->>>>>>> Stashed changes
    ============================================================ */
 .team {
   display: grid;
@@ -196,59 +173,6 @@
   color: #4A5468;
 }
 
-<<<<<<< Updated upstream
-/* --- การ์ดสมาชิก ------------------------------------------- */
-.mates {
-  display: grid;
-  gap: clamp(72px, 7vw, 88px);
-  /* ห่างขนาดนี้เพราะป้ายชื่อของการ์ดถัดไปยื่นขึ้นมา 36px */
-}
-
-.mate {
-  position: relative;
-  scroll-margin-top: calc(var(--bar-h) + 24px);
-}
-
-.mate__sel {
-  position: absolute;
-  inset: -14px;
-  border: 2px solid var(--c);
-  pointer-events: none;
-}
-
-.mate__sel i {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  background: #fff;
-  border: 2px solid var(--c);
-}
-
-.mate__sel i:nth-child(1) {
-  top: -5px;
-  left: -5px;
-}
-
-.mate__sel i:nth-child(2) {
-  top: -5px;
-  right: -5px;
-}
-
-.mate__sel i:nth-child(3) {
-  bottom: -5px;
-  right: -5px;
-}
-
-.mate__sel i:nth-child(4) {
-  bottom: -5px;
-  left: -5px;
-}
-
-.mate__tag {
-  position: absolute;
-  top: -36px;
-  left: -14px;
-=======
 /* --- การ์ดสมาชิก -------------------------------------------
    เว้นห่างเยอะเพราะป้ายชื่อของการ์ดถัดไปยื่นขึ้นมา 34px
    และตอน hover การ์ดยกตัวขึ้น ต้องมีที่ให้เงาไม่ไปทับใบล่าง */
@@ -294,7 +218,6 @@
   position: absolute;
   top: -34px;
   left: -2px;
->>>>>>> Stashed changes
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -305,24 +228,6 @@
   text-transform: uppercase;
   background: var(--c);
   color: var(--on);
-<<<<<<< Updated upstream
-  padding: 3px 9px;
-  border-radius: 2px 8px 0 0;
-}
-
-.mate__in {
-  display: grid;
-  grid-template-columns: 216px minmax(0, 1fr);
-  gap: 34px;
-  align-items: start;
-  padding: 28px;
-  border: 1px solid var(--edge);
-  background-image:
-    linear-gradient(rgba(12, 13, 20, .04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(12, 13, 20, .04) 1px, transparent 1px),
-    linear-gradient(178deg, #FFFFFF 0%, #F4F7FC 58%, #DFE5F0 100%);
-  background-size: 20px 20px, 20px 20px, 100% 100%;
-=======
   padding: 3px 10px;
   border: 2px solid var(--ink);
   border-bottom: 0;
@@ -336,7 +241,6 @@
   gap: 26px;
   align-items: start;
   padding: 28px 24px 22px;
->>>>>>> Stashed changes
 }
 
 /* --- แผ่นโครมเมียมแทนรูปถ่าย -------------------------------
@@ -400,33 +304,6 @@
 }
 
 /* --- ข้อความในการ์ด ---------------------------------------- */
-<<<<<<< Updated upstream
-.mate__name {
-  font-family: var(--f-disp);
-  font-stretch: 122%;
-  font-weight: 900;
-  font-size: clamp(2.1rem, 5.6vw, 3.5rem);
-  line-height: .9;
-  letter-spacing: -.03em;
-  text-transform: uppercase;
-}
-
-.mate__role {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 2px solid var(--ink);
-  font-family: var(--f-mono);
-  font-size: .74rem;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: #3B4457;
-}
-
-.mate__d {
-  margin-top: 16px;
-  font-size: 1.02rem;
-  max-width: 48ch;
-=======
 
 /* ชื่อซ้าย · ตำแหน่งขวา อยู่บรรทัดเดียวกัน */
 .pcard__row {
@@ -478,7 +355,6 @@
   line-height: 1.8;
   max-width: 60ch;
   color: #333B4E;
->>>>>>> Stashed changes
 }
 
 .kit {
@@ -499,25 +375,6 @@
   background: rgba(255, 255, 255, .8);
 }
 
-<<<<<<< Updated upstream
-.mate__go {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
-  margin-top: 26px;
-}
-
-.stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--f-mono);
-  font-size: .66rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: #3B4457;
-=======
 /* --- บรรทัดบอกว่ากางได้ --------------------------------------
    ไม่มีบรรทัดนี้คนจะไม่รู้ว่าการ์ดมีของซ่อนอยู่ */
 .pcard__hint {
@@ -710,7 +567,6 @@
   letter-spacing: .16em;
   text-transform: uppercase;
   color: #4A5468;
->>>>>>> Stashed changes
 }
 
 /* ============================================================
@@ -813,16 +669,6 @@
   }
 }
 
-<<<<<<< Updated upstream
-@media (max-width: 760px) {
-  .mate__in {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .portrait {
-    max-width: 210px;
-=======
 /* มือถือกับแท็บเล็ตไม่มี hover — กางค้างไว้เลย ไม่งั้นคนกลุ่มนี้
    จะไม่มีวันเห็นลิงก์ portfolio */
 @media (hover: none) {
@@ -843,20 +689,10 @@
 
   .portrait {
     max-width: 190px;
->>>>>>> Stashed changes
   }
 }
 
 @media (max-width: 520px) {
-<<<<<<< Updated upstream
-  .mate__in {
-    padding: 18px;
-  }
-
-  .mate__go .btn {
-    flex: 1 1 100%;
-    justify-content: center;
-=======
 
   .pcard__top,
   .pcard__reveal {
@@ -877,6 +713,5 @@
 
   .pcard__pos {
     order: -1;
->>>>>>> Stashed changes
   }
 }

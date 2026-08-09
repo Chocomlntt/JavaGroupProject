@@ -68,29 +68,6 @@
 
   /* ==========================================================
      3. แผงรายชื่อไฮไลต์ตามคนที่กำลังอ่าน (หน้า profile)
-<<<<<<< Updated upstream
-     ทำงานเมื่อมีทั้ง .layers a และ .mate เท่านั้น
-     ========================================================== */
-  var layerLinks = document.querySelectorAll('.layers a[data-layer]');
-  var mates = document.querySelectorAll('.mate[id]');
-
-  if (layerLinks.length && mates.length && 'IntersectionObserver' in window) {
-    var byId = {};
-    layerLinks.forEach(function (a) {
-      byId[a.getAttribute('data-layer')] = a;
-    });
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        layerLinks.forEach(function (a) { a.classList.remove('is-active'); });
-        var hit = byId[en.target.id];
-        if (hit) hit.classList.add('is-active');
-      });
-    }, { rootMargin: '-45% 0px -45% 0px' });
-
-    mates.forEach(function (m) { io.observe(m); });
-=======
      ----------------------------------------------------------
      ทำงานเมื่อมีทั้ง .layers a และ .pcard เท่านั้น
 
@@ -304,7 +281,6 @@
         clearTimeout(wait);
       });
     });
->>>>>>> Stashed changes
   }
 
   /* ==========================================================
