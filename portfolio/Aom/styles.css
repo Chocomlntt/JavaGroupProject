@@ -1344,6 +1344,18 @@ h4 {
   transition: all var(--transition-fast);
 }
 
+.social-icon-btn svg,
+.social-icon-btn i {
+  width: 20px;
+  height: 20px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .social-icon-btn:hover {
   color: var(--accent-cyan);
   border-color: var(--accent-cyan-subtle);

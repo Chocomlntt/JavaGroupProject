@@ -178,11 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (profile.socials.github) {
         document.querySelectorAll('a[href*="github.com"]').forEach(a => a.href = profile.socials.github);
       }
-      if (profile.socials.linkedin) {
-        document.querySelectorAll('a[href*="linkedin.com"]').forEach(a => a.href = profile.socials.linkedin);
+      if (profile.socials.instagram) {
+        document.querySelectorAll('a[href*="instagram.com"]').forEach(a => a.href = profile.socials.instagram);
       }
-      if (profile.socials.twitter) {
-        document.querySelectorAll('a[href*="twitter.com"]').forEach(a => a.href = profile.socials.twitter);
+      if (profile.socials.facebook) {
+        document.querySelectorAll('a[href*="facebook.com"]').forEach(a => a.href = profile.socials.facebook);
       }
     }
 
@@ -232,14 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="project-summary">${proj.summary}</p>
             <div class="project-footer">
               <span class="project-link">
-                Explore Specs <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                Explore Specs <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
               </span>
               <div style="display: flex; gap: 0.5rem;">
-                <a href="${proj.demoUrl}" target="_blank" onclick="event.stopPropagation();" class="social-icon-btn" title="Live Demo">
-                  <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
-                </a>
                 <a href="${proj.repoUrl}" target="_blank" onclick="event.stopPropagation();" class="social-icon-btn" title="Repository">
-                  <i data-lucide="github" style="width: 16px; height: 16px;"></i>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
                 </a>
               </div>
             </div>
@@ -277,7 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="tech-level-text">${tech.level ? tech.level.toUpperCase() : ''}</span>
         </div>
         <div class="tech-name">${tech.name}</div>
-        <div class="tech-desc">${tech.desc}</div>
       </div>
     `).join('');
 
@@ -359,19 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
               ${cert.description ? `<p class="cert-description">${cert.description}</p>` : ''}
 
-              <div class="cert-meta-info">
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dashed rgba(255,255,255,0.08);">
-                  <span class="meta-label font-mono" style="font-size: 0.78rem; color: var(--text-muted);">Credential Code:</span>
-                  <span class="meta-val font-mono cyan-text" style="font-size: 0.82rem; font-weight: 600;">${cert.code}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dashed rgba(255,255,255,0.08);">
-                  <span class="meta-label font-mono" style="font-size: 0.78rem; color: var(--text-muted);">Issuer:</span>
-                  <span class="meta-val" style="font-size: 0.82rem;">${cert.issuer}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0;">
-                  <span class="meta-label font-mono" style="font-size: 0.78rem; color: var(--text-muted);">Issue Date:</span>
-                  <span class="meta-val font-mono" style="font-size: 0.82rem;">${cert.date}</span>
-                </div>
               </div>
             </div>
           </div>
@@ -515,7 +498,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
         <a href="${project.repoUrl}" target="_blank" class="btn btn-secondary">
-          <i data-lucide="github"></i> View Source Code
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.4rem; vertical-align: middle;"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg> View Source Code
         </a>
       </div>
     `;

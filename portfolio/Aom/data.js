@@ -7,22 +7,22 @@ export const profileData = {
   handle: "Road to Full-Stack!!",
   idCode: "Aommykung-X7",
   status: "AVAILABLE FOR HIRE",
-  bio: "Architecting high-performance web applications, distributed systems, and real-time interactive interfaces with cyber-linear precision.",
+  bio: "Architecting high-performance web applications, backend APIs, and real-time interactive interfaces with cyber-linear precision.",
   location: "Uttaradit, Thailand / Remote",
   coreStackText: "CORE: React, Next.js, Tailwind, HTML, CSS, JavaScript, Spring Boot, Docker",
 
   // Hero Section Stats
   stats: {
-    experienceYears: { value: "None", label: "Years Experience" },
-    projectsCompleted: { value: "5", label: "Projects Shipped" },
-    codeCommits: { value: "500", label: "Git Commits" }
+    experienceYears: { value: "Student", label: "Developer Status" },
+    projectsCompleted: { value: "3+", label: "Featured Projects" },
+    codeCommits: { value: "500+", label: "Git Commits" }
   },
 
   // Social Links & Contact Details
   socials: {
     github: "https://github.com/Aommykung1250-X7",
-    linkedin: "https://www.instagram.com/saimon_.am/",
-    twitter: "https://www.facebook.com/AoMYKuNgG/",
+    instagram: "https://www.instagram.com/saimon_.am/",
+    facebook: "https://www.facebook.com/AoMYKuNgG/",
     email: "phanuwataom1250@gmail.com"
   }
 };
@@ -31,28 +31,28 @@ export const profileData = {
 export const siteTextData = {
   hero: {
     subtitle: "// PHANUWAT AUDKANTHAR PROFILE",
-    titleMain: "Junior Developer Fullstack Developer",
+    titleMain: "Junior Developer & Full-Stack",
     titleGradient: "Frontend & Backend",
     ctaPrimary: "Start a Conversation",
     ctaSecondary: "Download Resume"
   },
   showcase: {
     tag: "PORTFOLIO SHOWCASE",
-    titleMain: "Architectural Engineering &",
-    titleGradient: "Shipped Systems",
-    description: "Explore full-stack platforms, high-performance web applications, and real-time interactive tools."
+    titleMain: "Web Applications &",
+    titleGradient: "Verified Credentials",
+    description: "สำรวจผลงาน และใบประกาศนียบัตรรับรองทักษะ"
   },
   contact: {
     tag: "START A CONVERSATION",
     titleMain: "Let's Build Something",
     titleGradient: "Exceptional",
-    description: "Have an upcoming project, engineering opportunity, or architectural inquiry? Drop a message below.",
+    description: "หากมีข้อซักถาม โอกาสในการร่วมงาน หรือสนใจร่วมพัฒนาโปรเจกต์ สามารถติดต่อผ่านช่องทางด้านล่างได้ทันทีครับ",
     directSignalsTitle: "Direct Signals",
-    directSignalsDesc: "Whether you need a full-stack developer for a production launch or architectural guidance on web applications, my inbox is open.",
+    directSignalsDesc: "พร้อมรับโอกาสในการเรียนรู้และร่วมทีมพัฒนา Web Application, Backend APIs และระบบซอฟต์แวร์ต่างๆ ทักมาพูดคุยกันได้เลยครับ",
     responseTime: "< 24 Hours Guaranteed"
   },
   footer: {
-    tagline: "DESIGN SYSTEM #131313 / #00FFC2",
+    tagline: "PHANUWAT AUDKANTHAR PORTFOLIO",
     copyright: "© 2026 Phanuwat Audkanthar. All rights reserved."
   }
 };
@@ -86,94 +86,74 @@ export const resumeData = {
 
 // Tech Stack Data
 export const techStackData = [
-  { id: "react", name: "React.js", category: "Frontend", level: "Excellent", icon: "atom", desc: "Hooks, Fiber architecture, Concurrent mode, state management" },
-  { id: "nextjs", name: "Next.js", category: "Frontend", level: "Excellent", icon: "layers", desc: "App Router, SSR, Server Components, Edge runtime" },
-  { id: "typescript", name: "TypeScript", category: "Frontend", level: "Good", icon: "code", desc: "Strict typing, generics, AST transformations, utility types" },
-  { id: "tailwind", name: "Tailwind CSS", category: "Frontend", level: "Excellent", icon: "palette", desc: "Design tokens, custom plugins, responsive layouts, JIT" },
-  { id: "nodejs", name: "Node.js", category: "Backend", level: "Good", icon: "server", desc: "Event loop optimization, REST/gRPC APIs, microservices" },
-  { id: "python", name: "Python / FastAPI", category: "Backend", level: "Good", icon: "terminal", desc: "Async IO, Pydantic, ML inference endpoints, data pipelines" },
-  { id: "supabase", name: "Supabase / Postgres", category: "Database", level: "Good", icon: "database", desc: "Row Level Security, realtime subscriptions, vector search" },
-  { id: "docker", name: "Docker & K8s", category: "DevOps", level: "Practicing", icon: "box", desc: "Multi-stage builds, container orchestration, CI/CD pipelines" },
-  { id: "graphql", name: "GraphQL", category: "Backend", level: "Practicing", icon: "share-2", desc: "Schema stitching, Apollo Server, query optimization" },
-  { id: "webgl", name: "Three.js / WebGL", category: "Graphics", level: "Practicing", icon: "cpu", desc: "3D shaders, particle systems, interactive canvas rendering" }
+  { id: "react", name: "React.js", category: "Frontend", level: "Good", icon: "atom" },
+  { id: "nextjs", name: "Next.js", category: "Frontend", level: "Good", icon: "layers" },
+  { id: "html", name: "HTML", category: "Frontend", level: "Excellent", icon: "code" },
+  { id: "tailwind", name: "Tailwind CSS", category: "Frontend", level: "Excellent", icon: "palette" },
+  { id: "nodejs", name: "Node.js", category: "Backend", level: "Excellent", icon: "server" },
+  { id: "python", name: "FastAPI", category: "Backend", level: "Excellent", icon: "terminal" },
+  { id: "supabase", name: "Supabase / Postgres", category: "Database", level: "Excellent", icon: "database" },
+  { id: "docker", name: "Docker & K8s", category: "DevOps", level: "Good", icon: "box" },
+  { id: "springboot", name: "Spring Boot", category: "Backend", level: "Good", icon: "share-2" },
+  { id: "kotlin", name: "Kotlin", category: "mobile", level: "Practicing", icon: "cpu" }
 ];
 
 // Project Showcase Data
 export const projectsData = [
   {
     id: "proj-1",
-    title: "Web Application",
+    title: "Web Application Competition",
     category: "Web Application",
     featured: true,
-    tags: ["HTML", "CSS", "PHP", "JS"],
-    summary: "เหรียญทอง การแข่งขันสร้าง Web Application งานศิลปะหัถกรรมระดับเขตการศึกษา",
+    tags: ["HTML", "CSS", "PHP", "JS", "MySQL"],
+    summary: "รางวัลเหรียญทอง การแข่งขันสร้าง Web Application งานศิลปหัตถกรรมนักเรียนระดับเขตพื้นที่การศึกษา",
     image: "assets/pic/webapp.JPG",
+    images: [
+      "assets/pic/webapp.JPG"
+    ],
     accentColor: "#00ffc2",
-    metrics: { uptime: "99.99%", latency: "<12ms", users: "14.2k" },
-    demoUrl: "https://example.com/auraos",
+    metrics: { Award: "Gold Medal", Scope: "District", Stack: "PHP / JS" },
+    demoUrl: "#",
     repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "AuraOS provides enterprise cloud engineering teams with live visualization of multi-region kubernetes clusters, serverless metrics, and real-time security threats with high-contrast neon visual feedback."
+    details: "ระบบเว็บแอปพลิเคชันที่ได้รับการพัฒนาขึ้นเพื่อเข้าร่วมการแข่งขันงานศิลปหัตถกรรมนักเรียน รังสรรค์ด้วย HTML5, CSS3, PHP และ JavaScript โดยมุ่งเน้นการออกแบบระบบใช้งานง่าย รองรับการจัดการข้อมูลหลังบ้านและการเชื่อมต่อฐานข้อมูลอย่างมีประสิทธิภาพ จนได้รับรางวัลเหรียญทองระดับเขตพื้นที่การศึกษา"
   },
   {
     id: "proj-2",
-    title: "",
-    category: "AI & Data",
+    title: "Nan-Ngai (น่านไง - CCTV Detection)",
+    category: "AI & Web System",
     featured: true,
-    tags: ["Python", "FastAPI", "React.js", "PostgreSQL", "Tailwind"],
-    summary: "Ultra-fast neural search platform parsing unstructured documentation with sub-50ms hybrid vector retrieval.",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
+    tags: ["Next.js", "Tailwind CSS", "React.js", "FastAPI", "Prisma", "YOLOv11"],
+    summary: "ระบบเฝ้าระวังและตรวจจับวัตถุจากกล้อง CCTV อัจฉริยะด้วยโมเดล AI YOLOv11 เชื่อมต่อเว็บแอปพลิเคชันแบบเรียลไทม์",
+    image: "assets/pic/nan1.JPG",
     images: [
-      "assets/pic/webapp.JPG",
-      "assets/pic/cyber1.JPG",
-      "assets/pic/cyber2.JPG"
+      "assets/pic/nan1.JPG",
+      "assets/pic/nan2.JPG",
+      "assets/pic/nan3.png"
     ],
     accentColor: "#00e5ff",
-    metrics: { queryTime: "34ms", accuracy: "98.4%", indexing: "1M docs/hr" },
-    demoUrl: "https://example.com/neuroflux",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Built to handle massive technical documentation repositories, NeuroFlux converts multi-format files into high-dimensional vector embeddings with interactive graph exploration."
+    metrics: { Model: "YOLOv11", Response: "Real-time", Architecture: "Microservices" },
+    demoUrl: "#",
+    repoUrl: "https://github.com/PreturnPRO/Nan-Ngai-CCTV",
+    details: "แพลตฟอร์มระบบกล้องตรวจจับอัจฉริยะ Nan-Ngai (น่านไง) ที่ผสานพลังคอมพิวเตอร์วิทัศน์ (Computer Vision) ด้วย YOLOv11 ร่วมกับ Backend API ประสิทธิภาพสูงบน FastAPI และ Frontend ล้ำสมัยด้วย Next.js, Tailwind CSS และ Prisma ORM ช่วยในการวิเคราะห์ คัดแยกวัตถุ และแจ้งเตือนเหตุการณ์จากกล้องวงจรปิดแบบเรียลไทม์"
   },
   {
     id: "proj-3",
-    title: "Synthetix - Web3 Realtime Exchange",
-    category: "Full Stack",
+    title: "DITC | Smart Kiosk System",
+    category: "Web Application & Server",
     featured: true,
-    tags: ["React.js", "TypeScript", "Node.js", "GraphQL", "WebSockets"],
-    summary: "High-frequency decentralized asset trading portal with live order books, candlestick charts, and custom WebGL particles.",
-    image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1000&q=80",
+    tags: ["React.js", "Tailwind CSS", "Docker", "PostgreSQL", "WebSockets", "JavaScript"],
+    summary: "ระบบบริหารจัดการตู้คีออสก์อัจฉริยะ สื่อสารผ่าน WebSockets และควบคุมเซิร์ฟเวอร์ด้วย Docker",
+    image: "assets/pic/kiosk3.png",
+    images: [
+      "assets/pic/kiosk3.png",
+      "assets/pic/kiosk2.png",
+      "assets/pic/kiosk1.png"
+    ],
     accentColor: "#7928ca",
-    metrics: { tps: "50,000", volume: "$1.2B", markets: "120+" },
-    demoUrl: "https://example.com/synthetix",
+    metrics: { System: "Smart Kiosk", Protocol: "WebSockets", Deployment: "Docker" },
+    demoUrl: "#",
     repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Engineered with low-latency WebSocket data streams and optimized WebGL rendering to display 60fps market fluctuations without UI stutter."
-  },
-  {
-    id: "proj-4",
-    title: "KubePulse - Container Telemetry",
-    category: "DevOps",
-    featured: false,
-    tags: ["Go", "Docker", "TypeScript", "Tailwind"],
-    summary: "Lightweight container performance inspector with zero-overhead eBPF probes and instant terminal exports.",
-    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1000&q=80",
-    accentColor: "#00ffc2",
-    metrics: { overhead: "<0.1%", binarySize: "8.4MB", stars: "2.8k" },
-    demoUrl: "https://example.com/kubepulse",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Monitors memory leaks, thread locks, and IO bottlenecks across Kubernetes pod instances with zero agent overhead."
-  },
-  {
-    id: "proj-5",
-    title: "Nexus Code Studio - Browser IDE",
-    category: "Frontend",
-    featured: false,
-    tags: ["React.js", "Monaco Editor", "WebAssembly", "TypeScript"],
-    summary: "Browser-native code execution environment with real-time collaborative editing, LSP support, and terminal runner.",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1000&q=80",
-    accentColor: "#ff007a",
-    metrics: { bootTime: "400ms", languages: "14", activeDevs: "8.5k" },
-    demoUrl: "https://example.com/nexus-ide",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Runs sandboxed WebAssembly compilers in web workers, enabling offline compilation of C++, Rust, and TypeScript directly inside the client browser."
+    details: "ระบบเว็บแอปพลิเคชันสำหรับบริหารจัดการตู้คีออสก์อัจฉริยะ (DITC Smart Kiosk) รองรับการโต้ตอบกับผู้ใช้งานอย่างรวดเร็วด้วย React.js และ Tailwind CSS ทำงานร่วมกับระบบ WebSockets เพื่อส่งข้อมูลเรียลไทม์ไปยังเซิร์ฟเวอร์ที่คอนเทนเนอไรซ์ด้วย Docker และจัดเก็บข้อมูลอย่างปลอดภัยบน PostgreSQL"
   }
 ];
 
@@ -182,37 +162,25 @@ export const certificatesData = [
   {
     id: "cert-1",
     title: "Cyber Top Talent (Senior)",
-    issuer: "Amazon Web Services",
+    issuer: "NCSA (สกมช. - สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ)",
     date: "2025",
-    code: "AWS-PSA-993821",
-    verifyUrl: "assets/pic/Top_Talent.jpg",
+    code: "CYBER-TOP-2025",
+    verifyUrl: "assets/pic/cert1.jpg",
     image: "assets/pic/cert1.jpg",
     badgeIcon: "award",
-    skills: ["Cloud Architecture", "Distributed Systems", "Security", "Cost Optimization"],
-    description: "ได้รับรางวัลการแข่งขัน Cyber Top Talent ประจำปี 2025 ในระดับ Senior แสดงถึงทักษะและความเชี่ยวชาญด้าน Cyber Security และ Cloud Infrastructure"
+    skills: ["Cyber Security", "Network Defense", "Threat Analysis", "Incident Response"],
+    description: "ใบประกาศนียบัตรเข้าร่วมและผ่านการทดสอบการแข่งขัน Cyber Top Talent ประจำปี 2025 ในระดับ Senior แสดงถึงความรู้ความเชี่ยวชาญด้าน Cyber Security การวิเคราะห์ช่องโหว่ และการป้องกันระบบสารสนเทศจากภัยคุกคามไซเบอร์"
   },
   {
     id: "cert-2",
     title: "AI Prompt Mini Hackathon 2024",
-    issuer: "Cloud Native Computing Foundation (CNCF)",
+    issuer: "SPU | SRIPATUM UNIVERSITY",
     date: "2024",
-    code: "LF-CKAD-77412",
-    verifyUrl: "https://cncf.io/verify",
+    code: "AI-PROMPT-2024",
+    verifyUrl: "assets/pic/cert2.PNG",
     image: "assets/pic/cert2.PNG",
     badgeIcon: "box",
-    skills: ["Container Security", "Helm Charts", "Ingress Controllers", "StatefulSets"],
-    description: "การรับรองทักษะการสร้าง ออกแบบ และวางระบบแอปพลิเคชันบน Kubernetes Container Platform"
-  },
-  {
-    id: "cert-3",
-    title: "Meta Certified Senior Front-End Developer",
-    issuer: "Meta Credentials",
-    date: "2024",
-    code: "META-FRONTEND-4491",
-    verifyUrl: "https://coursera.org/verify",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80",
-    badgeIcon: "code-2",
-    skills: ["React Deep Dive", "Advanced JS", "Web Performance", "Accessibility"],
-    description: "ใบรับรองความเชี่ยวชาญการพัฒนา Web Application ด้วย React และเทคโนโลยี Modern Web Standard จาก Meta"
+    skills: ["Prompt Engineering", "Generative AI", "LLM Optimization", "Creative Problem Solving"],
+    description: "ใบประกาศนียบัตรเข้าร่วมการแข่งขัน AI Prompt Mini Hackathon 2024 แสดงถึงทักษะการออกแบบและประยุกต์ใช้ Prompt Engineering ร่วมกับเทคโนโลยี Generative AI เพื่อแก้โจทย์ปัญหาเชิงสร้างสรรค์ได้อย่างมีประสิทธิภาพ"
   }
 ];
