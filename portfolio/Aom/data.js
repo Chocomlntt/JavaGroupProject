@@ -3,14 +3,13 @@
 export const profileData = {
   name: "Phanuwat Audkanthar",
   title: "Junior Dev | Backend Developer & Frontend Developer",
-  avatar: "./IMG_0163.heic", // Profile image path or URL
+  avatar: "assets/profile.JPG",
   handle: "Road to Full-Stack!!",
-  idCode: "29-03-2006",
+  idCode: "Aommykung-X7",
   status: "AVAILABLE FOR HIRE",
   bio: "Architecting high-performance web applications, distributed systems, and real-time interactive interfaces with cyber-linear precision.",
   location: "Uttaradit, Thailand / Remote",
   coreStackText: "CORE: React, Next.js, Tailwind, HTML, CSS, JavaScript, Spring Boot, Docker",
-  securityVerifiedText: "SECURITY VERIFIED",
 
   // Hero Section Stats
   stats: {
@@ -22,8 +21,8 @@ export const profileData = {
   // Social Links & Contact Details
   socials: {
     github: "https://github.com/Aommykung1250-X7",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    linkedin: "https://www.instagram.com/saimon_.am/",
+    twitter: "https://www.facebook.com/AoMYKuNgG/",
     email: "phanuwataom1250@gmail.com"
   }
 };
@@ -103,12 +102,12 @@ export const techStackData = [
 export const projectsData = [
   {
     id: "proj-1",
-    title: "AuraOS - Cybernetic Cloud Dashboard",
-    category: "Full Stack",
+    title: "Web Application",
+    category: "Web Application",
     featured: true,
-    tags: ["Next.js", "TypeScript", "Tailwind", "Supabase", "Recharts"],
-    summary: "Real-time infrastructure monitoring console with interactive node telemetry, AI anomaly detection, and glassmorphic UI.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+    tags: ["HTML", "CSS", "PHP", "JS"],
+    summary: "เหรียญทอง การแข่งขันสร้าง Web Application งานศิลปะหัถกรรมระดับเขตการศึกษา",
+    image: "assets/pic/webapp.JPG",
     accentColor: "#00ffc2",
     metrics: { uptime: "99.99%", latency: "<12ms", users: "14.2k" },
     demoUrl: "https://example.com/auraos",
@@ -117,12 +116,17 @@ export const projectsData = [
   },
   {
     id: "proj-2",
-    title: "NeuroFlux AI - Vector Search Engine",
+    title: "",
     category: "AI & Data",
     featured: true,
     tags: ["Python", "FastAPI", "React.js", "PostgreSQL", "Tailwind"],
     summary: "Ultra-fast neural search platform parsing unstructured documentation with sub-50ms hybrid vector retrieval.",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "assets/pic/webapp.JPG",
+      "assets/pic/cyber1.JPG",
+      "assets/pic/cyber2.JPG"
+    ],
     accentColor: "#00e5ff",
     metrics: { queryTime: "34ms", accuracy: "98.4%", indexing: "1M docs/hr" },
     demoUrl: "https://example.com/neuroflux",
@@ -177,23 +181,27 @@ export const projectsData = [
 export const certificatesData = [
   {
     id: "cert-1",
-    title: "AWS Certified Solutions Architect – Professional",
+    title: "Cyber Top Talent (Senior)",
     issuer: "Amazon Web Services",
     date: "2025",
     code: "AWS-PSA-993821",
-    verifyUrl: "https://aws.amazon.com/verification",
+    verifyUrl: "assets/pic/Top_Talent.jpg",
+    image: "assets/pic/cert1.jpg",
     badgeIcon: "award",
-    skills: ["Cloud Architecture", "Distributed Systems", "Security", "Cost Optimization"]
+    skills: ["Cloud Architecture", "Distributed Systems", "Security", "Cost Optimization"],
+    description: "ได้รับรางวัลการแข่งขัน Cyber Top Talent ประจำปี 2025 ในระดับ Senior แสดงถึงทักษะและความเชี่ยวชาญด้าน Cyber Security และ Cloud Infrastructure"
   },
   {
     id: "cert-2",
-    title: "CKAD: Certified Kubernetes Application Developer",
+    title: "AI Prompt Mini Hackathon 2024",
     issuer: "Cloud Native Computing Foundation (CNCF)",
     date: "2024",
     code: "LF-CKAD-77412",
     verifyUrl: "https://cncf.io/verify",
+    image: "assets/pic/cert2.PNG",
     badgeIcon: "box",
-    skills: ["Container Security", "Helm Charts", "Ingress Controllers", "StatefulSets"]
+    skills: ["Container Security", "Helm Charts", "Ingress Controllers", "StatefulSets"],
+    description: "การรับรองทักษะการสร้าง ออกแบบ และวางระบบแอปพลิเคชันบน Kubernetes Container Platform"
   },
   {
     id: "cert-3",
@@ -202,7 +210,9 @@ export const certificatesData = [
     date: "2024",
     code: "META-FRONTEND-4491",
     verifyUrl: "https://coursera.org/verify",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80",
     badgeIcon: "code-2",
-    skills: ["React Deep Dive", "Advanced JS", "Web Performance", "Accessibility"]
+    skills: ["React Deep Dive", "Advanced JS", "Web Performance", "Accessibility"],
+    description: "ใบรับรองความเชี่ยวชาญการพัฒนา Web Application ด้วย React และเทคโนโลยี Modern Web Standard จาก Meta"
   }
 ];

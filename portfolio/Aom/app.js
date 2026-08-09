@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = cyberIdCard.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      
+
       const rotateX = (-y / (rect.height / 2)) * 12;
       const rotateY = (x / (rect.width / 2)) * 12;
-      
+
       cyberIdCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
 
@@ -216,34 +216,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Render Functions
   function renderProjects(gridElement, items) {
-    gridElement.innerHTML = items.map(proj => `
-      <div class="project-card" data-project-id="${proj.id}">
-        <div class="project-image-wrapper">
-          <img src="${proj.image}" alt="${proj.title}" class="project-image" loading="lazy">
-          <div class="project-overlay-badge">${proj.category}</div>
-        </div>
-        <div class="project-content">
-          <div class="project-tags">
-            ${proj.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+    gridElement.innerHTML = items.map(proj => {
+      const coverImg = (proj.images && proj.images.length > 0) ? proj.images[0] : (proj.image || '');
+      return `
+        <div class="project-card" data-project-id="${proj.id}">
+          <div class="project-image-wrapper">
+            <img src="${coverImg}" alt="${proj.title}" class="project-image" loading="lazy">
+            <div class="project-overlay-badge">${proj.category}</div>
           </div>
-          <h3 class="project-title">${proj.title}</h3>
-          <p class="project-summary">${proj.summary}</p>
-          <div class="project-footer">
-            <span class="project-link">
-              Explore Specs <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
-            </span>
-            <div style="display: flex; gap: 0.5rem;">
-              <a href="${proj.demoUrl}" target="_blank" onclick="event.stopPropagation();" class="social-icon-btn" title="Live Demo">
-                <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
-              </a>
-              <a href="${proj.repoUrl}" target="_blank" onclick="event.stopPropagation();" class="social-icon-btn" title="Repository">
-                <i data-lucide="github" style="width: 16px; height: 16px;"></i>
-              </a>
+          <div class="project-content">
+            <div class="project-tags">
+              ${proj.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+            </div>
+            <h3 class="project-title">${proj.title}</h3>
+            <p class="project-summary">${proj.summary}</p>
+            <div class="project-footer">
+              <span class="project-link">
+                Explore Specs <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+              </span>
+              <div style="display: flex; gap: 0.5rem;">
+                <a href="${proj.demoUrl}" target="_blank" onclick="event.stopPropagation();" class="social-icon-btn" title="Live Demo">
+                  <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
+                </a>
+                <a href="${proj.repoUrl}" target="_blank" onclick="event.stopPropagation();" class="social-icon-btn" title="Repository">
+                  <i data-lucide="github" style="width: 16px; height: 16px;"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     // Attach click handlers to open details modal
     gridElement.querySelectorAll('.project-card').forEach(card => {
@@ -281,32 +284,151 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
   }
 
+  // Certificate Modal Handler
+  const certImageModal = document.getElementById('certImageModal');
+  const certModalImg = document.getElementById('certModalImg');
+  const certModalTitle = document.getElementById('certModalTitle');
+  const closeCertModalBtn = document.getElementById('closeCertModalBtn');
+
+  function openCertImageModal(src, title) {
+    if (!certImageModal || !certModalImg) return;
+    certModalImg.src = src;
+    if (certModalTitle) certModalTitle.textContent = title;
+    certImageModal.classList.add('open');
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  if (closeCertModalBtn && certImageModal) {
+    closeCertModalBtn.addEventListener('click', () => certImageModal.classList.remove('open'));
+  }
+  if (certImageModal) {
+    certImageModal.addEventListener('click', (e) => {
+      if (e.target === certImageModal) certImageModal.classList.remove('open');
+    });
+  }
+
   function renderCertificates(gridElement, items) {
-    gridElement.innerHTML = items.map(cert => `
-      <div class="cert-card">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div class="cert-icon">
-            <i data-lucide="${cert.badgeIcon || 'award'}" style="width: 24px; height: 24px;"></i>
+    gridElement.innerHTML = items.map(cert => {
+      const certImg = cert.image || (cert.verifyUrl && (cert.verifyUrl.includes('.jpg') || cert.verifyUrl.includes('.png') || cert.verifyUrl.includes('.jpeg') || cert.verifyUrl.startsWith('assets/')) ? cert.verifyUrl : null);
+
+      return `
+        <div class="cert-card" data-cert-id="${cert.id}">
+          <div class="cert-card-header">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div class="cert-icon">
+                <i data-lucide="${cert.badgeIcon || 'award'}" style="width: 24px; height: 24px;"></i>
+              </div>
+              <span class="cert-code font-mono">${cert.date}</span>
+            </div>
+            <div style="margin-top: 0.8rem;">
+              <h3 class="cert-title">${cert.title}</h3>
+              <div class="cert-issuer">${cert.issuer}</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.8rem;">
+              ${cert.skills ? cert.skills.map(s => `<span class="tech-tag">${s}</span>`).join('') : ''}
+            </div>
           </div>
-          <span class="cert-code">${cert.date}</span>
+
+          <div class="cert-card-actions">
+            <button class="cert-toggle-btn" type="button">
+              <span class="btn-text">ขยายดูใบประกาศนียบัตร</span>
+              <i data-lucide="chevron-down" class="chevron-icon"></i>
+            </button>
+            ${cert.verifyUrl && !cert.verifyUrl.startsWith('assets/') ? `
+              <a href="${cert.verifyUrl}" target="_blank" onclick="event.stopPropagation();" class="cert-verify-link" title="Verify Credentials">
+                <i data-lucide="external-link" style="width: 13px; height: 13px;"></i> Verify
+              </a>
+            ` : ''}
+          </div>
+
+          <div class="cert-drawer">
+            <div class="cert-drawer-content">
+              ${certImg ? `
+                <div class="cert-image-wrapper">
+                  <img src="${certImg}" alt="${cert.title}" class="cert-preview-img" loading="lazy">
+                  <div class="cert-image-overlay">
+                    <span><i data-lucide="maximize-2" style="width: 16px; height: 16px;"></i> คลิกเพื่อดูรูปภาพขนาดเต็ม</span>
+                  </div>
+                </div>
+              ` : `
+                <div class="cert-no-img">
+                  <i data-lucide="award" style="width: 36px; height: 36px; color: var(--accent-cyan);"></i>
+                  <span>ไม่มีรูปภาพตัวอย่างสำหรับใบรับรองนี้</span>
+                </div>
+              `}
+
+              ${cert.description ? `<p class="cert-description">${cert.description}</p>` : ''}
+
+              <div class="cert-meta-info">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dashed rgba(255,255,255,0.08);">
+                  <span class="meta-label font-mono" style="font-size: 0.78rem; color: var(--text-muted);">Credential Code:</span>
+                  <span class="meta-val font-mono cyan-text" style="font-size: 0.82rem; font-weight: 600;">${cert.code}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dashed rgba(255,255,255,0.08);">
+                  <span class="meta-label font-mono" style="font-size: 0.78rem; color: var(--text-muted);">Issuer:</span>
+                  <span class="meta-val" style="font-size: 0.82rem;">${cert.issuer}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0;">
+                  <span class="meta-label font-mono" style="font-size: 0.78rem; color: var(--text-muted);">Issue Date:</span>
+                  <span class="meta-val font-mono" style="font-size: 0.82rem;">${cert.date}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 class="cert-title">${cert.title}</h3>
-          <div class="cert-issuer">${cert.issuer}</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: auto;">
-          ${cert.skills.map(s => `<span class="tech-tag">${s}</span>`).join('')}
-        </div>
-        <div style="padding-top: 0.8rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-          <span class="cert-code">${cert.code}</span>
-          <a href="${cert.verifyUrl}" target="_blank" class="project-link" style="font-size: 0.82rem;">
-            Verify <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
-          </a>
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     if (window.lucide) window.lucide.createIcons();
+
+    // Attach click listeners for expand/collapse and image modal
+    gridElement.querySelectorAll('.cert-card').forEach(card => {
+      const toggleBtn = card.querySelector('.cert-toggle-btn');
+      const imgWrapper = card.querySelector('.cert-image-wrapper');
+
+      // Click card header or toggle button to expand/collapse inline
+      const toggleDrawer = (e) => {
+        // Prevent toggle if user clicks direct link or image preview
+        if (e.target.closest('a') || e.target.closest('.cert-image-wrapper')) return;
+
+        const isExpanded = card.classList.contains('expanded');
+
+        // Close all other expanded certificate cards in the document
+        document.querySelectorAll('.cert-card.expanded').forEach(otherCard => {
+          if (otherCard !== card) {
+            otherCard.classList.remove('expanded');
+            const otherBtnText = otherCard.querySelector('.cert-toggle-btn .btn-text');
+            if (otherBtnText) otherBtnText.textContent = 'ขยายดูใบประกาศนียบัตร';
+          }
+        });
+
+        if (isExpanded) {
+          card.classList.remove('expanded');
+          if (toggleBtn) {
+            const btnText = toggleBtn.querySelector('.btn-text');
+            if (btnText) btnText.textContent = 'ขยายดูใบประกาศนียบัตร';
+          }
+        } else {
+          card.classList.add('expanded');
+          if (toggleBtn) {
+            const btnText = toggleBtn.querySelector('.btn-text');
+            if (btnText) btnText.textContent = 'ย่อรายละเอียด';
+          }
+        }
+      };
+
+      card.addEventListener('click', toggleDrawer);
+
+      // Lightbox modal view when image is clicked
+      if (imgWrapper) {
+        imgWrapper.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const img = imgWrapper.querySelector('.cert-preview-img');
+          const title = card.querySelector('.cert-title')?.textContent || 'Certificate Preview';
+          if (img) openCertImageModal(img.src, title);
+        });
+      }
+    });
   }
 
   // 4. Initial Showcase Grid & Tab Controller
@@ -351,14 +473,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openProjectModal(project) {
     if (!projectModal || !projectModalContent) return;
-    
+
+    const images = (project.images && project.images.length > 0) ? project.images : [project.image || ''];
+    let currentSlide = 0;
+
     projectModalContent.innerHTML = `
-      <button class="modal-close-btn" id="closeProjModalBtn"><i data-lucide="x"></i></button>
+      <button class="modal-close-btn" id="closeProjModalBtn" aria-label="Back"><i data-lucide="arrow-left"></i></button>
       
-      <div style="position: relative; width: 100%; height: 260px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1.5rem;">
-        <img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover;">
-        <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); padding: 0.4rem 0.9rem; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">
-          CATEGORY: ${project.category}
+      <div class="project-modal-slider">
+        <div class="slider-stage">
+          <img id="modalSliderImg" src="${images[0]}" alt="${project.title}">
+          <div class="project-category-badge">
+            ${project.category}
+          </div>
+          ${images.length > 1 ? `
+            <button type="button" class="slider-arrow prev-arrow" id="sliderPrevBtn" aria-label="Previous image">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow next-arrow" id="sliderNextBtn" aria-label="Next image">
+              <i data-lucide="chevron-right"></i>
+            </button>
+            <div class="slider-counter font-mono">
+              <span id="currentSlideIdx">1</span> / ${images.length}
+            </div>
+            <div class="slider-dots" id="sliderDots">
+              ${images.map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}" data-idx="${i}"></span>`).join('')}
+            </div>
+          ` : ''}
         </div>
       </div>
 
@@ -372,20 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ${project.details}
       </p>
 
-      <!-- Key Engineering Metrics -->
-      <div style="background: rgba(0, 255, 194, 0.04); border: 1px solid var(--border-cyan-subtle); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
-        ${Object.entries(project.metrics).map(([key, val]) => `
-          <div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;" class="font-mono">${key}</div>
-            <div style="font-size: 1.2rem; font-weight: 700;" class="font-mono cyan-text">${val}</div>
-          </div>
-        `).join('')}
-      </div>
-
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="${project.demoUrl}" target="_blank" class="btn btn-primary">
-          <i data-lucide="external-link"></i> Launch Live Application
-        </a>
         <a href="${project.repoUrl}" target="_blank" class="btn btn-secondary">
           <i data-lucide="github"></i> View Source Code
         </a>
@@ -394,6 +522,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (window.lucide) window.lucide.createIcons();
     projectModal.classList.add('open');
+
+    // Attach slider controls if multiple images exist
+    if (images.length > 1) {
+      const sliderImg = document.getElementById('modalSliderImg');
+      const currentIdxEl = document.getElementById('currentSlideIdx');
+      const dots = document.querySelectorAll('#sliderDots .dot');
+      const prevBtn = document.getElementById('sliderPrevBtn');
+      const nextBtn = document.getElementById('sliderNextBtn');
+
+      const updateSlide = (newIdx) => {
+        currentSlide = (newIdx + images.length) % images.length;
+        if (sliderImg) {
+          sliderImg.style.opacity = '0';
+          setTimeout(() => {
+            sliderImg.src = images[currentSlide];
+            sliderImg.style.opacity = '1';
+          }, 120);
+        }
+        if (currentIdxEl) currentIdxEl.textContent = currentSlide + 1;
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlide) dot.classList.add('active');
+          else dot.classList.remove('active');
+        });
+      };
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          updateSlide(currentSlide - 1);
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          updateSlide(currentSlide + 1);
+        });
+      }
+      dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(dot.dataset.idx, 10);
+          updateSlide(idx);
+        });
+      });
+    }
 
     const closeBtn = document.getElementById('closeProjModalBtn');
     if (closeBtn) {
@@ -431,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm && terminalLog) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const name = document.getElementById('senderName').value;
       const email = document.getElementById('senderEmail').value;
 

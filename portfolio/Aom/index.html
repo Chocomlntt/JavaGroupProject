@@ -70,14 +70,14 @@
           cyber-linear precision.
         </p> -->
 
-        <div class="hero-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <!-- <div class="hero-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <a href="#contact" class="btn btn-primary">
             <i data-lucide="message-square"></i> Start a Conversation
           </a>
           <button class="btn btn-secondary" id="openResumeBtn">
             <i data-lucide="file-text"></i> Download Resume
           </button>
-        </div>
+        </div> -->
 
         <div class="hero-stats">
           <div class="stat-item">
@@ -100,8 +100,8 @@
         <div class="cyber-id-card" id="cyberIdCard">
           <div class="id-card-header">
             <div style="display: flex; align-items: center; gap: 0.6rem;">
-              <div class="id-chip-graphic"></div>
-              <span class="id-card-code">SYS-8849-CYBER</span>
+              <!-- <div class="id-chip-graphic"></div> -->
+              <span class="id-card-code"></span>
             </div>
             <div class="status-pill">
               <span class="status-dot"></span> ACTIVE HIRE
@@ -110,7 +110,7 @@
 
           <div class="id-card-body">
             <div class="id-avatar-box">
-              <img src="./image.png" alt="Phanuwat Audkanthar Developer Avatar" class="id-avatar-img">
+              <img src="assets/profile.JPG" alt="Phanuwat Audkanthar Developer Avatar" class="id-avatar-img">
             </div>
             <div class="id-details">
               <div class="id-name">Alex Vance</div>
@@ -125,23 +125,13 @@
           <div
             style="margin-bottom: 1.2rem; background: rgba(0,255,194,0.04); border: 1px solid var(--border-cyan-subtle); padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary);">
             <i data-lucide="cpu"
-              style="width: 14px; height: 14px; vertical-align: middle; color: var(--accent-cyan);"></i> CORE: React,
-            TypeScript, Next.js, Supabase, Tailwind
+              style="width: 14px; height: 14px; vertical-align: middle; color: var(--accent-cyan);"></i>
+
           </div>
 
           <div class="id-card-footer">
-            <div class="barcode-lines">
-              <div class="barcode-bar" style="width: 2px;"></div>
-              <div class="barcode-bar" style="width: 5px;"></div>
-              <div class="barcode-bar" style="width: 1px;"></div>
-              <div class="barcode-bar" style="width: 3px;"></div>
-              <div class="barcode-bar" style="width: 6px;"></div>
-              <div class="barcode-bar" style="width: 2px;"></div>
-              <div class="barcode-bar" style="width: 4px;"></div>
-              <div class="barcode-bar" style="width: 2px;"></div>
-              <div class="barcode-bar" style="width: 5px;"></div>
-            </div>
-            <span class="font-mono" style="font-size: 0.7rem; color: var(--text-muted);">SECURITY VERIFIED</span>
+            <span class="font-mono" style="font-size: 0.7rem; color: var(--text-muted);">Chiang Mai University |
+              DII</span>
           </div>
         </div>
       </div>
@@ -289,7 +279,7 @@
   <!-- RESUME PREVIEW MODAL -->
   <div class="modal-backdrop" id="resumeModal">
     <div class="modal-container">
-      <button class="modal-close-btn" id="closeResumeBtn"><i data-lucide="x"></i></button>
+      <button class="modal-close-btn" id="closeResumeBtn"><i data-lucide="arrow-left"></i></button>
 
       <div
         style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
@@ -355,6 +345,21 @@
   <div class="modal-backdrop" id="projectModal">
     <div class="modal-container" id="projectModalContent">
       <!-- Injected via JavaScript -->
+    </div>
+  </div>
+
+  <!-- CERTIFICATE LIGHTBOX / IMAGE MODAL -->
+  <div class="modal-backdrop" id="certImageModal">
+    <div class="modal-container"
+      style="max-width: 850px; padding: 1.8rem; text-align: center; background: rgba(18, 18, 22, 0.95); backdrop-filter: blur(25px); border: 1px solid var(--border-cyan-subtle); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 255, 194, 0.2);">
+      <button class="modal-close-btn" id="closeCertModalBtn"><i data-lucide="arrow-left"></i></button>
+      <h3 id="certModalTitle" style="font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--accent-cyan);"
+        class="font-mono">Certificate Preview</h3>
+      <div
+        style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <img id="certModalImg" src="" alt="Certificate Preview"
+          style="max-width: 100%; max-height: 70vh; object-fit: contain; display: block; margin: 0 auto;">
+      </div>
     </div>
   </div>
 
