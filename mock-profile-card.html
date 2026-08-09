@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock — Profile card (hover reveal)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400..900&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- ใช้ของกลางจากเว็บจริง จะได้เห็นหน้าตาตรงกับที่จะเป็นตอนย้ายเข้า -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/profile.css">
+
+  <style>
+    /* ============================================================
+       MOCK — .pcard  การ์ดสมาชิกแบบใหม่ (hover แล้วกางลง)
+       ------------------------------------------------------------
+       ตอนนี้อยู่ในไฟล์ mock ก่อน ถ้าโอเคแล้วค่อยย้ายทั้งบล็อกนี้
+       ไปไว้ใน assets/css/profile.css แล้วลบ <style> นี้ทิ้ง
+
+       การตกแต่งยืมภาษาเดียวกับ .svc ในหน้าแรก:
+         พื้นโครมเมียม + ขอบดำ 2px + เงาแข็ง + แถบสีด้านบน
+         + hover แล้วการ์ดยกตัวขึ้น เงากลายเป็นสีประจำตัว
+
+       ตัวแปรที่ต้องตั้งที่ <article class="pcard" style="...">
+         --c   สีประจำตัว (lime / plasma / hyper)
+         --on  สีตัวหนังสือที่วางบนสี --c แล้วยังอ่านออก
+       ============================================================ */
+
+    /* กองการ์ด 3 ใบเรียงลงมา
+       เว้นห่างเยอะหน่อยเพราะป้ายชื่อของการ์ดถัดไปยื่นขึ้นมา 34px
+       และตอน hover การ์ดจะยกตัวขึ้น ต้องมีที่ให้เงาไม่ไปทับใบล่าง */
+    .pcards {
+      display: grid;
+      gap: clamp(58px, 6vw, 76px);
+    }
+
+    /* --- ตัวการ์ด --------------------------------------------- */
+    .pcard {
+      position: relative;
+      background: var(--brushed);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, .55);
+      transition: transform .2s ease, box-shadow .2s ease;
+      scroll-margin-top: calc(var(--bar-h) + 24px);
+    }
+
+    /* แถบสีด้านบนการ์ด — สูตรเดียวกับ .svc::before เป๊ะ */
+    .pcard::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: -2px;
+      height: 9px;
+      background: var(--c, var(--steel));
+      border: 2px solid var(--ink);
+      border-radius: 4px 4px 0 0;
+      z-index: 2;
+    }
+
+    /* :focus-within = คนที่ใช้คีย์บอร์ด Tab เข้ามาก็กางเหมือนกัน
+       ไม่ใช่เปิดได้เฉพาะคนที่มีเมาส์ */
+    .pcard:hover,
+    .pcard:focus-within {
+      transform: translate(-3px, -5px);
+      box-shadow: 10px 12px 0 var(--c, var(--steel));
+    }
+
+    /* ป้ายชื่อมุมบนซ้าย ยื่นออกนอกการ์ด (เหมือน .mate__tag เดิม) */
+    .pcard__tag {
+      position: absolute;
+      top: -34px;
+      left: -2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--f-mono);
+      font-size: .64rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--c);
+      color: var(--on);
+      padding: 3px 10px;
+      border: 2px solid var(--ink);
+      border-bottom: 0;
+      border-radius: 4px 10px 0 0;
+    }
+
+    /* ============================================================
+       ส่วนที่เห็นตลอด (Frame 1) — รูป + รายละเอียดส่วนตัว
+       ============================================================ */
+    .pcard__top {
+      display: grid;
+      grid-template-columns: 168px minmax(0, 1fr);
+      gap: 26px;
+      align-items: start;
+      padding: 28px 24px 22px;
+    }
+
+    /* ชื่อซ้าย · ตำแหน่งขวา อยู่บรรทัดเดียวกัน */
+    .pcard__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 18px;
+    }
+
+    .pcard__name {
+      font-family: var(--f-disp);
+      font-stretch: 118%;
+      font-weight: 900;
+      font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+      line-height: 1;
+      letter-spacing: -.025em;
+      text-transform: uppercase;
+    }
+
+    .pcard__pos {
+      font-family: var(--f-mono);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--foil);
+      padding: 4px 11px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .pcard__id {
+      margin-top: 8px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--ink);
+      font-family: var(--f-mono);
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #4A5468;
+    }
+
+    /* ภาษาไทยต้องการระยะบรรทัดมากกว่าอังกฤษ ไม่งั้นสระชนกัน */
+    .pcard__d {
+      margin-top: 14px;
+      font-size: .97rem;
+      line-height: 1.8;
+      max-width: 60ch;
+      color: #333B4E;
+    }
+
+    /* บรรทัดล่างสุดของส่วนที่เห็นตลอด บอกว่าเอาเมาส์ชี้แล้วมีอะไร
+       ไม่มีบรรทัดนี้คนจะไม่รู้ว่าการ์ดกางได้ */
+    .pcard__hint {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 24px;
+      padding: 12px 0 14px;
+      border-top: 1px dashed rgba(12, 13, 20, .3);
+      font-family: var(--f-mono);
+      font-size: .64rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #4A5468;
+      transition: opacity .2s ease;
+    }
+
+    /* ลูกศรกระดิกลงเบาๆ ให้รู้ว่ามีของอยู่ข้างล่าง */
+    .pcard__hint i {
+      font-style: normal;
+      animation: nudge 1.8s ease-in-out infinite;
+    }
+
+    @keyframes nudge {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(3px);
+      }
+    }
+
+    /* กางแล้วก็ไม่ต้องบอกอีก */
+    .pcard:hover .pcard__hint,
+    .pcard:focus-within .pcard__hint {
+      opacity: 0;
+    }
+
+    /* ============================================================
+       ส่วนที่กางลงมาตอน hover (Frame 3) — URL bar + preview
+       ------------------------------------------------------------
+       ใช้ grid-template-rows 0fr → 1fr เหมือน accordion หน้าแรก
+       ไม่ใช่ max-height เพราะแบบนี้ความสูงพอดีเนื้อหาจริงเสมอ
+       ไม่ต้องเดาตัวเลข และไม่กระตุกตอนจบ
+
+       ตั้งใจไม่ใส่ visibility:hidden ตอนหุบ เพราะถ้าใส่ ลิงก์ข้างใน
+       จะโฟกัสด้วย Tab ไม่ได้ แล้ว :focus-within ก็จะไม่มีวันทำงาน
+       ============================================================ */
+    .pcard__drawer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .42s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .pcard:hover .pcard__drawer,
+    .pcard:focus-within .pcard__drawer {
+      grid-template-rows: 1fr;
+    }
+
+    .pcard__drawerin {
+      overflow: hidden;
+      min-height: 0;
+      /* ขาดบรรทัดนี้ 0fr จะหุบไม่สุด */
+    }
+
+    .pcard__reveal {
+      padding: 18px 20px 20px;
+      background: var(--ink);
+      color: var(--foil);
+      border-top: 2px solid var(--ink);
+      background-image:
+        linear-gradient(rgba(233, 237, 245, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(233, 237, 245, .05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* --- แถบ URL ---------------------------------------------- */
+    .urlbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 8px 8px 8px 18px;
+      background: #fff;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 100px;
+      box-shadow: 4px 4px 0 var(--c);
+      font-family: var(--f-mono);
+      font-size: .72rem;
+      letter-spacing: .05em;
+      transition: background .18s ease, color .18s ease, transform .13s ease, box-shadow .13s ease;
+    }
+
+    .urlbar__u {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .urlbar__go {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 28px;
+      height: 28px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      font-size: .9rem;
+      line-height: 1;
+      transition: transform .18s ease;
+    }
+
+    /* สถานะที่สองในกรอบ Frame 2 ของแบบ */
+    .urlbar:hover {
+      background: var(--c);
+      color: var(--on);
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--c);
+    }
+
+    .urlbar:hover .urlbar__go {
+      transform: translateX(3px);
+    }
+
+    .urlbar:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0 0 0 var(--c);
+    }
+
+    /* --- ตัวอย่างหน้าเว็บ portfolio ---------------------------- */
+    .shot {
+      position: relative;
+      margin-top: 16px;
+      overflow: hidden;
+      background: var(--brushed);
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+    }
+
+    /* แถบหัวหน้าต่างปลอม ให้ดูรู้ว่านี่คือหน้าเว็บ */
+    .shot__bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      background: var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .shot__bar i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--steel);
+    }
+
+    .shot__bar i:first-child {
+      background: var(--c);
+    }
+
+    .shot__bar span {
+      margin-left: 6px;
+      font-family: var(--f-mono);
+      font-size: .58rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+
+    /* กล่องรูป — ถ้ามีภาพจริงใส่ <img> เข้าไปแทน .shot__ph ได้เลย */
+    .shot__box {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 16 / 6.2;
+      background-image:
+        linear-gradient(rgba(12, 13, 20, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(12, 13, 20, .07) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    .shot__box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .shot__ph {
+      font-family: var(--f-mono);
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #4A5468;
+    }
+
+    /* ============================================================
+       จอเล็ก / เครื่องที่ไม่มีเมาส์
+       ============================================================ */
+
+    /* มือถือกับแท็บเล็ตไม่มี hover — กางค้างไว้เลย ไม่งั้นคนกลุ่มนี้
+       จะไม่มีวันเห็นลิงก์ portfolio */
+    @media (hover: none) {
+      .pcard__drawer {
+        grid-template-rows: 1fr;
+      }
+
+      .pcard__hint {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .pcard__top {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .portrait {
+        max-width: 190px;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      .pcard__top,
+      .pcard__reveal {
+        padding-inline: 16px;
+      }
+
+      .pcard__hint {
+        margin-inline: 16px;
+      }
+
+      .pcard__pos {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main>
+    <section class="band">
+      <div class="wrap">
+
+        <div class="head">
+          <h2 class="h2">Mock —<br>profile card</h2>
+          <p class="head__note">เอาเมาส์ชี้ที่การ์ด หรือกด Tab เข้าไป แล้วดูส่วนที่กางลงมา · ย่อจอแคบสุดเพื่อดูจอมือถือ</p>
+        </div>
+
+        <div class="pcards">
+
+          <!-- ========== การ์ดที่ 1 — Aom ========== -->
+          <article class="pcard" id="aom" style="--c:var(--lime); --on:#0C0D14">
+            <span class="pcard__tag">Layer 01 · Aom</span>
+
+            <div class="pcard__top">
+              <div class="portrait">
+                <span class="portrait__ltr" aria-hidden="true">A</span>
+                <span class="portrait__meta"><span>Layer 01</span><b>Lead dev</b></span>
+              </div>
+
+              <div>
+                <div class="pcard__row">
+                  <h3 class="pcard__name">Aom Fname</h3>
+                  <span class="pcard__pos">PM · Lead developer</span>
+                </div>
+                <p class="pcard__id">Student ID 65xxxxxxxx</p>
+
+                <p class="pcard__d">
+                  คุมตารางงานและเขียนโค้ดหลังบ้านเอง ประสบการณ์พัฒนาเว็บ 5 ปี
+                  งานที่ผ่านมือคือระบบที่ต้องต่อกับของจริง ไม่ใช่แค่หน้าเดโม
+                  ถ้าโปรเจกต์ติดตรงไหน คนนี้คือคนที่ตอบว่าจะแก้ยังไงและใช้เวลาเท่าไร
+                </p>
+
+                <ul class="kit">
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                  <li>React</li>
+                  <li>Node.js</li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="pcard__hint">
+              <span class="pip pip--lime" aria-hidden="true"></span>
+              Portfolio live — hover to preview <i aria-hidden="true">↓</i>
+            </p>
+
+            <div class="pcard__drawer">
+              <div class="pcard__drawerin">
+                <div class="pcard__reveal">
+
+                  <a class="urlbar" href="portfolio/Aom/index.html">
+                    <span class="urlbar__u">portfolio/Aom/index.html</span>
+                    <span class="urlbar__go" aria-hidden="true">→</span>
+                  </a>
+
+                  <div class="shot">
+                    <div class="shot__bar" aria-hidden="true">
+                      <i></i><i></i><i></i>
+                      <span>aom — portfolio</span>
+                    </div>
+                    <div class="shot__box">
+                      <!-- มีภาพจริงแล้วเปลี่ยนเป็น:
+                           <img src="assets/img/shot-aom.png" alt="หน้าแรกของ portfolio Aom"> -->
+                      <p class="shot__ph">web portfolio preview</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- ========== การ์ดที่ 2 — Jeff ========== -->
+          <article class="pcard" id="jeff" style="--c:var(--plasma); --on:#fff">
+            <span class="pcard__tag">Layer 02 · Jeff</span>
+
+            <div class="pcard__top">
+              <div class="portrait">
+                <span class="portrait__ltr" aria-hidden="true">J</span>
+                <span class="portrait__meta"><span>Layer 02</span><b>UI/UX</b></span>
+              </div>
+
+              <div>
+                <div class="pcard__row">
+                  <h3 class="pcard__name">Jeff Fname</h3>
+                  <span class="pcard__pos">UI/UX · Frontend</span>
+                </div>
+                <p class="pcard__id">Student ID 65xxxxxxxx</p>
+
+                <p class="pcard__d">
+                  ออกแบบหน้าจอแล้วเขียน CSS ของตัวเอง เลยไม่มีแบบที่ทำจริงไม่ได้หลุดออกมา
+                  ประสบการณ์ออกแบบดิจิทัล 4 ปี ถนัดงานวิจัยผู้ใช้กับการวางระบบดีไซน์
+                  ให้ทุกหน้าในเว็บหน้าตาเป็นพวกเดียวกัน
+                </p>
+
+                <ul class="kit">
+                  <li>Figma</li>
+                  <li>Adobe XD</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                  <li>Responsive</li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="pcard__hint">
+              <span class="pip pip--plasma" aria-hidden="true"></span>
+              Portfolio live — hover to preview <i aria-hidden="true">↓</i>
+            </p>
+
+            <div class="pcard__drawer">
+              <div class="pcard__drawerin">
+                <div class="pcard__reveal">
+
+                  <a class="urlbar" href="portfolio/Jeff/index.html">
+                    <span class="urlbar__u">portfolio/Jeff/index.html</span>
+                    <span class="urlbar__go" aria-hidden="true">→</span>
+                  </a>
+
+                  <div class="shot">
+                    <div class="shot__bar" aria-hidden="true">
+                      <i></i><i></i><i></i>
+                      <span>jeff — portfolio</span>
+                    </div>
+                    <div class="shot__box">
+                      <p class="shot__ph">web portfolio preview</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- ========== การ์ดที่ 3 — Mon ========== -->
+          <article class="pcard" id="mon" style="--c:var(--hyper); --on:#fff">
+            <span class="pcard__tag">Layer 03 · Mon</span>
+
+            <div class="pcard__top">
+              <div class="portrait">
+                <span class="portrait__ltr" aria-hidden="true">M</span>
+                <span class="portrait__meta"><span>Layer 03</span><b>Web dev</b></span>
+              </div>
+
+              <div>
+                <div class="pcard__row">
+                  <h3 class="pcard__name">Mon Fname</h3>
+                  <span class="pcard__pos">UI/UX · Web developer</span>
+                </div>
+                <p class="pcard__id">Student ID 65xxxxxxxx</p>
+
+                <p class="pcard__d">
+                  ดูงานภาพและรายละเอียดหน้าเว็บ ประสบการณ์ 3 ปี
+                  เป็นคนที่ไล่เก็บว่าปุ่มตอนกดค้างต้องเป็นสีอะไร ตัวหนังสือบรรทัดสุดท้าย
+                  ตกขอบไหม เรื่องเล็กพวกนี้แหละที่ทำให้เว็บดูไม่มั่ว
+                </p>
+
+                <ul class="kit">
+                  <li>Figma</li>
+                  <li>Adobe CC</li>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="pcard__hint">
+              <span class="pip pip--hyper" aria-hidden="true"></span>
+              Portfolio in progress — hover to preview <i aria-hidden="true">↓</i>
+            </p>
+
+            <div class="pcard__drawer">
+              <div class="pcard__drawerin">
+                <div class="pcard__reveal">
+
+                  <a class="urlbar" href="portfolio/Mon/index.html">
+                    <span class="urlbar__u">portfolio/Mon/index.html</span>
+                    <span class="urlbar__go" aria-hidden="true">→</span>
+                  </a>
+
+                  <div class="shot">
+                    <div class="shot__bar" aria-hidden="true">
+                      <i></i><i></i><i></i>
+                      <span>mon — portfolio</span>
+                    </div>
+                    <div class="shot__box">
+                      <p class="shot__ph">web portfolio preview</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
