@@ -281,11 +281,30 @@
   filter: drop-shadow(0 4px 0 var(--ink));
 }
 
+/* รูปถ่ายจริง วางทับแผ่นโครมเมียม
+   ตอน src ยังว่าง img จะซ่อนตัวเอง ตัวอักษรข้างหลังเลยโชว์แทน
+   ไม่ขึ้นไอคอนรูปแตก — ใส่ path ใน src เมื่อไหร่รูปก็มาทับเอง */
+.portrait__img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portrait__img[src=""],
+.portrait__img:not([src]) {
+  display: none;
+}
+
 .portrait__meta {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
+  /* ต้องอยู่เหนือรูป ไม่งั้นแถบล่างโดนรูปทับ */
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   gap: 8px;
@@ -543,7 +562,7 @@
   color: var(--steel);
 }
 
-/* กล่องรูป — มีภาพจริงแล้วใส่ <img> แทน .shot__ph ได้เลย */
+/* กล่องรูป — ใส่ path ภาพหน้าเว็บใน .shot__img ได้เลย */
 .shot__box {
   display: grid;
   place-items: center;
@@ -554,11 +573,27 @@
   background-size: 22px 22px;
 }
 
-.shot__box img {
+/* รูปกับข้อความสำรองต้องซ้อนช่องเดียวกัน ไม่ใช่เรียงลงมา */
+.shot__box>* {
+  grid-area: 1 / 1;
+}
+
+.shot__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  /* ต้องอยู่เหนือ .shot__ph ไม่งั้นพอใส่รูปจริง ข้อความสำรอง
+     จะไปลอยทับรูป เพราะมันอยู่หลัง <img> ใน DOM */
+  position: relative;
+  z-index: 1;
+}
+
+/* src ว่างอยู่ = ซ่อนรูป ให้ข้อความ .shot__ph โชว์แทน
+   ไม่ขึ้นไอคอนรูปแตก */
+.shot__img[src=""],
+.shot__img:not([src]) {
+  display: none;
 }
 
 .shot__ph {
