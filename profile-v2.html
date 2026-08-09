@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The team — PixelCraft Studio</title>
+  <meta name="description"
+    content="Aom, Jeff and Mon — the three people who design and build every PixelCraft Studio project. Each keeps their own portfolio.">
+
+  <!-- ฟอนต์: Archivo (หัวข้อ) / Schibsted Grotesk (เนื้อหา) / Space Mono (ป้ายกำกับ) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Schibsted+Grotesk:wght@400..900&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- base.css ต้องมาก่อน profile.css เสมอ -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/profile.css">
+
+  <script src="assets/js/site.js" defer></script>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       แถบเมนูด้านบน — ต้องเหมือนกับใน home-v2.html
+       ============================================================ -->
+  <header class="bar">
+    <div class="wrap bar__in">
+      <a class="brand" href="home-v2.html">
+        <span class="brand__mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </span>
+        PixelCraft Studio
+      </a>
+
+      <span class="bar__file">pixelcraft-studio &nbsp;/&nbsp; <b>team</b></span>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <i></i><i></i><i></i>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Main">
+        <a class="nav__link" href="home-v2.html">Home</a>
+        <a class="nav__link" href="home-v2.html#services">Services</a>
+        <a class="nav__link" href="home-v2.html#work">Work</a>
+        <a class="nav__link" href="profile-v2.html" aria-current="page">Team</a>
+        <a class="btn btn--acid nav__cta" href="mailto:hello@pixelcraft.studio">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================
+         หัวหน้าเพจ
+         ============================================================ -->
+    <section class="top">
+      <div class="top__grid" aria-hidden="true"></div>
+      <div class="wrap top__in">
+        <p class="eyebrow">
+          <span class="pip pip--lime" aria-hidden="true"></span>
+          <span class="pip pip--plasma" aria-hidden="true"></span>
+          <span class="pip pip--hyper" aria-hidden="true"></span>
+          Three editors · one file
+        </p>
+
+        <h1 class="word" data-word="The Team"><span>The Team</span></h1>
+
+        <p class="top__lede">
+          Everything on this site was designed and built by Aom, Jeff and Mon. No hand-off, no agency layer —
+          the person who drew the screen is the person who wrote the CSS. Each of them keeps a portfolio of
+          their own work.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ############################################################
+         #                                                          #
+         #   TEAM MEMBERS — ส่วนของเพื่อนคนที่ 2                    #
+         #   การ์ดแนะนำสมาชิก 3 คน                                  #
+         #                                                          #
+         ############################################################
+
+         สิ่งที่ต้องทำ
+         ----------------------------------------------------------
+         ลบ <div class="blank"> ข้างล่างทิ้ง แล้วใส่โครง .team
+         (แผงรายชื่อ + การ์ดสมาชิก) เข้าไปแทน
+
+         คลาสที่เตรียมไว้ให้แล้วใน assets/css/profile.css
+         (ไม่ต้องเขียน CSS เพิ่ม แค่ใส่ class ให้ถูก):
+
+           .team          กริดสองคอลัมน์ ซ้ายแผงรายชื่อ ขวาการ์ด
+           .layers        แผงรายชื่อ ติดหนึบตามตอนเลื่อนหน้า
+           .mates         กองการ์ดสมาชิก
+           .mate          การ์ด 1 คน — ใส่สีประจำตัวที่นี่
+           .mate__sel     กรอบ selection รอบการ์ด
+           .mate__tag     ป้ายชื่อมุมบนซ้าย
+           .mate__in      กล่องเนื้อหา รูปซ้าย ข้อความขวา
+           .portrait      แผ่นโครมเมียมแทนรูปถ่าย
+           .mate__name    ชื่อ
+           .mate__role    ตำแหน่ง + ประสบการณ์
+           .mate__d       คำอธิบายสั้นๆ
+           .kit           แถวป้ายทักษะ (ใช้ <ul> กับ <li>)
+           .stat          บรรทัดสถานะข้างปุ่ม
+
+         สีประจำตัว (ใช้ให้ตรงกับเคอร์เซอร์ในหน้า home)
+           Aom  --c:var(--lime)    --on:#0C0D14
+           Jeff --c:var(--plasma)  --on:#fff
+           Mon  --c:var(--hyper)   --on:#fff
+
+         ตัวอย่างโครงเต็ม (ก๊อปไปวางแล้วแก้ข้อความได้เลย)
+         ----------------------------------------------------------
+         <div class="team">
+           <nav class="layers" aria-label="Team members">
+             <p class="layers__t">Layers <span>3</span></p>
+             <a href="#aom" data-layer="aom" style="--c:var(--lime); --on:#0C0D14">Aom<em>PM · Lead dev</em></a>
+             <p class="layers__foot">All visible · locked 0</p>
+           </nav>
+
+           <div class="mates">
+             <article class="mate" id="aom" style="--c:var(--lime); --on:#0C0D14">
+               <span class="mate__sel" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+               <span class="mate__tag" aria-hidden="true">Aom · editing</span>
+               <div class="mate__in">
+                 <div class="portrait">
+                   <span class="portrait__ltr" aria-hidden="true">A</span>
+                   <span class="portrait__meta"><span>Layer 01</span><b>Lead dev</b></span>
+                 </div>
+                 <div>
+                   <h3 class="mate__name">Aom</h3>
+                   <p class="mate__role">ตำแหน่ง · ประสบการณ์กี่ปี</p>
+                   <p class="mate__d">อธิบายว่าคนนี้ทำอะไรในทีม 2–3 บรรทัด</p>
+                   <ul class="kit"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                   <div class="mate__go">
+                     <a class="btn btn--c" href="portfolio/Aom/index.html">Open portfolio
+                       <span class="btn__x" aria-hidden="true">→</span></a>
+                     <span class="stat"><span class="pip pip--lime" aria-hidden="true"></span> Portfolio live</span>
+                   </div>
+                 </div>
+               </div>
+             </article>
+           </div>
+         </div>
+
+         หมายเหตุ: id ของ .mate ต้องตรงกับ data-layer ใน .layers
+         (aom / jeff / mon) แผงรายชื่อถึงจะไฮไลต์ตามตอนเลื่อนหน้า
+
+         ดูรายละเอียดเพิ่มที่ STYLEGUIDE.md
+         ############################################################ -->
+    <section class="band" id="team">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">Who you'll<br>actually work with</h2>
+          <p class="head__note">Three people, three portfolios. Open one to see what that person does when
+            no one is watching.</p>
+        </div>
+
+        <!-- ลบ div นี้ทิ้งเมื่อใส่การ์ดสมาชิกจริงแล้ว -->
+        <div class="blank">
+          <p class="blank__t">Team members</p>
+          <p class="blank__d">Member cards go here</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         PROCESS — 4 ขั้นตอน
+         ============================================================ -->
+    <section class="band ink">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">How a project<br>moves through us</h2>
+          <p class="head__note">Four stages, in this order. You see the file at the end of each one.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <span class="step__n">Stage 01</span>
+            <h3 class="step__t">Brief</h3>
+            <p class="step__d">We ask what the site has to do and who it has to do it for. You get a scope, a
+              price, and a date.</p>
+          </div>
+          <div class="step">
+            <span class="step__n">Stage 02</span>
+            <h3 class="step__t">Design</h3>
+            <p class="step__d">Structure first, then type, colour, and every state a screen can be in. Reviewed
+              in the browser, not as a PDF.</p>
+          </div>
+          <div class="step">
+            <span class="step__n">Stage 03</span>
+            <h3 class="step__t">Build</h3>
+            <p class="step__d">The same people write the front-end, so nothing gets lost translating a design
+              into code.</p>
+          </div>
+          <div class="step">
+            <span class="step__n">Stage 04</span>
+            <h3 class="step__t">Ship</h3>
+            <p class="step__d">Tested on real phones, handed over with the files, and we stay reachable after
+              launch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CTA
+         ============================================================ -->
+    <section class="band cta">
+      <div class="wrap cta__in">
+        <div>
+          <h2 class="cta__t">Want the three<br>of us on it?</h2>
+          <p class="cta__d">Send a paragraph and a deadline. We'll come back with what we'd do first, what it
+            costs, and how long it takes.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--acid" href="mailto:hello@pixelcraft.studio">Start a project</a>
+          <a class="btn btn--onink" href="home-v2.html#work">See the work</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER — ต้องเหมือนกับใน home-v2.html
+       ============================================================ -->
+  <footer class="foot" id="contact">
+    <div class="wrap">
+      <div class="foot__top">
+        <div>
+          <p class="foot__word">PixelCraft<br>Studio</p>
+          <p>Web design, UI/UX, and front-end build for people who care how the thing feels once it's open.
+            Bangkok, Thailand.</p>
+        </div>
+        <div>
+          <h4>Go to</h4>
+          <ul class="foot__links">
+            <li><a href="home-v2.html">Home</a></li>
+            <li><a href="home-v2.html#services">Services</a></li>
+            <li><a href="home-v2.html#work">Work</a></li>
+            <li><a href="#team">The team</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Portfolios</h4>
+          <ul class="foot__links">
+            <li><a href="portfolio/Aom/index.html">Aom</a></li>
+            <li><a href="portfolio/Jeff/index.html">Jeff</a></li>
+            <li><a href="portfolio/Mon/index.html">Mon</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot__bottom">
+        <span>© 2026 PixelCraft Studio</span>
+        <span>hello@pixelcraft.studio · +66 2 000 0000</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- แถบสถานะล่างสุด เวลามาจาก site.js -->
+  <div class="status" aria-hidden="true">
+    <div class="wrap status__in">
+      <span class="status__grp"><span class="pip pip--lime"></span> pixelcraft-studio &nbsp;<b>team</b></span>
+      <span class="status__grp status__mid">
+        <span class="pip pip--lime"></span><span class="pip pip--plasma"></span><span class="pip pip--hyper"></span>
+        &nbsp;3 editors
+      </span>
+      <span class="status__grp status__right">Bangkok <b id="clock">--:--</b> · <b id="vp">—</b></span>
+    </div>
+  </div>
+</body>
+
+</html>

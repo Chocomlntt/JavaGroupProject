@@ -1,0 +1,597 @@
+/* ============================================================
+   PIXELCRAFT STUDIO — home.css
+   ------------------------------------------------------------
+   สไตล์เฉพาะหน้าแรก โหลดต่อจาก base.css เสมอ
+
+   ในไฟล์นี้มี:
+     1. HERO       — พื้นที่ canvas + ตัวหนังสือโครมเมียม + เคอร์เซอร์
+     2. TICKER     — แถบไลม์วิ่ง
+     3. SERVICES   — คลาสการ์ดบริการ (เตรียมไว้ให้ ยังไม่มีใครใช้)
+     4. WORK       — ตารางผลงาน
+   ============================================================ */
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid var(--ink);
+  padding-block: clamp(48px, 6vw, 84px) clamp(56px, 7vw, 96px);
+  background:
+    radial-gradient(120% 80% at 12% 0%, rgba(203, 255, 46, .30) 0%, transparent 55%),
+    radial-gradient(100% 90% at 92% 8%, rgba(255, 45, 143, .22) 0%, transparent 58%),
+    linear-gradient(178deg, #F6F8FC 0%, #DCE2EE 40%, #C0C9DA 66%, #E7EBF3 100%);
+}
+
+/* ตารางกริดจางๆ ให้ดูเหมือนผืน canvas ในโปรแกรมออกแบบ */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(12, 13, 20, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 13, 20, .05) 1px, transparent 1px),
+    linear-gradient(rgba(12, 13, 20, .10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 13, 20, .10) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 120px 120px, 120px 120px;
+  mask-image: radial-gradient(120% 100% at 50% 40%, #000 45%, transparent 100%);
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 40%, #000 45%, transparent 100%);
+}
+
+.hero__in {
+  position: relative;
+  z-index: 2;
+}
+
+/* ขนาดตัวหนังสือโครมเมียมของหน้านี้
+   คำว่า "PIXELCRAFT" ในฟอนต์ Archivo กว้าง 7.98 เท่าของ font-size
+   สูตรนี้เลยทำให้มันพอดีความกว้างจอทุกขนาด ไม่ล้นออกนอกจอ
+   ถ้าเปลี่ยนคำ ต้องวัดความกว้างใหม่แล้วปรับตัวเลข */
+.hero .word {
+  font-size: min(calc(12.3vw - 11px), 144px);
+}
+
+/* กรอบ selection รอบตัวหนังสือ พร้อมจุดจับ 8 จุด */
+.sel {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.sel__box {
+  position: absolute;
+  inset: -16px -18px -10px -18px;
+  border: 2px solid var(--plasma);
+  pointer-events: none;
+  opacity: 0;
+  animation: snap .5s .55s cubic-bezier(.2, 1.4, .4, 1) forwards;
+}
+
+@keyframes snap {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sel__box i {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  border: 2px solid var(--plasma);
+}
+
+.sel__box i:nth-child(1) {
+  top: -5px;
+  left: -5px;
+}
+
+.sel__box i:nth-child(2) {
+  top: -5px;
+  left: calc(50% - 4px);
+}
+
+.sel__box i:nth-child(3) {
+  top: -5px;
+  right: -5px;
+}
+
+.sel__box i:nth-child(4) {
+  top: calc(50% - 4px);
+  right: -5px;
+}
+
+.sel__box i:nth-child(5) {
+  bottom: -5px;
+  right: -5px;
+}
+
+.sel__box i:nth-child(6) {
+  bottom: -5px;
+  left: calc(50% - 4px);
+}
+
+.sel__box i:nth-child(7) {
+  bottom: -5px;
+  left: -5px;
+}
+
+.sel__box i:nth-child(8) {
+  top: calc(50% - 4px);
+  left: -5px;
+}
+
+/* ป้ายบอกขนาด — ตัวเลขมาจาก site.js วัดของจริงตอนโหลด */
+.sel__dim {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -34px;
+  background: var(--plasma);
+  color: #fff;
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  padding: 3px 9px;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadein .4s .8s forwards;
+}
+
+@keyframes fadein {
+  to {
+    opacity: 1;
+  }
+}
+
+/* แถวข้อมูลใต้ตัวหนังสือ */
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: clamp(42px, 5vw, 58px);
+  font-family: var(--f-mono);
+  font-size: .76rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.hero__meta s {
+  color: var(--hyper);
+  text-decoration: none;
+}
+
+.chip {
+  background: var(--ink);
+  color: var(--foil);
+  padding: 5px 11px;
+  border-radius: 2px;
+}
+
+.hero__lede {
+  margin-top: 22px;
+  font-size: clamp(1.06rem, 1.65vw, 1.34rem);
+  max-width: 54ch;
+  font-weight: 500;
+}
+
+.hero__cta {
+  margin-top: 34px;
+}
+
+/* --- เคอร์เซอร์ของสมาชิกที่ลอยอยู่บน canvas ------------------
+   ตัวนี้คือของเล่นชิ้นเอกของหน้านี้ อย่าเพิ่มอันที่ 4
+   สีมาจากตัวแปร --c ที่ตั้งไว้ในแต่ละคลาสด้านล่าง */
+.cursor {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  filter: drop-shadow(0 2px 3px rgba(12, 13, 20, .4));
+}
+
+.cursor b {
+  font-family: var(--f-mono);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--c);
+  padding: 2px 7px;
+  margin: 12px 0 0 -3px;
+  border-radius: 2px 8px 8px 8px;
+  white-space: nowrap;
+}
+
+.cursor--aom {
+  --c: var(--lime);
+  top: 8%;
+  right: 8%;
+  animation: drift-a 15s ease-in-out infinite;
+}
+
+.cursor--jeff {
+  --c: var(--plasma);
+  top: 62%;
+  right: 20%;
+  animation: drift-b 18s ease-in-out infinite;
+}
+
+.cursor--jeff b {
+  color: #fff;
+}
+
+.cursor--mon {
+  --c: var(--hyper);
+  top: 30%;
+  left: 4%;
+  animation: drift-c 21s ease-in-out infinite;
+}
+
+.cursor--mon b {
+  color: #fff;
+}
+
+@keyframes drift-a {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-58px, 46px);
+  }
+
+  50% {
+    transform: translate(22px, 96px);
+  }
+
+  75% {
+    transform: translate(-34px, 22px);
+  }
+}
+
+@keyframes drift-b {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  30% {
+    transform: translate(64px, -40px);
+  }
+
+  60% {
+    transform: translate(-30px, -78px);
+  }
+}
+
+@keyframes drift-c {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  35% {
+    transform: translate(48px, 62px);
+  }
+
+  70% {
+    transform: translate(96px, -26px);
+  }
+}
+
+/* ============================================================
+   2. TICKER — แถบไลม์วิ่งวนใต้ hero
+   ต้องมี .ticker__run สองอันเนื้อหาเหมือนกัน ถึงจะวิ่งต่อเนื่อง
+   ============================================================ */
+.ticker {
+  display: flex;
+  overflow: hidden;
+  background: var(--lime);
+  color: var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding-block: 11px;
+}
+
+.ticker__run {
+  display: flex;
+  flex: none;
+  gap: 26px;
+  padding-right: 26px;
+  font-family: var(--f-disp);
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: .95rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: roll 26s linear infinite;
+}
+
+.ticker__run em {
+  font-style: normal;
+  color: var(--hyper);
+}
+
+@keyframes roll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__run {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   3. SERVICES  ← ส่วนของเพื่อนคนที่ 1
+   ------------------------------------------------------------
+   CSS พร้อมใช้แล้ว ยังไม่มี HTML ใช้มัน
+   ดูวิธีใช้และตัวอย่างโค้ดได้ที่ STYLEGUIDE.md
+
+   .svcs            กริดที่จัดการ์ดให้เอง เพิ่มกี่ใบก็ได้
+   .svc             การ์ดโครมเมียม 1 ใบ
+                    ตั้งสีแถบบนด้วย style="--c:var(--lime)"
+   .svc__tag        ป้ายเล็กมุมบนของการ์ด
+   .svc__t          ชื่อบริการ
+   .svc__d          คำอธิบาย
+   .svc__hint       บรรทัดล่างสุด (เครื่องมือ/ขั้นตอน) ชิดก้นการ์ดเสมอ
+   ============================================================ */
+.svcs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+  gap: 18px;
+}
+
+.svc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px 24px 26px;
+  background: var(--brushed);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, .55);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* แถบสีด้านบนการ์ด */
+.svc::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: -2px;
+  height: 9px;
+  background: var(--c, var(--steel));
+  border: 2px solid var(--ink);
+  border-radius: 4px 4px 0 0;
+}
+
+.svc:hover {
+  transform: translate(-3px, -5px);
+  box-shadow: 10px 12px 0 var(--c, var(--steel));
+}
+
+.svc__tag {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: .63rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--foil);
+  padding: 4px 9px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+}
+
+.svc__t {
+  font-family: var(--f-disp);
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: 1.24rem;
+  line-height: 1.12;
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  margin-bottom: 11px;
+}
+
+.svc__d {
+  font-size: .96rem;
+  color: #333B4E;
+}
+
+.svc__hint {
+  width: 100%;
+  margin-top: auto;
+  /* ดันไปชิดก้นการ์ด การ์ดทุกใบเลยเรียงสวยแม้ข้อความยาวไม่เท่ากัน */
+  padding-top: 14px;
+  border-top: 1px dashed rgba(12, 13, 20, .3);
+  font-family: var(--f-mono);
+  font-size: .64rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #4A5468;
+}
+
+/* ============================================================
+   4. WORK — ตารางผลงาน
+   สีประจำแถวตั้งที่ตัว <a> ด้วย style="--c:...; --on:..."
+   --c คือสีพื้นตอนเอาเมาส์ชี้ / --on คือสีตัวหนังสือบนพื้นนั้น
+   ============================================================ */
+.band--work {
+  background-image:
+    linear-gradient(rgba(12, 13, 20, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 13, 20, .045) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.rows {
+  border-top: 2px solid var(--ink);
+  background: rgba(255, 255, 255, .5);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.05fr) minmax(0, 1fr) 34px;
+  gap: 8px 28px;
+  align-items: center;
+  padding: 26px 20px 26px 34px;
+  border-bottom: 2px solid var(--ink);
+  transition: background .18s ease, color .18s ease, padding-left .18s ease;
+}
+
+/* แถบสีด้านซ้ายของแต่ละแถว */
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: var(--c);
+  border-right: 2px solid var(--ink);
+}
+
+.row:hover,
+.row:focus-visible {
+  background: var(--c);
+  color: var(--on);
+  padding-left: 46px;
+}
+
+.row__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  font-family: var(--f-disp);
+  font-stretch: 118%;
+  font-weight: 900;
+  font-size: clamp(1.45rem, 3.1vw, 2.45rem);
+  line-height: .98;
+  text-transform: uppercase;
+  letter-spacing: -.025em;
+}
+
+.row__yr {
+  font-family: var(--f-mono);
+  font-size: .64rem;
+  font-weight: 400;
+  letter-spacing: .12em;
+  opacity: .55;
+}
+
+.row__what {
+  font-size: .98rem;
+  opacity: .82;
+}
+
+.row__out {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-end;
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.row__out span {
+  border: 1.5px solid currentColor;
+  border-radius: 100px;
+  padding: 3px 11px;
+  white-space: nowrap;
+}
+
+.row__go {
+  font-family: var(--f-disp);
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-align: right;
+  opacity: .3;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.row:hover .row__go {
+  opacity: 1;
+  transform: translate(4px, -4px);
+}
+
+/* ============================================================
+   5. จอเล็กลง
+   ============================================================ */
+@media (max-width: 1000px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 34px;
+  }
+
+  .row__out {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .cursor--jeff {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) 34px;
+    gap: 12px;
+  }
+
+  .row__what,
+  .row__out {
+    grid-column: 1 / -1;
+  }
+
+  .row__go {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .cursor--mon {
+    display: none;
+  }
+
+  .hero__cta .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}

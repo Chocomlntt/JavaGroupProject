@@ -1,0 +1,823 @@
+/* ============================================================
+   PIXELCRAFT STUDIO — base.css
+   ------------------------------------------------------------
+   ของที่ใช้ร่วมกันทุกหน้า: ตัวแปรสี, ฟอนต์, reset, ปุ่ม,
+   แถบเมนูด้านบน, แถบ CTA, footer และ status bar ด้านล่าง
+
+   อย่าใส่สไตล์เฉพาะหน้าใดหน้าหนึ่งในไฟล์นี้
+   หน้า home ใช้ home.css / หน้า profile ใช้ profile.css
+   ============================================================ */
+
+/* ============================================================
+   1. TOKENS — แก้ที่นี่ที่เดียว เปลี่ยนทั้งเว็บ
+   ============================================================ */
+:root {
+  /* --- สี ------------------------------------------------- */
+  --ink: #0C0D14;
+  /* ดำอมน้ำเงิน: ตัวอักษร เส้นขอบ เงา */
+  --ink-2: #171A28;
+  /* พื้น status bar */
+  --foil: #E9EDF5;
+  /* เงินอ่อน: พื้นหลังหลัก */
+  --steel: #98A3B8;
+  /* เทา: ตัวอักษรรองบนพื้นเข้ม */
+
+  --lime: #CBFF2E;
+  /* Aom  — ปุ่มหลัก ไฮไลต์ */
+  --plasma: #2B2BFF;
+  /* Jeff — ลิงก์ โครงสร้าง แถบ CTA */
+  --hyper: #FF2D8F;
+  /* Mon  — selection, focus ring */
+
+  --edge: rgba(12, 13, 20, .16);
+
+  /* --- ไล่สีโครมเมียม ------------------------------------- */
+  --brushed: linear-gradient(180deg, #FFFFFF 0%, #E4E9F3 18%, #B7C1D3 46%, #F4F7FC 52%, #C6CEDD 74%, #EFF2F8 100%);
+  --brushed-text: linear-gradient(178deg, #FFFFFF 0%, #EDF1F9 12%, #97A4BC 30%, #59657E 45%, #FFFFFF 51%, #F6F8FD 57%, #AAB6CB 73%, #6E7B94 87%, #F2F5FB 100%);
+
+  /* --- ฟอนต์ ---------------------------------------------- */
+  --f-disp: "Archivo", "Arial Black", Impact, sans-serif;
+  /* หัวข้อใหญ่ */
+  --f-body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  /* เนื้อหา */
+  --f-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* ป้ายกำกับ */
+
+  /* --- ระยะ ----------------------------------------------- */
+  --maxw: 1240px;
+  --bar-h: 62px;
+}
+
+/* ============================================================
+   2. RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--f-body);
+  background: var(--foil);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-bottom: 32px;
+  /* เผื่อที่ให้ status bar ที่ลอยอยู่ล่างสุด */
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* กรอบตอนกด Tab — ห้ามลบ ไม่งั้นคนใช้คีย์บอร์ดจะหลงทาง */
+:focus-visible {
+  outline: 3px solid var(--hyper);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+/* ============================================================
+   3. โครงหน้า
+   ============================================================ */
+
+/* กล่องกลางหน้า ใช้ครอบเนื้อหาทุก section */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ระยะห่างบน-ล่างมาตรฐานของแต่ละ section */
+.band {
+  padding-block: clamp(60px, 8vw, 118px);
+  position: relative;
+}
+
+/* section พื้นเข้ม */
+.ink {
+  background: var(--ink);
+  color: var(--foil);
+  background-image:
+    linear-gradient(rgba(233, 237, 245, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 237, 245, .045) 1px, transparent 1px);
+  background-size: 120px 120px;
+}
+
+.ink .head {
+  border-color: rgba(233, 237, 245, .25);
+}
+
+/* ลิงก์ข้ามไปเนื้อหา โผล่เฉพาะตอนกด Tab */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--lime);
+  color: var(--ink);
+  padding: 12px 18px;
+  font-family: var(--f-mono);
+  z-index: 999;
+}
+
+.skip:focus {
+  left: 12px;
+  top: 12px;
+}
+
+/* เกรนบางๆ คลุมทั้งหน้า ให้พื้นโครมเมียมไม่เรียบเกินไป */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: .13;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ============================================================
+   4. ตัวอักษร
+   ============================================================ */
+
+/* หัวข้อประจำ section */
+.h2 {
+  font-family: var(--f-disp);
+  font-stretch: 118%;
+  font-weight: 800;
+  font-size: clamp(2rem, 5.4vw, 3.7rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+
+/* แถวหัวข้อ: หัวข้อซ้าย + คำอธิบายสั้นขวา + เส้นคั่นล่าง */
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 27ch);
+  gap: 20px 48px;
+  align-items: end;
+  margin-bottom: clamp(34px, 4.4vw, 62px);
+  padding-bottom: 22px;
+  border-bottom: 2px solid currentColor;
+}
+
+.head__note {
+  font-size: .95rem;
+  opacity: .78;
+}
+
+.lede {
+  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+  max-width: 56ch;
+}
+
+/* ป้ายกำกับตัวเล็ก ตัวพิมพ์ใหญ่ ฟอนต์ mono */
+.mono {
+  font-family: var(--f-mono);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* ป้ายแคปซูลสีดำ ใช้เปิดหัวหน้า */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--f-mono);
+  font-size: .69rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--foil);
+  padding: 8px 14px;
+  border-radius: 100px;
+  margin-bottom: clamp(18px, 3vw, 32px);
+}
+
+/* จุดกลมเล็กๆ สีประจำตัวสมาชิก */
+.pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: none;
+}
+
+.pip--lime {
+  background: var(--lime);
+}
+
+.pip--plasma {
+  background: #6E6EFF;
+}
+
+.pip--hyper {
+  background: var(--hyper);
+}
+
+.pip--live {
+  background: var(--lime);
+  animation: blink 1.9s steps(1, end) infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  55% {
+    opacity: 1;
+  }
+
+  56%,
+  100% {
+    opacity: .25;
+  }
+}
+
+/* ============================================================
+   5. ตัวหนังสือโครมเมียมขนาดยักษ์
+   ------------------------------------------------------------
+   ใช้แบบนี้ (ข้อความต้องซ้ำกัน 2 ที่):
+     <h1 class="word" data-word="PixelCraft"><span>PixelCraft</span></h1>
+
+   ::before วาดเส้นขอบดำไว้ข้างหลัง ส่วน span คือเนื้อโครมเมียม
+   font-size ไม่ได้ตั้งที่นี่ — ตั้งในไฟล์ของแต่ละหน้า เพราะ
+   ความยาวคำต่างกัน ต้องคำนวณให้พอดีความกว้างจอ
+   ============================================================ */
+.word {
+  position: relative;
+  display: block;
+  font-family: var(--f-disp);
+  font-stretch: 125%;
+  font-weight: 900;
+  line-height: .82;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  filter: drop-shadow(0 6px 0 var(--ink)) drop-shadow(0 26px 34px rgba(12, 13, 20, .34));
+}
+
+.word::before {
+  content: attr(data-word);
+  position: absolute;
+  inset: 0;
+  color: var(--ink);
+  -webkit-text-stroke: 12px var(--ink);
+  z-index: 0;
+}
+
+.word span {
+  position: relative;
+  z-index: 1;
+  background: var(--brushed-text);
+  background-size: 100% 280%;
+  background-position: 0 12%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sheen 9s ease-in-out infinite;
+}
+
+@keyframes sheen {
+
+  0%,
+  100% {
+    background-position: 0 6%;
+  }
+
+  50% {
+    background-position: 0 88%;
+  }
+}
+
+/* ============================================================
+   6. ปุ่ม
+   ------------------------------------------------------------
+   .btn            ปุ่มพื้นขาว
+   .btn--acid      ปุ่มสีไลม์ (ปุ่มหลัก)
+   .btn--chrome    ปุ่มโครมเมียม (ปุ่มรอง)
+   .btn--c         ปุ่มสีตามตัวแปร --c / --on ที่ตั้งไว้ที่ตัวแม่
+   .btn--onink     ปุ่มโปร่งสำหรับวางบนพื้นสีเข้ม
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 15px 24px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform .13s ease, box-shadow .13s ease, background .2s ease;
+}
+
+.btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn--acid {
+  background: var(--lime);
+}
+
+.btn--chrome {
+  background: var(--brushed);
+}
+
+.btn--c {
+  background: var(--c);
+  color: var(--on);
+}
+
+.btn--onink {
+  border-color: var(--foil);
+  box-shadow: 5px 5px 0 var(--lime);
+  background: transparent;
+  color: var(--foil);
+}
+
+.btn--onink:hover {
+  box-shadow: 3px 3px 0 var(--lime);
+}
+
+.btn--onink:active {
+  box-shadow: 0 0 0 var(--lime);
+}
+
+/* ลูกศรท้ายปุ่ม */
+.btn__x {
+  font-size: 1.05em;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+/* แถววางปุ่มหลายอัน */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* ============================================================
+   7. แถบเมนูด้านบน
+   ============================================================ */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--ink);
+  color: var(--foil);
+  border-bottom: 2px solid var(--ink);
+}
+
+.bar__in {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: var(--bar-h);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--f-disp);
+  font-stretch: 118%;
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* โลโก้ 9 ช่อง = พิกเซล */
+.brand__mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 2px;
+  flex: none;
+}
+
+.brand__mark i {
+  background: var(--steel);
+  border-radius: 1px;
+}
+
+.brand__mark i:nth-child(1),
+.brand__mark i:nth-child(2),
+.brand__mark i:nth-child(4),
+.brand__mark i:nth-child(7) {
+  background: var(--lime);
+}
+
+.brand__mark i:nth-child(5) {
+  background: var(--hyper);
+}
+
+.brand__mark i:nth-child(9) {
+  background: var(--plasma);
+}
+
+/* ชื่อไฟล์ที่กำลังเปิด — ทำให้เว็บดูเหมือนโปรแกรมออกแบบ */
+.bar__file {
+  font-family: var(--f-mono);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  color: var(--steel);
+  border-left: 1px solid rgba(233, 237, 245, .22);
+  padding-left: 18px;
+  white-space: nowrap;
+}
+
+.bar__file b {
+  color: var(--foil);
+  font-weight: 400;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-left: auto;
+}
+
+.nav__link {
+  font-family: var(--f-mono);
+  font-size: .74rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--steel);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+
+.nav__link:hover,
+.nav__link[aria-current="page"] {
+  color: var(--foil);
+  border-bottom-color: var(--lime);
+}
+
+.nav__cta {
+  padding: 10px 18px;
+  box-shadow: 4px 4px 0 var(--lime);
+}
+
+/* ปุ่มขีดสามขีดสำหรับจอเล็ก */
+.burger {
+  display: none;
+  width: 44px;
+  height: 38px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  margin-left: auto;
+  background: transparent;
+  border: 2px solid rgba(233, 237, 245, .35);
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.burger i {
+  display: block;
+  height: 2px;
+  background: var(--foil);
+  transition: transform .28s ease, opacity .2s ease;
+}
+
+.burger.is-open i:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger.is-open i:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.is-open i:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   8. กล่อง placeholder ของ section ที่ยังไม่ได้ทำ
+   ------------------------------------------------------------
+   ลบ <div class="blank"> ทิ้งได้เลยเมื่อใส่เนื้อหาจริงแล้ว
+   ============================================================ */
+.blank {
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  text-align: center;
+  min-height: 260px;
+  padding: 40px 24px;
+  border: 2px dashed currentColor;
+  border-radius: 4px;
+  opacity: .42;
+}
+
+.blank__t {
+  font-family: var(--f-disp);
+  font-stretch: 115%;
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+
+.blank__d {
+  font-family: var(--f-mono);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   9. แถบชวนติดต่อ (CTA)
+   ============================================================ */
+.cta {
+  background: var(--plasma);
+  color: #fff;
+  border-block: 2px solid var(--ink);
+  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .07) 0 12px, transparent 12px 24px);
+}
+
+.cta__in {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px 48px;
+  align-items: center;
+}
+
+.cta__t {
+  font-family: var(--f-disp);
+  font-stretch: 120%;
+  font-weight: 900;
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  line-height: .94;
+  text-transform: uppercase;
+  letter-spacing: -.025em;
+}
+
+.cta__d {
+  margin-top: 14px;
+  max-width: 46ch;
+  opacity: .9;
+}
+
+/* ============================================================
+   10. FOOTER
+   ============================================================ */
+.foot {
+  background: var(--ink);
+  color: var(--steel);
+  padding-block: clamp(48px, 6vw, 76px) 0;
+}
+
+.foot__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+  padding-bottom: 44px;
+}
+
+.foot__word {
+  font-family: var(--f-disp);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: clamp(1.7rem, 4.4vw, 2.7rem);
+  line-height: .9;
+  text-transform: uppercase;
+  letter-spacing: -.03em;
+  color: var(--foil);
+  margin-bottom: 14px;
+}
+
+.foot p {
+  max-width: 40ch;
+  font-size: .94rem;
+}
+
+.foot h4 {
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.foot__links li {
+  margin-bottom: 9px;
+}
+
+.foot__links a {
+  font-size: .94rem;
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+
+.foot__links a:hover {
+  color: var(--foil);
+  border-bottom-color: var(--lime);
+}
+
+.foot__bottom {
+  border-top: 1px solid rgba(233, 237, 245, .16);
+  padding-block: 20px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   11. STATUS BAR ล่างสุด
+   ============================================================ */
+.status {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 35;
+  background: var(--ink-2);
+  color: var(--steel);
+  border-top: 2px solid var(--lime);
+  font-family: var(--f-mono);
+  font-size: .66rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 7px 0;
+}
+
+.status__in {
+  display: flex;
+  align-items: center;
+  gap: 10px 22px;
+  justify-content: space-between;
+}
+
+.status__grp {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.status b {
+  color: var(--foil);
+  font-weight: 400;
+}
+
+/* ============================================================
+   12. จอเล็กลง
+   ------------------------------------------------------------
+   900px = แถบเมนูเริ่มไม่พอที่ เปลี่ยนเป็นปุ่มขีดสามขีด
+   880px = หัวข้อ/footer/CTA เปลี่ยนเป็นคอลัมน์เดียว
+   ============================================================ */
+@media (max-width: 900px) {
+  .burger {
+    display: flex;
+  }
+
+  .bar__file {
+    display: none;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--ink);
+    border-bottom: 2px solid var(--lime);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+    padding-inline: 24px;
+  }
+
+  .nav.is-open {
+    max-height: 340px;
+    padding-bottom: 22px;
+  }
+
+  .nav__link {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(233, 237, 245, .12);
+  }
+
+  .nav__cta {
+    margin-top: 18px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 880px) {
+  .head {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .cta__in {
+    grid-template-columns: 1fr;
+  }
+
+  .foot__top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .foot__top {
+    grid-template-columns: 1fr;
+  }
+
+  .foot p {
+    max-width: none;
+  }
+
+  .status__mid {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .wrap {
+    padding-inline: 18px;
+  }
+
+  .word::before {
+    -webkit-text-stroke-width: 7px;
+  }
+
+  .status__right {
+    display: none;
+  }
+}
+
+/* ============================================================
+   13. คนที่ตั้งเครื่องให้ลดการเคลื่อนไหว
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

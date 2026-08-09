@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelCraft Studio — Web design &amp; UI/UX, Bangkok</title>
+  <meta name="description"
+    content="PixelCraft Studio is a three-person web design and UI/UX studio in Bangkok. We design the interface and build it ourselves.">
+
+  <!-- ฟอนต์: Archivo (หัวข้อ) / Schibsted Grotesk (เนื้อหา) / Space Mono (ป้ายกำกับ) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Schibsted+Grotesk:wght@400..900&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- base.css ต้องมาก่อน home.css เสมอ -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+
+  <script src="assets/js/site.js" defer></script>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       แถบเมนูด้านบน — เหมือนกันทั้งสองหน้า
+       ถ้าแก้ที่นี่ อย่าลืมแก้ใน profile-v2.html ให้ตรงกันด้วย
+       ============================================================ -->
+  <header class="bar">
+    <div class="wrap bar__in">
+      <a class="brand" href="home-v2.html">
+        <span class="brand__mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </span>
+        PixelCraft Studio
+      </a>
+
+      <span class="bar__file">pixelcraft-studio &nbsp;/&nbsp; <b>home</b></span>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <i></i><i></i><i></i>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Main">
+        <a class="nav__link" href="home-v2.html" aria-current="page">Home</a>
+        <a class="nav__link" href="#services">Services</a>
+        <a class="nav__link" href="#work">Work</a>
+        <a class="nav__link" href="profile-v2.html">Team</a>
+        <a class="btn btn--acid nav__cta" href="mailto:hello@pixelcraft.studio">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+         ตัวหนังสือโครมเมียมต้องเขียนข้อความซ้ำ 2 ที่:
+         ใน data-word (เส้นขอบดำข้างหลัง) และใน <span> (เนื้อโครมเมียม)
+         ถ้าเปลี่ยนคำ ต้องปรับ font-size ใน home.css ด้วย
+         ============================================================ -->
+    <section class="hero" id="top">
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="wrap hero__in">
+        <p class="eyebrow">
+          <span class="pip pip--live" aria-hidden="true"></span>
+          3 editors in this file · Bangkok
+        </p>
+
+        <div class="sel">
+          <h1 class="word" data-word="PixelCraft"><span>PixelCraft</span></h1>
+          <span class="sel__box" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </span>
+          <span class="sel__dim" id="dim" aria-hidden="true">— × —</span>
+        </div>
+
+        <p class="hero__meta">
+          <span class="chip">Studio</span>
+          Web design <s>/</s> UI &amp; UX <s>/</s> Front-end build <s>/</s> Est. 2026
+        </p>
+
+        <p class="hero__lede">
+          A three-person studio in Bangkok. We design the interface and build it ourselves,
+          so nothing gets lost between the file and the browser.
+        </p>
+
+        <div class="btn-row hero__cta">
+          <a class="btn btn--acid" href="#work">See the work <span class="btn__x" aria-hidden="true">↓</span></a>
+          <a class="btn btn--chrome" href="profile-v2.html">Meet the team <span class="btn__x"
+              aria-hidden="true">→</span></a>
+        </div>
+
+        <!-- เคอร์เซอร์ของสมาชิกสามคน สีตรงกับสีประจำตัวในหน้า profile -->
+        <div class="cursor cursor--aom" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 2l14 9-6.2 1.4L9 20 4 2z" fill="var(--lime)" stroke="#0C0D14" stroke-width="1.7"
+              stroke-linejoin="round" />
+          </svg><b>Aom</b>
+        </div>
+        <div class="cursor cursor--jeff" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 2l14 9-6.2 1.4L9 20 4 2z" fill="var(--plasma)" stroke="#0C0D14" stroke-width="1.7"
+              stroke-linejoin="round" />
+          </svg><b>Jeff</b>
+        </div>
+        <div class="cursor cursor--mon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 2l14 9-6.2 1.4L9 20 4 2z" fill="var(--hyper)" stroke="#0C0D14" stroke-width="1.7"
+              stroke-linejoin="round" />
+          </svg><b>Mon</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TICKER — ต้องมี .ticker__run สองอันเนื้อหาเหมือนกัน
+         อันหนึ่งวิ่งออก อีกอันวิ่งตามมาแทนที่ ถึงจะดูต่อเนื่อง
+         ============================================================ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__run">
+        <span>Open for work</span><em>✦</em><span>Website design &amp; build</span><em>✦</em><span>UI &amp; UX
+          design</span><em>✦</em><span>Brand identity</span><em>✦</em><span>E-commerce</span><em>✦</em><span>Bangkok,
+          TH</span><em>✦</em>
+      </div>
+      <div class="ticker__run">
+        <span>Open for work</span><em>✦</em><span>Website design &amp; build</span><em>✦</em><span>UI &amp; UX
+          design</span><em>✦</em><span>Brand identity</span><em>✦</em><span>E-commerce</span><em>✦</em><span>Bangkok,
+          TH</span><em>✦</em>
+      </div>
+    </div>
+
+
+    <!-- ############################################################
+         #                                                          #
+         #   SERVICES — ส่วนของเพื่อนคนที่ 1                        #
+         #   "บริษัททำอะไรบ้าง"                                     #
+         #                                                          #
+         ############################################################
+
+         สิ่งที่ต้องทำ
+         ----------------------------------------------------------
+         ลบ <div class="blank"> ข้างล่างทิ้ง แล้วใส่ .svcs กับการ์ด
+         .svc เข้าไปแทน จะกี่ใบก็ได้ กริดจัดให้เอง
+
+         คลาสที่เตรียมไว้ให้แล้วใน assets/css/home.css
+         (ไม่ต้องเขียน CSS เพิ่ม แค่ใส่ class ให้ถูก):
+
+           .svcs        กล่องกริดที่ครอบการ์ดทั้งหมด
+           .svc         การ์ด 1 ใบ — ใส่สีแถบบนด้วย style="--c:..."
+           .svc__tag    ป้ายเล็กมุมบนการ์ด
+           .svc__t      ชื่อบริการ
+           .svc__d      คำอธิบาย
+           .svc__hint   บรรทัดล่างสุด ชิดก้นการ์ดเสมอ
+
+         สีที่ใช้ได้: var(--lime) var(--plasma) var(--hyper) #F4F7FC
+
+         ตัวอย่างการ์ด 1 ใบ (ก๊อปไปวางแล้วแก้ข้อความได้เลย)
+         ----------------------------------------------------------
+         <div class="svcs">
+           <article class="svc" style="--c:var(--lime)">
+             <span class="svc__tag">Design + Code</span>
+             <h3 class="svc__t">Website design &amp; build</h3>
+             <p class="svc__d">คำอธิบายบริการ 1–2 บรรทัด</p>
+             <p class="svc__hint">HTML · CSS · JS · React</p>
+           </article>
+         </div>
+
+         ดูรายละเอียดเพิ่มที่ STYLEGUIDE.md
+         ############################################################ -->
+    <section class="band ink" id="services">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">What you<br>can hire us for</h2>
+          <p class="head__note">Take one piece, or hand us the whole file. Either way the same three people do
+            the work.</p>
+        </div>
+
+        <!-- ลบ div นี้ทิ้งเมื่อใส่การ์ดจริงแล้ว -->
+        <div class="blank">
+          <p class="blank__t">Services</p>
+          <p class="blank__d">Cards go here</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         WORK — ผลงานที่เคยทำ
+         สีประจำแถวตั้งที่ <a> เอง: --c = สีพื้นตอนชี้เมาส์
+                                    --on = สีตัวหนังสือบนพื้นนั้น
+         ============================================================ -->
+    <section class="band band--work" id="work">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">Four files<br>we shipped</h2>
+          <p class="head__note">The client, what was broken, and what changed after launch.</p>
+        </div>
+
+        <div class="rows">
+          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--plasma); --on:#fff">
+            <span class="row__name">TechMart <span class="row__yr">E-commerce</span></span>
+            <span class="row__what">A dated storefront people left before they reached the cart.</span>
+            <span class="row__out"><span>+45% conversion</span><span>−60% load time</span><span>+35%
+                session</span></span>
+            <span class="row__go" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--hyper); --on:#fff">
+            <span class="row__name">GlobalTech <span class="row__yr">B2B services</span></span>
+            <span class="row__what">A B2B firm with no site to send a prospect to.</span>
+            <span class="row__out"><span>Shipped in 3 months</span><span>150+ leads / month</span></span>
+            <span class="row__go" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--lime); --on:#0C0D14">
+            <span class="row__name">FitFlow <span class="row__yr">Mobile app</span></span>
+            <span class="row__what">A fitness app with nowhere to send the people who heard about it.</span>
+            <span class="row__out"><span>8,000+ downloads, month one</span><span>25% store
+                conversion</span><span>App of the week</span></span>
+            <span class="row__go" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="row" href="mailto:hello@pixelcraft.studio" style="--c:var(--ink); --on:#E9EDF5">
+            <span class="row__name">LocalEats <span class="row__yr">Food delivery</span></span>
+            <span class="row__what">A delivery startup that looked smaller than it actually was.</span>
+            <span class="row__out"><span>3× traffic</span><span>+50% enquiries</span></span>
+            <span class="row__go" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CTA
+         ============================================================ -->
+    <section class="band cta">
+      <div class="wrap cta__in">
+        <div>
+          <h2 class="cta__t">Tell us what<br>you're building</h2>
+          <p class="cta__d">Send a paragraph and a deadline. We'll come back with what we'd do first, what it
+            costs, and how long it takes.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--acid" href="mailto:hello@pixelcraft.studio">Start a project</a>
+          <a class="btn btn--onink" href="profile-v2.html">Meet the team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER — เหมือนกันทั้งสองหน้า
+       ============================================================ -->
+  <footer class="foot" id="contact">
+    <div class="wrap">
+      <div class="foot__top">
+        <div>
+          <p class="foot__word">PixelCraft<br>Studio</p>
+          <p>Web design, UI/UX, and front-end build for people who care how the thing feels once it's open.
+            Bangkok, Thailand.</p>
+        </div>
+        <div>
+          <h4>Go to</h4>
+          <ul class="foot__links">
+            <li><a href="home-v2.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="profile-v2.html">The team</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get in touch</h4>
+          <ul class="foot__links">
+            <li><a href="mailto:hello@pixelcraft.studio">hello@pixelcraft.studio</a></li>
+            <li><a href="tel:+6620000000">+66 2 000 0000</a></li>
+            <li><a href="https://maps.google.com/?q=Bangkok" target="_blank" rel="noopener">Bangkok, Thailand</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot__bottom">
+        <span>© 2026 PixelCraft Studio</span>
+        <span>Designed &amp; built in-house</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- แถบสถานะล่างสุด เวลามาจาก site.js -->
+  <div class="status" aria-hidden="true">
+    <div class="wrap status__in">
+      <span class="status__grp"><span class="pip pip--lime"></span> pixelcraft-studio &nbsp;<b>home</b></span>
+      <span class="status__grp status__mid">
+        <span class="pip pip--lime"></span><span class="pip pip--plasma"></span><span class="pip pip--hyper"></span>
+        &nbsp;3 editors
+      </span>
+      <span class="status__grp status__right">Bangkok <b id="clock">--:--</b> · <b id="vp">—</b></span>
+    </div>
+  </div>
+</body>
+
+</html>
