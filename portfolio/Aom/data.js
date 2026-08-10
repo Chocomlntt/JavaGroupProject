@@ -1,186 +1,157 @@
-// Portfolio Data Store - All editable text & content for the website
+/* ============================================================================
+   PORTFOLIO CONTENT STORE  —  v3 "Depth Canvas"
+   ----------------------------------------------------------------------------
+   แก้เนื้อหาผลงาน / ใบประกาศ / ทักษะ ที่ไฟล์นี้ไฟล์เดียว
+   (ชื่อ ประวัติ ที่อยู่ อยู่ใน index-v3.html ตรงๆ ค้นหาคำแล้วแก้ได้เลย)
 
-export const profileData = {
-  name: "Phanuwat Audkanthar",
-  title: "Junior Dev | Backend Developer & Frontend Developer",
-  avatar: "assets/profile.JPG",
-  handle: "Road to Full-Stack!!",
-  idCode: "Aommykung-X7",
-  status: "AVAILABLE FOR HIRE",
-  bio: "Architecting high-performance web applications, backend APIs, and real-time interactive interfaces with cyber-linear precision.",
-  location: "Uttaradit, Thailand / Remote",
-  coreStackText: "CORE: React, Next.js, Tailwind, HTML, CSS, JavaScript, Spring Boot, Docker",
+   เป็นสคริปต์ธรรมดา ไม่ใช่ ES module — ดับเบิลคลิกเปิดไฟล์ดูได้เลย
+   ไม่ต้องรันเซิร์ฟเวอร์
+   ========================================================================== */
 
-  // Hero Section Stats
-  stats: {
-    experienceYears: { value: "Student", label: "Developer Status" },
-    projectsCompleted: { value: "3+", label: "Featured Projects" },
-    codeCommits: { value: "500+", label: "Git Commits" }
+window.PORTFOLIO = {
+
+  /* ── โปรไฟล์ ──────────────────────────────────────────────────────────── */
+  profile: {
+    firstName: "PHANUWAT",
+    lastName: "AUDKANTHAR",
+    nickname: "Aom",
+    handle: "Road to Full-Stack!!",
+    idCode: "AOMMYKUNG-X7",
+    role: "Junior Dev · Backend & Frontend Developer",
+    status: "AVAILABLE FOR HIRE",
+    location: "Uttaradit, Thailand / Remote",
+    education: "Chiang Mai University · DII",
+    avatar: "assets/profile.JPG",
+    email: "phanuwataom1250@gmail.com",
+    socials: {
+      github: "https://github.com/Aommykung1250-X7",
+      instagram: "https://www.instagram.com/saimon_.am/",
+      facebook: "https://www.facebook.com/AoMYKuNgG/"
+    }
   },
 
-  // Social Links & Contact Details
-  socials: {
-    github: "https://github.com/Aommykung1250-X7",
-    instagram: "https://www.instagram.com/saimon_.am/",
-    facebook: "https://www.facebook.com/AoMYKuNgG/",
-    email: "phanuwataom1250@gmail.com"
-  }
-};
+  /* ── ตัวเลขหน้าแรก ─────────────────────────────────────────────────────── */
+  stats: [
+    { value: "3",   suffix: "+", label: "Featured Projects", note: "shipped" },
+    { value: "500", suffix: "+", label: "Git Commits",       note: "and counting" },
+    { value: "2",   suffix: "",  label: "Competition Awards", note: "gold · national" }
+  ],
 
-// Section Headings & General Site Text
-export const siteTextData = {
-  hero: {
-    subtitle: "// PHANUWAT AUDKANTHAR PROFILE",
-    titleMain: "Junior Developer & Full-Stack",
-    titleGradient: "Frontend & Backend",
-    ctaPrimary: "Start a Conversation",
-    ctaSecondary: "Download Resume"
-  },
-  showcase: {
-    tag: "PORTFOLIO SHOWCASE",
-    titleMain: "Web Applications &",
-    titleGradient: "Verified Credentials",
-    description: "สำรวจผลงาน และใบประกาศนียบัตรรับรองทักษะ"
-  },
-  contact: {
-    tag: "START A CONVERSATION",
-    titleMain: "Let's Build Something",
-    titleGradient: "Exceptional",
-    description: "หากมีข้อซักถาม โอกาสในการร่วมงาน หรือสนใจร่วมพัฒนาโปรเจกต์ สามารถติดต่อผ่านช่องทางด้านล่างได้ทันทีครับ",
-    directSignalsTitle: "Direct Signals",
-    directSignalsDesc: "พร้อมรับโอกาสในการเรียนรู้และร่วมทีมพัฒนา Web Application, Backend APIs และระบบซอฟต์แวร์ต่างๆ ทักมาพูดคุยกันได้เลยครับ",
-    responseTime: "< 24 Hours Guaranteed"
-  },
-  footer: {
-    tagline: "PHANUWAT AUDKANTHAR PORTFOLIO",
-    copyright: "© 2026 Phanuwat Audkanthar. All rights reserved."
-  }
-};
+  /* ── แถบวิ่ง (marquee) ─────────────────────────────────────────────────── */
+  ticker: [
+    "REACT", "NEXT.JS", "SPRING BOOT", "FASTAPI", "DOCKER",
+    "POSTGRESQL", "TAILWIND", "WEBSOCKETS", "YOLOv11", "KOTLIN"
+  ],
 
-// Resume Modal Content
-export const resumeData = {
-  title: "Phanuwat Audkanthar Resume Spec",
-  badge: "VERIFIED CERTIFIED DEVELOPER SPECIFICATION",
-  summary: "Junior Full-Stack Developer passionate about engineering clean, responsive React/Next.js frontends, scalable Node.js/Python backends, and high-quality web applications.",
-
-  experience: [
+  /* ── ผลงาน ─────────────────────────────────────────────────────────────
+     เพิ่มโปรเจกต์ = ก๊อปบล็อก { ... } ทั้งก้อนแล้วแก้
+     images ใส่กี่รูปก็ได้ ถ้ามากกว่า 1 ปุ่มเลื่อนรูปจะโผล่มาเอง        */
+  projects: [
     {
-      role: "Junior Full-Stack Developer",
-      company: "Freelance & Open Source Projects",
-      period: "2024 - Present",
-      description: "Developing modern web apps, REST APIs, and responsive interfaces using React, Next.js, and Node.js."
+      id: "proj-nanngai",
+      index: "01",
+      title: "Nan-Ngai — CCTV Detection",
+      titleTh: "น่านไง",
+      category: "AI & WEB SYSTEM",
+      year: "2025",
+      summary: "ระบบเฝ้าระวังและตรวจจับวัตถุจากกล้อง CCTV ด้วยโมเดล YOLOv11 เชื่อมต่อเว็บแอปพลิเคชันแบบเรียลไทม์",
+      details: "แพลตฟอร์มกล้องตรวจจับอัจฉริยะที่ผสานคอมพิวเตอร์วิทัศน์ (Computer Vision) ด้วย YOLOv11 เข้ากับ Backend API บน FastAPI และ Frontend ด้วย Next.js, Tailwind CSS และ Prisma ORM — วิเคราะห์ คัดแยกวัตถุ และแจ้งเตือนเหตุการณ์จากกล้องวงจรปิดแบบเรียลไทม์",
+      tags: ["Next.js", "React.js", "Tailwind CSS", "FastAPI", "Prisma", "YOLOv11"],
+      metrics: [
+        { k: "Model",        v: "YOLOv11" },
+        { k: "Response",     v: "Real-time" },
+        { k: "Architecture", v: "Microservices" }
+      ],
+      image: "assets/pic/nan1.JPG",
+      images: ["assets/pic/nan1.JPG", "assets/pic/nan2.JPG", "assets/pic/nan3.png"],
+      repoUrl: "https://github.com/PreturnPRO/Nan-Ngai-CCTV",
+      demoUrl: ""
     },
     {
-      role: "Backend & Frontend Engineer Learner",
-      company: "Self-Driven Engineering Projects",
-      period: "2023 - 2024",
-      description: "Built database-backed web applications, state management workflows, and custom glassmorphic UI systems."
+      id: "proj-kiosk",
+      index: "02",
+      title: "DITC — Smart Kiosk System",
+      titleTh: "",
+      category: "WEB APP & SERVER",
+      year: "2025",
+      summary: "ระบบบริหารจัดการตู้คีออสก์อัจฉริยะ สื่อสารผ่าน WebSockets และควบคุมเซิร์ฟเวอร์ด้วย Docker",
+      details: "เว็บแอปพลิเคชันสำหรับบริหารจัดการตู้คีออสก์อัจฉริยะ (DITC Smart Kiosk) โต้ตอบกับผู้ใช้งานด้วย React.js และ Tailwind CSS ทำงานร่วมกับ WebSockets เพื่อส่งข้อมูลเรียลไทม์ไปยังเซิร์ฟเวอร์ที่คอนเทนเนอไรซ์ด้วย Docker และจัดเก็บข้อมูลบน PostgreSQL",
+      tags: ["React.js", "Tailwind CSS", "Docker", "PostgreSQL", "WebSockets", "JavaScript"],
+      metrics: [
+        { k: "System",     v: "Smart Kiosk" },
+        { k: "Protocol",   v: "WebSockets" },
+        { k: "Deployment", v: "Docker" }
+      ],
+      image: "assets/pic/kiosk3.png",
+      images: ["assets/pic/kiosk3.png", "assets/pic/kiosk2.png", "assets/pic/kiosk1.png"],
+      repoUrl: "https://github.com/Aommykung1250-X7",
+      demoUrl: ""
+    },
+    {
+      id: "proj-webapp",
+      index: "03",
+      title: "Web Application Competition",
+      titleTh: "",
+      category: "WEB APPLICATION",
+      year: "2024",
+      award: "GOLD MEDAL",
+      summary: "รางวัลเหรียญทอง การแข่งขันสร้าง Web Application งานศิลปหัตถกรรมนักเรียน ระดับเขตพื้นที่การศึกษา",
+      details: "ระบบเว็บแอปพลิเคชันที่พัฒนาขึ้นเพื่อเข้าร่วมการแข่งขันงานศิลปหัตถกรรมนักเรียน สร้างด้วย HTML5, CSS3, PHP และ JavaScript เน้นการออกแบบระบบที่ใช้งานง่าย รองรับการจัดการข้อมูลหลังบ้านและการเชื่อมต่อฐานข้อมูลอย่างมีประสิทธิภาพ จนได้รับรางวัลเหรียญทองระดับเขตพื้นที่การศึกษา",
+      tags: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
+      metrics: [
+        { k: "Award", v: "Gold Medal" },
+        { k: "Scope", v: "District" },
+        { k: "Stack", v: "PHP / JS" }
+      ],
+      image: "assets/pic/webapp.JPG",
+      images: ["assets/pic/webapp.JPG"],
+      repoUrl: "https://github.com/Aommykung1250-X7",
+      demoUrl: ""
     }
   ],
 
-  education: {
-    degree: "Computer Science / Software Engineering Student",
-    institution: "Uttaradit, Thailand"
-  }
+  /* ── ใบประกาศ ─────────────────────────────────────────────────────────── */
+  certificates: [
+    {
+      id: "cert-cyber",
+      index: "01",
+      title: "Cyber Top Talent (Senior)",
+      issuer: "NCSA · สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ",
+      issuerShort: "NCSA (สกมช.)",
+      year: "2025",
+      code: "CYBER-TOP-2025",
+      description: "ใบประกาศนียบัตรเข้าร่วมและผ่านการทดสอบการแข่งขัน Cyber Top Talent ประจำปี 2025 ระดับ Senior แสดงถึงความรู้ด้าน Cyber Security การวิเคราะห์ช่องโหว่ และการป้องกันระบบสารสนเทศจากภัยคุกคามไซเบอร์",
+      skills: ["Cyber Security", "Network Defense", "Threat Analysis", "Incident Response"],
+      image: "assets/pic/cert1.jpg",
+      images: ["assets/pic/cert1.jpg", "assets/pic/cyber1.JPG", "assets/pic/cyber2.JPG"]
+    },
+    {
+      id: "cert-aiprompt",
+      index: "02",
+      title: "AI Prompt Mini Hackathon 2024",
+      issuer: "SPU · Sripatum University",
+      issuerShort: "Sripatum University",
+      year: "2024",
+      code: "AI-PROMPT-2024",
+      description: "ใบประกาศนียบัตรเข้าร่วมการแข่งขัน AI Prompt Mini Hackathon 2024 แสดงถึงทักษะการออกแบบและประยุกต์ใช้ Prompt Engineering ร่วมกับเทคโนโลยี Generative AI เพื่อแก้โจทย์เชิงสร้างสรรค์",
+      skills: ["Prompt Engineering", "Generative AI", "LLM Optimization", "Creative Problem Solving"],
+      image: "assets/pic/cert2.PNG",
+      images: ["assets/pic/cert2.PNG"]
+    }
+  ],
+
+  /* ── ทักษะ ─────────────────────────────────────────────────────────────
+     level มีได้ 3 ค่า:  "excellent" (3 ขีด) · "good" (2 ขีด) · "learning" (1 ขีด) */
+  stack: [
+    { name: "HTML / CSS",          group: "Frontend", level: "excellent", icon: "code" },
+    { name: "Tailwind CSS",        group: "Frontend", level: "excellent", icon: "palette" },
+    { name: "React.js",            group: "Frontend", level: "good",      icon: "atom" },
+    { name: "Next.js",             group: "Frontend", level: "good",      icon: "layers" },
+    { name: "Node.js",             group: "Backend",  level: "excellent", icon: "server" },
+    { name: "FastAPI",             group: "Backend",  level: "excellent", icon: "terminal" },
+    { name: "Spring Boot",         group: "Backend",  level: "good",      icon: "share" },
+    { name: "Supabase / Postgres", group: "Database", level: "excellent", icon: "database" },
+    { name: "Docker & K8s",        group: "DevOps",   level: "good",      icon: "box" },
+    { name: "Kotlin",              group: "Mobile",   level: "learning",  icon: "cpu" }
+  ]
 };
-
-// Tech Stack Data
-export const techStackData = [
-  { id: "react", name: "React.js", category: "Frontend", level: "Good", icon: "atom" },
-  { id: "nextjs", name: "Next.js", category: "Frontend", level: "Good", icon: "layers" },
-  { id: "html", name: "HTML", category: "Frontend", level: "Excellent", icon: "code" },
-  { id: "tailwind", name: "Tailwind CSS", category: "Frontend", level: "Excellent", icon: "palette" },
-  { id: "nodejs", name: "Node.js", category: "Backend", level: "Excellent", icon: "server" },
-  { id: "python", name: "FastAPI", category: "Backend", level: "Excellent", icon: "terminal" },
-  { id: "supabase", name: "Supabase / Postgres", category: "Database", level: "Excellent", icon: "database" },
-  { id: "docker", name: "Docker & K8s", category: "DevOps", level: "Good", icon: "box" },
-  { id: "springboot", name: "Spring Boot", category: "Backend", level: "Good", icon: "share-2" },
-  { id: "kotlin", name: "Kotlin", category: "mobile", level: "Practicing", icon: "cpu" }
-];
-
-// Project Showcase Data
-export const projectsData = [
-  {
-    id: "proj-1",
-    title: "Web Application Competition",
-    category: "Web Application",
-    featured: true,
-    tags: ["HTML", "CSS", "PHP", "JS", "MySQL"],
-    summary: "รางวัลเหรียญทอง การแข่งขันสร้าง Web Application งานศิลปหัตถกรรมนักเรียนระดับเขตพื้นที่การศึกษา",
-    image: "assets/pic/webapp.JPG",
-    images: [
-      "assets/pic/webapp.JPG"
-    ],
-    accentColor: "#00ffc2",
-    metrics: { Award: "Gold Medal", Scope: "District", Stack: "PHP / JS" },
-    demoUrl: "#",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "ระบบเว็บแอปพลิเคชันที่ได้รับการพัฒนาขึ้นเพื่อเข้าร่วมการแข่งขันงานศิลปหัตถกรรมนักเรียน รังสรรค์ด้วย HTML5, CSS3, PHP และ JavaScript โดยมุ่งเน้นการออกแบบระบบใช้งานง่าย รองรับการจัดการข้อมูลหลังบ้านและการเชื่อมต่อฐานข้อมูลอย่างมีประสิทธิภาพ จนได้รับรางวัลเหรียญทองระดับเขตพื้นที่การศึกษา"
-  },
-  {
-    id: "proj-2",
-    title: "Nan-Ngai (น่านไง - CCTV Detection)",
-    category: "AI & Web System",
-    featured: true,
-    tags: ["Next.js", "Tailwind CSS", "React.js", "FastAPI", "Prisma", "YOLOv11"],
-    summary: "ระบบเฝ้าระวังและตรวจจับวัตถุจากกล้อง CCTV อัจฉริยะด้วยโมเดล AI YOLOv11 เชื่อมต่อเว็บแอปพลิเคชันแบบเรียลไทม์",
-    image: "assets/pic/nan1.JPG",
-    images: [
-      "assets/pic/nan1.JPG",
-      "assets/pic/nan2.JPG",
-      "assets/pic/nan3.png"
-    ],
-    accentColor: "#00e5ff",
-    metrics: { Model: "YOLOv11", Response: "Real-time", Architecture: "Microservices" },
-    demoUrl: "#",
-    repoUrl: "https://github.com/PreturnPRO/Nan-Ngai-CCTV",
-    details: "แพลตฟอร์มระบบกล้องตรวจจับอัจฉริยะ Nan-Ngai (น่านไง) ที่ผสานพลังคอมพิวเตอร์วิทัศน์ (Computer Vision) ด้วย YOLOv11 ร่วมกับ Backend API ประสิทธิภาพสูงบน FastAPI และ Frontend ล้ำสมัยด้วย Next.js, Tailwind CSS และ Prisma ORM ช่วยในการวิเคราะห์ คัดแยกวัตถุ และแจ้งเตือนเหตุการณ์จากกล้องวงจรปิดแบบเรียลไทม์"
-  },
-  {
-    id: "proj-3",
-    title: "DITC | Smart Kiosk System",
-    category: "Web Application & Server",
-    featured: true,
-    tags: ["React.js", "Tailwind CSS", "Docker", "PostgreSQL", "WebSockets", "JavaScript"],
-    summary: "ระบบบริหารจัดการตู้คีออสก์อัจฉริยะ สื่อสารผ่าน WebSockets และควบคุมเซิร์ฟเวอร์ด้วย Docker",
-    image: "assets/pic/kiosk3.png",
-    images: [
-      "assets/pic/kiosk3.png",
-      "assets/pic/kiosk2.png",
-      "assets/pic/kiosk1.png"
-    ],
-    accentColor: "#7928ca",
-    metrics: { System: "Smart Kiosk", Protocol: "WebSockets", Deployment: "Docker" },
-    demoUrl: "#",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "ระบบเว็บแอปพลิเคชันสำหรับบริหารจัดการตู้คีออสก์อัจฉริยะ (DITC Smart Kiosk) รองรับการโต้ตอบกับผู้ใช้งานอย่างรวดเร็วด้วย React.js และ Tailwind CSS ทำงานร่วมกับระบบ WebSockets เพื่อส่งข้อมูลเรียลไทม์ไปยังเซิร์ฟเวอร์ที่คอนเทนเนอไรซ์ด้วย Docker และจัดเก็บข้อมูลอย่างปลอดภัยบน PostgreSQL"
-  }
-];
-
-// Certificates Data
-export const certificatesData = [
-  {
-    id: "cert-1",
-    title: "Cyber Top Talent (Senior)",
-    issuer: "NCSA (สกมช. - สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ)",
-    date: "2025",
-    code: "CYBER-TOP-2025",
-    verifyUrl: "assets/pic/cert1.jpg",
-    image: "assets/pic/cert1.jpg",
-    badgeIcon: "award",
-    skills: ["Cyber Security", "Network Defense", "Threat Analysis", "Incident Response"],
-    description: "ใบประกาศนียบัตรเข้าร่วมและผ่านการทดสอบการแข่งขัน Cyber Top Talent ประจำปี 2025 ในระดับ Senior แสดงถึงความรู้ความเชี่ยวชาญด้าน Cyber Security การวิเคราะห์ช่องโหว่ และการป้องกันระบบสารสนเทศจากภัยคุกคามไซเบอร์"
-  },
-  {
-    id: "cert-2",
-    title: "AI Prompt Mini Hackathon 2024",
-    issuer: "SPU | SRIPATUM UNIVERSITY",
-    date: "2024",
-    code: "AI-PROMPT-2024",
-    verifyUrl: "assets/pic/cert2.PNG",
-    image: "assets/pic/cert2.PNG",
-    badgeIcon: "box",
-    skills: ["Prompt Engineering", "Generative AI", "LLM Optimization", "Creative Problem Solving"],
-    description: "ใบประกาศนียบัตรเข้าร่วมการแข่งขัน AI Prompt Mini Hackathon 2024 แสดงถึงทักษะการออกแบบและประยุกต์ใช้ Prompt Engineering ร่วมกับเทคโนโลยี Generative AI เพื่อแก้โจทย์ปัญหาเชิงสร้างสรรค์ได้อย่างมีประสิทธิภาพ"
-  }
-];
