@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phanuwat Audkanthar — Junior Full-Stack Developer</title>
+  <meta name="description"
+    content="พอร์ตโฟลิโอของภาณุวัฒน์ อูดคันธาร์ — นักศึกษาสาย Full-Stack เขียนทั้งหน้าบ้านและหลังบ้าน React, Next.js, FastAPI, Spring Boot">
+
+  <!-- Chakra Petch = หัวข้อ (มีทั้งไทยและอังกฤษในตัวเดียว)
+       IBM Plex Sans Thai = เนื้อหา · IBM Plex Mono = ป้ายกำกับกับตัวเลข -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles-v2.css">
+
+  <!-- สคริปต์ธรรมดา ไม่ใช่ ES module — ดับเบิลคลิกเปิดไฟล์ได้เลย
+       ไม่ต้องรันเซิร์ฟเวอร์ (ของเดิมใช้ import ซึ่งจะโดน CORS บล็อก) -->
+  <script src="data-v2.js" defer></script>
+  <script src="app-v2.js" defer></script>
+</head>
+
+<body>
+  <a class="skip" href="#main">ข้ามไปที่เนื้อหา</a>
+
+  <noscript>
+    <p class="nojs">หน้านี้แสดงผลงานและใบประกาศด้วย JavaScript — เปิด JavaScript แล้วรีเฟรชเพื่อดูทั้งหมด
+      ส่วนข้อมูลติดต่อด้านล่างยังใช้ได้ตามปกติ</p>
+  </noscript>
+
+  <!-- ============================================================
+       BOOT SEQUENCE — JS เป็นคนเปิด ถ้า JS ไม่ทำงานจะไม่โผล่มาบัง
+       ============================================================ -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div>
+      <div class="boot__log" id="bootLog"></div>
+      <div class="boot__bar"><i id="bootBar"></i></div>
+      <p class="boot__skip">คลิกหรือกดปุ่มใดก็ได้เพื่อข้าม</p>
+    </div>
+  </div>
+
+  <!-- เส้นกากบาทตามเมาส์ (เฉพาะเครื่องที่ใช้เมาส์จริง) -->
+  <div class="cross" id="cross" aria-hidden="true">
+    <i class="cross__h"></i><i class="cross__v"></i><b></b>
+  </div>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <header class="nav">
+    <div class="shell nav__in">
+      <a class="brand" href="#home">
+        <span class="brand__dot" aria-hidden="true"></span>
+        Phanuwat<small>&nbsp;/ Aommykung-X7</small>
+      </a>
+
+      <button class="burger" id="burger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navLinks">
+        <i></i><i></i><i></i>
+      </button>
+
+      <nav class="nav__links" id="navLinks" aria-label="เมนูหลัก">
+        <a href="#track">Track</a>
+        <a href="#work">Work</a>
+        <a href="#certs">Certs</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <span class="nav__status"><i aria-hidden="true"></i> Available for hire</span>
+    </div>
+  </header>
+
+  <!-- แถบนำทางด้านซ้าย — ซ่อนอัตโนมัติเมื่อจอแคบกว่า 1340px -->
+  <nav class="rail" id="rail" aria-label="ตำแหน่งในหน้า">
+    <a href="#home" data-rail="home">00<span>Home</span></a>
+    <a href="#track" data-rail="track">01<span>Track</span></a>
+    <a href="#work" data-rail="work">02<span>Work</span></a>
+    <a href="#certs" data-rail="certs">03<span>Certs</span></a>
+    <a href="#stack" data-rail="stack">04<span>Stack</span></a>
+    <a href="#contact" data-rail="contact">05<span>Contact</span></a>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" id="home">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="shell hero__in">
+        <div>
+          <p class="hero__eyebrow" data-reveal>
+            <b>//</b> Junior Developer &nbsp;·&nbsp; Uttaradit, Thailand
+          </p>
+
+          <!-- data-decode = ตัวอักษรจะสุ่มมั่วแล้วค่อยๆ เข้าที่
+               ข้อความจริงอยู่ใน HTML อยู่แล้ว JS แค่มาเล่นกับมัน
+               ปิด JS ก็ยังอ่านได้ปกติ -->
+          <h1 class="h1" data-decode>Phanuwat<br>Audkanthar</h1>
+
+          <p class="hero__role" data-reveal style="--d:80ms">
+            Backend <span>·</span> Frontend <span>·</span> Road to Full-Stack!!
+          </p>
+
+          <p class="hero__bio" data-reveal style="--d:160ms">
+            นักศึกษาที่เขียนทั้งฝั่งหน้าบ้านและหลังบ้าน แล้วต่อเข้าหากันเอง —
+            <b>React</b> กับ <b>Next.js</b> ฝั่งหนึ่ง <b>FastAPI</b> กับ <b>Spring Boot</b> อีกฝั่งหนึ่ง
+            งานที่ชอบที่สุดคือระบบที่ต้องคิดโครงสร้างข้อมูลให้จบก่อน ถึงจะได้ลงมือวาดหน้าจอ
+          </p>
+
+          <div class="btns" data-reveal style="--d:240ms">
+            <a class="btn btn--fill" href="#contact">
+              <span>Start a conversation</span>
+              <svg class="btn__i" aria-hidden="true">
+                <use href="#i-arrow" />
+              </svg>
+            </a>
+            <a class="btn" href="https://github.com/Aommykung1250-X7" target="_blank" rel="noopener">
+              <span>GitHub</span>
+              <svg class="btn__i" aria-hidden="true">
+                <use href="#i-arrow" />
+              </svg>
+            </a>
+          </div>
+
+          <dl class="stats" data-reveal style="--d:320ms">
+            <div>
+              <dd class="stat__v">Student</dd>
+              <dt class="stat__k">Developer status</dt>
+            </div>
+            <div>
+              <dd class="stat__v">3</dd>
+              <dt class="stat__k">Featured projects</dt>
+            </div>
+            <div>
+              <dd class="stat__v">2</dd>
+              <dt class="stat__k">Certificates</dt>
+            </div>
+            <div>
+              <dd class="stat__v">500+</dd>
+              <dt class="stat__k">Git commits</dt>
+            </div>
+          </dl>
+        </div>
+
+        <!-- แผงข้อมูลประจำตัว เอียงตามเมาส์เล็กน้อย -->
+        <div class="idc" id="idc" data-reveal style="--d:200ms">
+          <div class="idc__photo">
+            <img src="assets/profile.JPG" alt="ภาณุวัฒน์ อูดคันธาร์" width="1200" height="1600">
+            <span class="idc__scan" aria-hidden="true"></span>
+          </div>
+          <dl class="idc__rows">
+            <div class="idc__row">
+              <dt>ID</dt>
+              <dd>Aommykung-X7</dd>
+            </div>
+            <div class="idc__row">
+              <dt>Status</dt>
+              <dd class="mint">Available for hire</dd>
+            </div>
+            <div class="idc__row">
+              <dt>Base</dt>
+              <dd>Uttaradit, TH / Remote</dd>
+            </div>
+            <div class="idc__row">
+              <dt>Focus</dt>
+              <dd>Full-stack web</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         01 · TRACK
+         ============================================================ -->
+    <section class="sec" id="track">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="lbl" data-reveal>01 / Track</p>
+            <h2 class="h2" data-decode>มาถึงตรงนี้ได้ยังไง</h2>
+          </div>
+          <p class="sec__note" data-reveal style="--d:120ms">
+            ยังเป็นนักศึกษาอยู่ และยังเรียนอยู่ทุกวัน
+          </p>
+        </div>
+
+        <div class="track">
+          <p class="track__lede" data-reveal>
+            เริ่มจากงานแข่งเขียนเว็บสมัยมัธยม แล้วไล่ไปเรื่อยๆ จนตอนนี้ทำระบบที่มีทั้ง
+            <b>AI ตรวจจับภาพ</b>, <b>WebSocket</b> และ <b>Docker</b> อยู่ในโปรเจกต์เดียวกัน
+            สิ่งที่เปลี่ยนไปมากที่สุดไม่ใช่จำนวนภาษาที่เขียนได้ แต่เป็นการรู้ว่าควรหยุดคิดตรงไหนแล้วลงมือทำ
+          </p>
+
+          <div class="tl">
+            <div class="tl__item is-now" data-reveal>
+              <p class="tl__when">2024 — Present</p>
+              <h3 class="tl__what">Junior Full-Stack Developer</h3>
+              <p class="tl__where">Freelance &amp; Open Source Projects</p>
+              <p class="tl__d">พัฒนาเว็บแอปพลิเคชัน REST API และหน้าจอที่ใช้งานได้จริง
+                ด้วย React, Next.js และ Node.js</p>
+            </div>
+
+            <div class="tl__item" data-reveal style="--d:100ms">
+              <p class="tl__when">2023 — 2024</p>
+              <h3 class="tl__what">Backend &amp; Frontend Learner</h3>
+              <p class="tl__where">Self-Driven Engineering Projects</p>
+              <p class="tl__d">สร้างเว็บที่ต่อกับฐานข้อมูลจริง ฝึกจัดการ state
+                และออกแบบระบบ UI ของตัวเองตั้งแต่ศูนย์</p>
+            </div>
+
+            <div class="tl__item" data-reveal style="--d:200ms">
+              <p class="tl__when">Education</p>
+              <h3 class="tl__what">Computer Science / Software Engineering</h3>
+              <p class="tl__where">Uttaradit, Thailand</p>
+              <p class="tl__d">กำลังศึกษาอยู่ สนใจงานฝั่งระบบหลังบ้านและการออกแบบ
+                สถาปัตยกรรมข้อมูล</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 · WORK — การ์ดสร้างจาก data-v2.js
+         ============================================================ -->
+    <section class="sec" id="work">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="lbl" data-reveal>02 / Selected work</p>
+            <h2 class="h2" data-decode>ของที่ทำเสร็จแล้ว</h2>
+          </div>
+          <p class="sec__note" data-reveal style="--d:120ms">
+            กดที่การ์ดเพื่อดูรายละเอียดและรูปทั้งหมด
+          </p>
+        </div>
+
+        <div class="cards" id="cards"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 · CERTIFICATES
+         ============================================================ -->
+    <section class="sec" id="certs">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="lbl" data-reveal>03 / Credentials</p>
+            <h2 class="h2" data-decode>ใบประกาศนียบัตร</h2>
+          </div>
+          <p class="sec__note" data-reveal style="--d:120ms">
+            กดเพื่อเปิดไฟล์ใบประกาศฉบับเต็ม
+          </p>
+        </div>
+
+        <div class="certs" id="certs-grid"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 · STACK
+         ============================================================ -->
+    <section class="sec" id="stack">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="lbl" data-reveal>04 / Stack</p>
+            <h2 class="h2" data-decode>เครื่องมือที่ใช้อยู่</h2>
+          </div>
+          <p class="sec__note" data-reveal style="--d:120ms">
+            จุดสามจุดคือใช้คล่อง สองจุดคือใช้ได้ จุดเดียวคือกำลังฝึกอยู่
+          </p>
+        </div>
+
+        <div class="stack" id="stack-grid"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 · CONTACT
+         ============================================================ -->
+    <section class="sec" id="contact">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="lbl" data-reveal>05 / Contact</p>
+            <h2 class="h2" data-decode>คุยกันได้เลย</h2>
+          </div>
+          <p class="sec__note" data-reveal style="--d:120ms">
+            ตอบกลับภายใน 24 ชั่วโมง
+          </p>
+        </div>
+
+        <div class="contact">
+          <form class="form" id="contactForm" data-reveal novalidate>
+            <div class="field">
+              <label for="cf-name">ชื่อ</label>
+              <input id="cf-name" name="name" type="text" required placeholder="ชื่อของคุณ" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="cf-mail">อีเมล</label>
+              <input id="cf-mail" name="email" type="email" required placeholder="you@example.com"
+                autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="cf-msg">ข้อความ</label>
+              <textarea id="cf-msg" name="message" required placeholder="อยากคุยเรื่องอะไรครับ"></textarea>
+            </div>
+
+            <button class="btn btn--fill" type="submit">
+              <span>ส่งข้อความ</span>
+              <svg class="btn__i" aria-hidden="true">
+                <use href="#i-send" />
+              </svg>
+            </button>
+
+            <p class="form__note" id="formNote">
+              ปุ่มนี้จะเปิดโปรแกรมอีเมลในเครื่องคุณ พร้อมข้อความที่พิมพ์ไว้ให้เลย —
+              หน้านี้ไม่มีเซิร์ฟเวอร์หลังบ้าน จึงไม่ได้เก็บข้อมูลของคุณไว้ที่ไหน
+            </p>
+          </form>
+
+          <div data-reveal style="--d:120ms">
+            <div class="links">
+              <a href="mailto:phanuwataom1250@gmail.com">
+                <svg aria-hidden="true">
+                  <use href="#i-mail" />
+                </svg>
+                <span>
+                  <b>phanuwataom1250@gmail.com</b>
+                  <small>Email</small>
+                </span>
+                <svg class="links__go" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </a>
+
+              <a href="https://github.com/Aommykung1250-X7" target="_blank" rel="noopener">
+                <svg aria-hidden="true">
+                  <use href="#i-github" />
+                </svg>
+                <span>
+                  <b>Aommykung1250-X7</b>
+                  <small>GitHub</small>
+                </span>
+                <svg class="links__go" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </a>
+
+              <a href="https://www.instagram.com/saimon_.am/" target="_blank" rel="noopener">
+                <svg aria-hidden="true">
+                  <use href="#i-ig" />
+                </svg>
+                <span>
+                  <b>saimon_.am</b>
+                  <small>Instagram</small>
+                </span>
+                <svg class="links__go" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </a>
+
+              <a href="https://www.facebook.com/AoMYKuNgG/" target="_blank" rel="noopener">
+                <svg aria-hidden="true">
+                  <use href="#i-fb" />
+                </svg>
+                <span>
+                  <b>AoMYKuNgG</b>
+                  <small>Facebook</small>
+                </span>
+                <svg class="links__go" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="avail">
+              <p>พร้อมรับโอกาสร่วมทีมพัฒนา Web Application, Backend API และระบบซอฟต์แวร์
+                ถ้ามีโปรเจกต์ที่อยากให้ช่วย หรืออยากชวนไปคุยเฉยๆ ทักมาได้เลยครับ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="foot">
+    <div class="shell foot__in">
+      <span><b>Phanuwat Audkanthar</b> &nbsp;·&nbsp; Junior Full-Stack Developer</span>
+      <span>© 2026 &nbsp;·&nbsp; <a href="../../profile-v2.html" style="color:var(--mint)">← PixelCraft Studio</a></span>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MODAL — โครงเปล่า เนื้อหาใส่โดย app-v2.js ตอนกดการ์ด
+       ============================================================ -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__win" id="modalWin">
+      <div class="modal__bar">
+        <span class="modal__file" id="modalFile"></span>
+        <button class="x" id="modalClose" type="button" aria-label="ปิด">
+          <svg aria-hidden="true">
+            <use href="#i-x" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ICON SPRITE — ฝังไว้ในไฟล์เลย ไม่ต้องโหลดไลบรารีไอคอนจาก
+       อินเทอร์เน็ต เปิดออฟไลน์ก็ยังเห็นไอคอนครบ
+       ============================================================ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <g id="ico" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+        stroke-linejoin="round"></g>
+    </defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7M8 7h9v9" />
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </symbol>
+    <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="m15 18-6-6 6-6" />
+    </symbol>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 18 6-6-6-6" />
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+      stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="16" />
+      <path d="m2 6 10 7 10-7" />
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="m22 2-7 20-4-9-9-4Z" />
+      <path d="M22 2 11 13" />
+    </symbol>
+    <symbol id="i-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path
+        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
+    </symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+      stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" />
+      <path d="M17.5 6.5h.01" />
+    </symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </symbol>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+      stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="6" />
+      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+    </symbol>
+  </svg>
+</body>
+
+</html>

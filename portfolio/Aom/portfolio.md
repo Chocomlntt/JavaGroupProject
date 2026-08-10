@@ -1,31 +1,77 @@
-# Alex.Dev Portfolio Project Specifications
+# Phanuwat Audkanthar — Portfolio (v2)
 
-## Overview
-A high-fidelity, "cyber-linear" developer portfolio featuring a dark aesthetic, grid-based layouts, and high-contrast neon accents.
+ธีม **Neon Terminal** — พื้นดำสนิท เส้นบาง สีเน้นสีเดียว
+หน้าเว็บทำตัวเหมือนหน้าจอระบบที่กำลังทำงานอยู่
 
-## Design System
-- **Theme:** Dark Mode
-- **Colors:** 
-  - Surface: #131313
-  - Primary Accent: #00ffc2 (Neon Cyan/Mint)
-- **Typography:** Plus Jakarta Sans
-- **Visual Style:** Professional, technical, "cinematic depth" with subtle grid backgrounds and glassmorphism.
+## ไฟล์
 
-## Screens
+| ไฟล์ | หน้าที่ |
+|---|---|
+| `index-v2.html` | โครงหน้าและข้อความทั้งหมด (ชื่อ ประวัติ ฟอร์ม) |
+| `styles-v2.css` | สไตล์ทั้งหมด |
+| `app-v2.js` | อนิเมชัน + สร้างการ์ด + modal + ฟอร์ม |
+| `data-v2.js` | **แก้ผลงาน ใบประกาศ ทักษะ ที่ไฟล์นี้ที่เดียว** |
 
-### 1. Portfolio Home
-- **Hero Section:** Features a unique "ID Card" visual for the developer profile.
-- **Tech Stack:** Grid of technology icons (React.js, TypeScript, Tailwind, etc.).
-- **CTA:** "Start a conversation" and "Download Resume".
+ไฟล์ v1 (`index.html` / `styles.css` / `app.js` / `data.js`) ยังอยู่ครบ ไม่ได้แตะ
 
-### 2. Portfolio Showcase
-- **Navigation:** Tabs for "Projects", "Certificates", and "Tech Stack".
-- **Project Cards:** High-impact project previews with tech tags (e.g., Next.js, Supabase).
+## แก้เนื้อหายังไง
 
-## Components
-- **TopNavBar:** Sticky navigation with "Home", "About", "Portfolio", "Contact" and a primary "Hire Me" button.
-- **Footer:** Minimalist links for Github, LinkedIn, Twitter, and Resume.
+- **เพิ่มโปรเจกต์** → เปิด `data-v2.js` ก๊อปบล็อกใน `projects` แล้วแก้
+  `images` ใส่กี่รูปก็ได้ ถ้ามีมากกว่า 1 ปุ่มเลื่อนรูปจะโผล่มาเอง
+- **เพิ่มใบประกาศ** → บล็อก `certificates` การ์ดจะลิงก์ไปที่ไฟล์รูปโดยตรง
+- **แก้ทักษะ** → บล็อก `stack` · `level` มีได้ 3 ค่า:
+  `excellent` (3 จุด) · `good` (2 จุด) · `learning` (1 จุด)
+- **แก้ชื่อ ประวัติ ที่อยู่** → อยู่ใน `index-v2.html` ตรงๆ ค้นหาคำที่จะแก้ได้เลย
 
-## Instructions for Rebuilding
-To recreate this design, use the following prompt:
-"Create a high-fidelity developer portfolio with a dark 'Cyber-Linear' theme. Use a #131313 surface with #00ffc2 neon accents. The layout should feature a grid background. The Home page must include a hero section with a creative ID Card graphic and a tech stack grid. The Showcase page should have a project gallery with large image cards and tech tags. Use Plus Jakarta Sans for typography."
+## ระบบดีไซน์
+
+| อย่าง | ค่า |
+|---|---|
+| พื้นหลัง | `#08090B` → แผง `#0D0F13` → ชั้นบนสุด `#12161B` |
+| ตัวหนังสือ | `#E7EAEE` · ตัวรอง `#878E99` |
+| สีเน้น | `#00FFC2` — **สีเดียวทั้งเว็บ** |
+| หัวข้อ | Chakra Petch 700 (มีทั้งไทยและอังกฤษในตัวเดียว) |
+| เนื้อหา | IBM Plex Sans Thai |
+| ป้ายกำกับ/ตัวเลข | IBM Plex Mono |
+
+**ทำไมสีเน้นสีเดียว:** รูปผลงานมีสีเยอะอยู่แล้ว ถ้า UI มีสีมาแข่งด้วยจะรกทันที
+สีมิ้นต์เลยแปลว่า "ตรงนี้กดได้ / ตรงนี้สำคัญ" อย่างเดียว ไม่ได้ใส่เพื่อความสวย
+`accentColor` ประจำโปรเจกต์ของ v1 เลยไม่ได้ใช้ต่อ
+
+## อนิเมชัน 7 ตัว
+
+1. **Boot sequence** — ตอนเปิดหน้า มี log วิ่งแล้วเปิดเข้าเว็บ กดข้ามได้ทุกเมื่อ
+2. **Decode** — หัวข้อสุ่มตัวอักษรมั่วแล้วค่อยเข้าที่ (ตัวไทยสุ่มด้วยพยัญชนะไทย
+   ตัวอังกฤษสุ่มด้วยอักษรอังกฤษ ไม่งั้นความกว้างบรรทัดเปลี่ยนแล้วหน้าเว็บกระตุก)
+3. **เส้นกากบาทตามเมาส์** — พร้อมพิกัด x/y เฉพาะเครื่องที่มีเมาส์จริง
+4. **แถบนำทางซ้าย** — ไฮไลต์ตาม section ที่กำลังอ่าน ซ่อนเมื่อจอแคบกว่า 1400px
+5. **โผล่ตอนเลื่อนถึง** — การ์ดไล่กันขึ้นมาทีละใบ
+6. **เส้นสแกน** — วิ่งลงบนรูปตอนเอาเมาส์ชี้การ์ด และวิ่งตลอดบนรูปโปรไฟล์
+7. **แผงประจำตัวเอียงตามเมาส์** — เอียงแค่ 7 องศา พอให้รู้สึกว่ามีมิติ
+
+ทั้งหมดปิดอัตโนมัติถ้าผู้ใช้ตั้งเครื่องว่าไม่อยากให้มีอะไรขยับ
+(`prefers-reduced-motion`)
+
+## สามอย่างที่ตั้งใจทำแบบนี้
+
+**1. รูปใช้ `contain` ไม่ใช่ `cover`**
+สกรีนช็อตมือถือเป็นแนวตั้ง 9:16 ส่วนภาพหน้าจอคอมเป็น 2:1 ถ้าครอปให้เท่ากันหมด
+รูปมือถือจะเหลือแค่ตรงกลาง เลยวางรูปเต็มใบไว้บนฉากหลังที่เป็นรูปเดียวกันแบบเบลอ
+— เห็นครบทั้งใบ และที่ว่างข้างๆ ก็ไม่โล่ง
+
+**2. เป็นสคริปต์ธรรมดา ไม่ใช่ ES module**
+v1 ใช้ `import ... from './data.js'` ซึ่งเบราว์เซอร์จะบล็อกด้วยกฎ CORS
+เวลาดับเบิลคลิกเปิดไฟล์ตรงๆ (`file://`) — ต้องรันเซิร์ฟเวอร์ถึงจะเห็นเนื้อหา
+v2 เลยเปลี่ยนเป็นสคริปต์ธรรมดา เปิดไฟล์ดูได้เลย
+
+**3. ฟอร์มติดต่อเปิดโปรแกรมอีเมลจริง**
+หน้านี้ไม่มีเซิร์ฟเวอร์หลังบ้าน จะแกล้งขึ้นว่า "ส่งข้อความแล้ว" ก็ได้
+แต่นั่นคือโกหกคนที่กดส่ง เลยให้มันเปิดโปรแกรมอีเมลพร้อมข้อความที่พิมพ์ไว้แทน
+กดแล้วได้ผลจริง
+
+## เช็คก่อนส่ง
+
+- ย่อหน้าต่างจนแคบสุด → ต้องไม่มีแถบเลื่อนแนวนอน (ทดสอบแล้วตั้งแต่ 320px ถึง 1600px)
+- กด `Tab` รัวๆ → ต้องเห็นกรอบมิ้นต์วิ่งไปทีละอัน
+- เปิด modal แล้วกด `←` `→` เลื่อนรูป กด `Esc` ปิด — Tab ต้องวนอยู่ใน modal เท่านั้น
+- ปิด JavaScript แล้วรีเฟรช → ต้องยังเห็นชื่อ ประวัติ และช่องทางติดต่อครบ
