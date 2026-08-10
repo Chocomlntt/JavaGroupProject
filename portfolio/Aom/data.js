@@ -1,208 +1,157 @@
-// Portfolio Data Store - All editable text & content for the website
+/* ============================================================================
+   PORTFOLIO CONTENT STORE  —  v3 "Depth Canvas"
+   ----------------------------------------------------------------------------
+   แก้เนื้อหาผลงาน / ใบประกาศ / ทักษะ ที่ไฟล์นี้ไฟล์เดียว
+   (ชื่อ ประวัติ ที่อยู่ อยู่ใน index-v3.html ตรงๆ ค้นหาคำแล้วแก้ได้เลย)
 
-export const profileData = {
-  name: "Phanuwat Audkanthar",
-  title: "Junior Dev | Backend Developer & Frontend Developer",
-  avatar: "./IMG_0163.heic", // Profile image path or URL
-  handle: "Road to Full-Stack!!",
-  idCode: "29-03-2006",
-  status: "AVAILABLE FOR HIRE",
-  bio: "Architecting high-performance web applications, distributed systems, and real-time interactive interfaces with cyber-linear precision.",
-  location: "Uttaradit, Thailand / Remote",
-  coreStackText: "CORE: React, Next.js, Tailwind, HTML, CSS, JavaScript, Spring Boot, Docker",
-  securityVerifiedText: "SECURITY VERIFIED",
+   เป็นสคริปต์ธรรมดา ไม่ใช่ ES module — ดับเบิลคลิกเปิดไฟล์ดูได้เลย
+   ไม่ต้องรันเซิร์ฟเวอร์
+   ========================================================================== */
 
-  // Hero Section Stats
-  stats: {
-    experienceYears: { value: "None", label: "Years Experience" },
-    projectsCompleted: { value: "5", label: "Projects Shipped" },
-    codeCommits: { value: "500", label: "Git Commits" }
+window.PORTFOLIO = {
+
+  /* ── โปรไฟล์ ──────────────────────────────────────────────────────────── */
+  profile: {
+    firstName: "PHANUWAT",
+    lastName: "AUDKANTHAR",
+    nickname: "Aom",
+    handle: "Road to Full-Stack!!",
+    idCode: "AOMMYKUNG-X7",
+    role: "Junior Dev · Backend & Frontend Developer",
+    status: "AVAILABLE FOR HIRE",
+    location: "Uttaradit, Thailand / Remote",
+    education: "Chiang Mai University · DII",
+    avatar: "assets/profile.JPG",
+    email: "phanuwataom1250@gmail.com",
+    socials: {
+      github: "https://github.com/Aommykung1250-X7",
+      instagram: "https://www.instagram.com/saimon_.am/",
+      facebook: "https://www.facebook.com/AoMYKuNgG/"
+    }
   },
 
-  // Social Links & Contact Details
-  socials: {
-    github: "https://github.com/Aommykung1250-X7",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
-    email: "phanuwataom1250@gmail.com"
-  }
-};
+  /* ── ตัวเลขหน้าแรก ─────────────────────────────────────────────────────── */
+  stats: [
+    { value: "3",   suffix: "+", label: "Featured Projects", note: "shipped" },
+    { value: "500", suffix: "+", label: "Git Commits",       note: "and counting" },
+    { value: "2",   suffix: "",  label: "Competition Awards", note: "gold · national" }
+  ],
 
-// Section Headings & General Site Text
-export const siteTextData = {
-  hero: {
-    subtitle: "// PHANUWAT AUDKANTHAR PROFILE",
-    titleMain: "Junior Developer Fullstack Developer",
-    titleGradient: "Frontend & Backend",
-    ctaPrimary: "Start a Conversation",
-    ctaSecondary: "Download Resume"
-  },
-  showcase: {
-    tag: "PORTFOLIO SHOWCASE",
-    titleMain: "Architectural Engineering &",
-    titleGradient: "Shipped Systems",
-    description: "Explore full-stack platforms, high-performance web applications, and real-time interactive tools."
-  },
-  contact: {
-    tag: "START A CONVERSATION",
-    titleMain: "Let's Build Something",
-    titleGradient: "Exceptional",
-    description: "Have an upcoming project, engineering opportunity, or architectural inquiry? Drop a message below.",
-    directSignalsTitle: "Direct Signals",
-    directSignalsDesc: "Whether you need a full-stack developer for a production launch or architectural guidance on web applications, my inbox is open.",
-    responseTime: "< 24 Hours Guaranteed"
-  },
-  footer: {
-    tagline: "DESIGN SYSTEM #131313 / #00FFC2",
-    copyright: "© 2026 Phanuwat Audkanthar. All rights reserved."
-  }
-};
+  /* ── แถบวิ่ง (marquee) ─────────────────────────────────────────────────── */
+  ticker: [
+    "REACT", "NEXT.JS", "SPRING BOOT", "FASTAPI", "DOCKER",
+    "POSTGRESQL", "TAILWIND", "WEBSOCKETS", "YOLOv11", "KOTLIN"
+  ],
 
-// Resume Modal Content
-export const resumeData = {
-  title: "Phanuwat Audkanthar Resume Spec",
-  badge: "VERIFIED CERTIFIED DEVELOPER SPECIFICATION",
-  summary: "Junior Full-Stack Developer passionate about engineering clean, responsive React/Next.js frontends, scalable Node.js/Python backends, and high-quality web applications.",
-
-  experience: [
+  /* ── ผลงาน ─────────────────────────────────────────────────────────────
+     เพิ่มโปรเจกต์ = ก๊อปบล็อก { ... } ทั้งก้อนแล้วแก้
+     images ใส่กี่รูปก็ได้ ถ้ามากกว่า 1 ปุ่มเลื่อนรูปจะโผล่มาเอง        */
+  projects: [
     {
-      role: "Junior Full-Stack Developer",
-      company: "Freelance & Open Source Projects",
-      period: "2024 - Present",
-      description: "Developing modern web apps, REST APIs, and responsive interfaces using React, Next.js, and Node.js."
+      id: "proj-nanngai",
+      index: "01",
+      title: "Nan-Ngai — CCTV Detection",
+      titleTh: "น่านไง",
+      category: "AI & WEB SYSTEM",
+      year: "2025",
+      summary: "ระบบเฝ้าระวังและตรวจจับวัตถุจากกล้อง CCTV ด้วยโมเดล YOLOv11 เชื่อมต่อเว็บแอปพลิเคชันแบบเรียลไทม์",
+      details: "แพลตฟอร์มกล้องตรวจจับอัจฉริยะที่ผสานคอมพิวเตอร์วิทัศน์ (Computer Vision) ด้วย YOLOv11 เข้ากับ Backend API บน FastAPI และ Frontend ด้วย Next.js, Tailwind CSS และ Prisma ORM — วิเคราะห์ คัดแยกวัตถุ และแจ้งเตือนเหตุการณ์จากกล้องวงจรปิดแบบเรียลไทม์",
+      tags: ["Next.js", "React.js", "Tailwind CSS", "FastAPI", "Prisma", "YOLOv11"],
+      metrics: [
+        { k: "Model",        v: "YOLOv11" },
+        { k: "Response",     v: "Real-time" },
+        { k: "Architecture", v: "Microservices" }
+      ],
+      image: "assets/pic/nan1.JPG",
+      images: ["assets/pic/nan1.JPG", "assets/pic/nan2.JPG", "assets/pic/nan3.png"],
+      repoUrl: "https://github.com/PreturnPRO/Nan-Ngai-CCTV",
+      demoUrl: ""
     },
     {
-      role: "Backend & Frontend Engineer Learner",
-      company: "Self-Driven Engineering Projects",
-      period: "2023 - 2024",
-      description: "Built database-backed web applications, state management workflows, and custom glassmorphic UI systems."
+      id: "proj-kiosk",
+      index: "02",
+      title: "DITC — Smart Kiosk System",
+      titleTh: "",
+      category: "WEB APP & SERVER",
+      year: "2025",
+      summary: "ระบบบริหารจัดการตู้คีออสก์อัจฉริยะ สื่อสารผ่าน WebSockets และควบคุมเซิร์ฟเวอร์ด้วย Docker",
+      details: "เว็บแอปพลิเคชันสำหรับบริหารจัดการตู้คีออสก์อัจฉริยะ (DITC Smart Kiosk) โต้ตอบกับผู้ใช้งานด้วย React.js และ Tailwind CSS ทำงานร่วมกับ WebSockets เพื่อส่งข้อมูลเรียลไทม์ไปยังเซิร์ฟเวอร์ที่คอนเทนเนอไรซ์ด้วย Docker และจัดเก็บข้อมูลบน PostgreSQL",
+      tags: ["React.js", "Tailwind CSS", "Docker", "PostgreSQL", "WebSockets", "JavaScript"],
+      metrics: [
+        { k: "System",     v: "Smart Kiosk" },
+        { k: "Protocol",   v: "WebSockets" },
+        { k: "Deployment", v: "Docker" }
+      ],
+      image: "assets/pic/kiosk3.png",
+      images: ["assets/pic/kiosk3.png", "assets/pic/kiosk2.png", "assets/pic/kiosk1.png"],
+      repoUrl: "https://github.com/Aommykung1250-X7",
+      demoUrl: ""
+    },
+    {
+      id: "proj-webapp",
+      index: "03",
+      title: "Web Application Competition",
+      titleTh: "",
+      category: "WEB APPLICATION",
+      year: "2024",
+      award: "GOLD MEDAL",
+      summary: "รางวัลเหรียญทอง การแข่งขันสร้าง Web Application งานศิลปหัตถกรรมนักเรียน ระดับเขตพื้นที่การศึกษา",
+      details: "ระบบเว็บแอปพลิเคชันที่พัฒนาขึ้นเพื่อเข้าร่วมการแข่งขันงานศิลปหัตถกรรมนักเรียน สร้างด้วย HTML5, CSS3, PHP และ JavaScript เน้นการออกแบบระบบที่ใช้งานง่าย รองรับการจัดการข้อมูลหลังบ้านและการเชื่อมต่อฐานข้อมูลอย่างมีประสิทธิภาพ จนได้รับรางวัลเหรียญทองระดับเขตพื้นที่การศึกษา",
+      tags: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
+      metrics: [
+        { k: "Award", v: "Gold Medal" },
+        { k: "Scope", v: "District" },
+        { k: "Stack", v: "PHP / JS" }
+      ],
+      image: "assets/pic/webapp.JPG",
+      images: ["assets/pic/webapp.JPG"],
+      repoUrl: "https://github.com/Aommykung1250-X7",
+      demoUrl: ""
     }
   ],
 
-  education: {
-    degree: "Computer Science / Software Engineering Student",
-    institution: "Uttaradit, Thailand"
-  }
+  /* ── ใบประกาศ ─────────────────────────────────────────────────────────── */
+  certificates: [
+    {
+      id: "cert-cyber",
+      index: "01",
+      title: "Cyber Top Talent (Senior)",
+      issuer: "NCSA · สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ",
+      issuerShort: "NCSA (สกมช.)",
+      year: "2025",
+      code: "CYBER-TOP-2025",
+      description: "ใบประกาศนียบัตรเข้าร่วมและผ่านการทดสอบการแข่งขัน Cyber Top Talent ประจำปี 2025 ระดับ Senior แสดงถึงความรู้ด้าน Cyber Security การวิเคราะห์ช่องโหว่ และการป้องกันระบบสารสนเทศจากภัยคุกคามไซเบอร์",
+      skills: ["Cyber Security", "Network Defense", "Threat Analysis", "Incident Response"],
+      image: "assets/pic/cert1.jpg",
+      images: ["assets/pic/cert1.jpg", "assets/pic/cyber1.JPG", "assets/pic/cyber2.JPG"]
+    },
+    {
+      id: "cert-aiprompt",
+      index: "02",
+      title: "AI Prompt Mini Hackathon 2024",
+      issuer: "SPU · Sripatum University",
+      issuerShort: "Sripatum University",
+      year: "2024",
+      code: "AI-PROMPT-2024",
+      description: "ใบประกาศนียบัตรเข้าร่วมการแข่งขัน AI Prompt Mini Hackathon 2024 แสดงถึงทักษะการออกแบบและประยุกต์ใช้ Prompt Engineering ร่วมกับเทคโนโลยี Generative AI เพื่อแก้โจทย์เชิงสร้างสรรค์",
+      skills: ["Prompt Engineering", "Generative AI", "LLM Optimization", "Creative Problem Solving"],
+      image: "assets/pic/cert2.PNG",
+      images: ["assets/pic/cert2.PNG"]
+    }
+  ],
+
+  /* ── ทักษะ ─────────────────────────────────────────────────────────────
+     level มีได้ 3 ค่า:  "excellent" (3 ขีด) · "good" (2 ขีด) · "learning" (1 ขีด) */
+  stack: [
+    { name: "HTML / CSS",          group: "Frontend", level: "excellent", icon: "code" },
+    { name: "Tailwind CSS",        group: "Frontend", level: "excellent", icon: "palette" },
+    { name: "React.js",            group: "Frontend", level: "good",      icon: "atom" },
+    { name: "Next.js",             group: "Frontend", level: "good",      icon: "layers" },
+    { name: "Node.js",             group: "Backend",  level: "excellent", icon: "server" },
+    { name: "FastAPI",             group: "Backend",  level: "excellent", icon: "terminal" },
+    { name: "Spring Boot",         group: "Backend",  level: "good",      icon: "share" },
+    { name: "Supabase / Postgres", group: "Database", level: "excellent", icon: "database" },
+    { name: "Docker & K8s",        group: "DevOps",   level: "good",      icon: "box" },
+    { name: "Kotlin",              group: "Mobile",   level: "learning",  icon: "cpu" }
+  ]
 };
-
-// Tech Stack Data
-export const techStackData = [
-  { id: "react", name: "React.js", category: "Frontend", level: "Excellent", icon: "atom", desc: "Hooks, Fiber architecture, Concurrent mode, state management" },
-  { id: "nextjs", name: "Next.js", category: "Frontend", level: "Excellent", icon: "layers", desc: "App Router, SSR, Server Components, Edge runtime" },
-  { id: "typescript", name: "TypeScript", category: "Frontend", level: "Good", icon: "code", desc: "Strict typing, generics, AST transformations, utility types" },
-  { id: "tailwind", name: "Tailwind CSS", category: "Frontend", level: "Excellent", icon: "palette", desc: "Design tokens, custom plugins, responsive layouts, JIT" },
-  { id: "nodejs", name: "Node.js", category: "Backend", level: "Good", icon: "server", desc: "Event loop optimization, REST/gRPC APIs, microservices" },
-  { id: "python", name: "Python / FastAPI", category: "Backend", level: "Good", icon: "terminal", desc: "Async IO, Pydantic, ML inference endpoints, data pipelines" },
-  { id: "supabase", name: "Supabase / Postgres", category: "Database", level: "Good", icon: "database", desc: "Row Level Security, realtime subscriptions, vector search" },
-  { id: "docker", name: "Docker & K8s", category: "DevOps", level: "Practicing", icon: "box", desc: "Multi-stage builds, container orchestration, CI/CD pipelines" },
-  { id: "graphql", name: "GraphQL", category: "Backend", level: "Practicing", icon: "share-2", desc: "Schema stitching, Apollo Server, query optimization" },
-  { id: "webgl", name: "Three.js / WebGL", category: "Graphics", level: "Practicing", icon: "cpu", desc: "3D shaders, particle systems, interactive canvas rendering" }
-];
-
-// Project Showcase Data
-export const projectsData = [
-  {
-    id: "proj-1",
-    title: "AuraOS - Cybernetic Cloud Dashboard",
-    category: "Full Stack",
-    featured: true,
-    tags: ["Next.js", "TypeScript", "Tailwind", "Supabase", "Recharts"],
-    summary: "Real-time infrastructure monitoring console with interactive node telemetry, AI anomaly detection, and glassmorphic UI.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
-    accentColor: "#00ffc2",
-    metrics: { uptime: "99.99%", latency: "<12ms", users: "14.2k" },
-    demoUrl: "https://example.com/auraos",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "AuraOS provides enterprise cloud engineering teams with live visualization of multi-region kubernetes clusters, serverless metrics, and real-time security threats with high-contrast neon visual feedback."
-  },
-  {
-    id: "proj-2",
-    title: "NeuroFlux AI - Vector Search Engine",
-    category: "AI & Data",
-    featured: true,
-    tags: ["Python", "FastAPI", "React.js", "PostgreSQL", "Tailwind"],
-    summary: "Ultra-fast neural search platform parsing unstructured documentation with sub-50ms hybrid vector retrieval.",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
-    accentColor: "#00e5ff",
-    metrics: { queryTime: "34ms", accuracy: "98.4%", indexing: "1M docs/hr" },
-    demoUrl: "https://example.com/neuroflux",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Built to handle massive technical documentation repositories, NeuroFlux converts multi-format files into high-dimensional vector embeddings with interactive graph exploration."
-  },
-  {
-    id: "proj-3",
-    title: "Synthetix - Web3 Realtime Exchange",
-    category: "Full Stack",
-    featured: true,
-    tags: ["React.js", "TypeScript", "Node.js", "GraphQL", "WebSockets"],
-    summary: "High-frequency decentralized asset trading portal with live order books, candlestick charts, and custom WebGL particles.",
-    image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1000&q=80",
-    accentColor: "#7928ca",
-    metrics: { tps: "50,000", volume: "$1.2B", markets: "120+" },
-    demoUrl: "https://example.com/synthetix",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Engineered with low-latency WebSocket data streams and optimized WebGL rendering to display 60fps market fluctuations without UI stutter."
-  },
-  {
-    id: "proj-4",
-    title: "KubePulse - Container Telemetry",
-    category: "DevOps",
-    featured: false,
-    tags: ["Go", "Docker", "TypeScript", "Tailwind"],
-    summary: "Lightweight container performance inspector with zero-overhead eBPF probes and instant terminal exports.",
-    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1000&q=80",
-    accentColor: "#00ffc2",
-    metrics: { overhead: "<0.1%", binarySize: "8.4MB", stars: "2.8k" },
-    demoUrl: "https://example.com/kubepulse",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Monitors memory leaks, thread locks, and IO bottlenecks across Kubernetes pod instances with zero agent overhead."
-  },
-  {
-    id: "proj-5",
-    title: "Nexus Code Studio - Browser IDE",
-    category: "Frontend",
-    featured: false,
-    tags: ["React.js", "Monaco Editor", "WebAssembly", "TypeScript"],
-    summary: "Browser-native code execution environment with real-time collaborative editing, LSP support, and terminal runner.",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1000&q=80",
-    accentColor: "#ff007a",
-    metrics: { bootTime: "400ms", languages: "14", activeDevs: "8.5k" },
-    demoUrl: "https://example.com/nexus-ide",
-    repoUrl: "https://github.com/Aommykung1250-X7",
-    details: "Runs sandboxed WebAssembly compilers in web workers, enabling offline compilation of C++, Rust, and TypeScript directly inside the client browser."
-  }
-];
-
-// Certificates Data
-export const certificatesData = [
-  {
-    id: "cert-1",
-    title: "AWS Certified Solutions Architect – Professional",
-    issuer: "Amazon Web Services",
-    date: "2025",
-    code: "AWS-PSA-993821",
-    verifyUrl: "https://aws.amazon.com/verification",
-    badgeIcon: "award",
-    skills: ["Cloud Architecture", "Distributed Systems", "Security", "Cost Optimization"]
-  },
-  {
-    id: "cert-2",
-    title: "CKAD: Certified Kubernetes Application Developer",
-    issuer: "Cloud Native Computing Foundation (CNCF)",
-    date: "2024",
-    code: "LF-CKAD-77412",
-    verifyUrl: "https://cncf.io/verify",
-    badgeIcon: "box",
-    skills: ["Container Security", "Helm Charts", "Ingress Controllers", "StatefulSets"]
-  },
-  {
-    id: "cert-3",
-    title: "Meta Certified Senior Front-End Developer",
-    issuer: "Meta Credentials",
-    date: "2024",
-    code: "META-FRONTEND-4491",
-    verifyUrl: "https://coursera.org/verify",
-    badgeIcon: "code-2",
-    skills: ["React Deep Dive", "Advanced JS", "Web Performance", "Accessibility"]
-  }
-];

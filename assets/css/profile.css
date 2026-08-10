@@ -578,13 +578,15 @@
   grid-area: 1 / 1;
 }
 
-.shot__img {
+.shot__img,
+.shot__box img,
+.shot__box iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  /* ต้องอยู่เหนือ .shot__ph ไม่งั้นพอใส่รูปจริง ข้อความสำรอง
-     จะไปลอยทับรูป เพราะมันอยู่หลัง <img> ใน DOM */
+  border: none;
+  overflow: hidden;
   position: relative;
   z-index: 1;
 }
